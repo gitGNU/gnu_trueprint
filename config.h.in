@@ -1,19 +1,4 @@
-#define _POSIX_SOURCE
-
-/* Define to the version id */
-#define VERSID 0
-
-/* Define to the diff command if it exists on this system */
-#undef DIFF_CMD
-
-/* Define to the print command, normally either lpr or lp */
-#undef PRINT_CMD
-
-/* Define to the destination flag for the print command */
-#undef PRINT_CMD_DEST_FLAG
-
-/* Define to the count flag for the print command */
-#undef PRINT_CMD_COUNT_FLAG
+/* config.h.in.  Generated automatically from configure.in by autoheader.  */
 
 /* Define to empty if the keyword does not work.  */
 #undef const
@@ -42,6 +27,21 @@
 /* Define if your <sys/time.h> declares struct tm.  */
 #undef TM_IN_SYS_TIME
 
+/* diff command */
+#undef DIFF_CMD
+
+/* print command - normally either lp or lpr */
+#undef PRINT_CMD
+
+/* printer flag for specifying how many copies to print */
+#undef PRINT_CMD_COUNT_FLAG
+
+/* printer flag for specifying destination */
+#undef PRINT_CMD_DEST_FLAG
+
+/* Define if you have the gettext function.  */
+#undef HAVE_GETTEXT
+
 /* Define if you have the strdup function.  */
 #undef HAVE_STRDUP
 
@@ -51,20 +51,24 @@
 /* Define if you have the strtol function.  */
 #undef HAVE_STRTOL
 
-/* Define if you have the getopt_long function.  */
-#undef HAVE_GETOPT_LONG
-
-/* Define if you have the gettext function.  */
-#undef HAVE_GETTEXT
-
 /* Define if you have the <fcntl.h> header file.  */
 #undef HAVE_FCNTL_H
+
+/* Define if you have the <libintl.h> header file.  */
+#undef HAVE_LIBINTL_H
+
+/* Define if you have the <sys/time.h> header file.  */
+#undef HAVE_SYS_TIME_H
 
 /* Define if you have the <unistd.h> header file.  */
 #undef HAVE_UNISTD_H
 
-/* Define if you have the <libintl.h> header file. */
-#undef HAVE_LIBINTL_H
+/* Name of package */
+#undef PACKAGE
 
-/* Define if you have the <getopt.h> header file. */
-#undef HAVE_GETOPT_H
+/* Version number of package */
+#undef VERSION
+
+/* Define if your system libraries have a sys_errlist variable. */
+#undef HAVE_SYS_ERRLIST
+

@@ -1,0 +1,343 @@
+%!PS-Adobe-2.0
+statusdict /setduplexmode known {
+  false statusdict /setduplexmode get exec
+} if
+/Ps	10 def
+/SPs	7 def
+/Lh	11 def
+/Rm	897 def
+/Tm	578 def
+/Bh	15 def
+/Bf	0 def
+/CF	/Courier findfont Ps scalefont def
+/IF	/Courier-Oblique findfont Ps scalefont def
+/BF	/Courier-Bold findfont Ps scalefont def
+/CFs	/Courier findfont SPs scalefont def
+/IFs	/Courier-Oblique findfont SPs scalefont def
+/BFs	/Courier-Bold findfont SPs scalefont def
+/HF	/Helvetica findfont Ps scalefont def
+/Li CFs setfont (1234567890) stringwidth pop def
+/Nl	{ /Vpos Vpos Lh sub def } def
+/Lpt	{ 0 Vpos moveto } def
+/Gb	{
+		} def
+/Ip	{ Gb .5 setlinewidth
+		0 Tm moveto 0 Bh neg rlineto Rm 0 rlineto 0 Bh rlineto closepath
+		gsave .98 setgray fill grestore stroke
+		0 0 moveto Rm 0 rlineto
+		gsave .98 setgray fill grestore stroke
+		0 Bf moveto 0 Tm Bh sub lineto stroke newpath
+		} def
+/Cp	{ Ip .3 setlinewidth newpath
+		Li 0 Bf add moveto Li Tm Bh sub lineto stroke newpath
+		} def
+/So	{ gsave dup stringwidth pop Ps 3 div 0 exch rmoveto 0 rlineto fill grestore } def
+/Ul	{ gsave	dup stringwidth pop 0 -1 rmoveto 0 rlineto fill grestore } def
+/Bs	{ gsave	dup show grestore 0.5 0.5 rmoveto show } def
+<</PageSize [605 806]>> setpagedevice
+%%Page: Cover 1
+70 70 moveto
+/Helvetica findfont 10 scalefont setfont
+(Trueprint 3.6.5) show
+70 725 moveto
+/Helvetica-Bold findfont 20 scalefont setfont
+(For: testuser) show
+70 700 moveto
+(Printed on: Fri Apr 16 03:00:00 1982) show
+70 675 moveto
+(Last page number: 6) show
+70 650 moveto (File: test1.c) show
+70 625 moveto (File: test2.c) show
+showpage
+%%Page: 1 2
+gsave
+15 405 translate .64 .64 scale
+Ip HF setfont /Ypos Tm Bh sub Ps 2 div add def
+Ps Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1) stringwidth pop sub dup Ypos moveto
+(Page 1) show
+exch sub 2 div add (Function Index) stringwidth pop 2 div sub Ypos moveto
+(Function Index) show
+CF setfont /Vpos Tm Bh sub Ps sub def
+Lpt(          closepipe                   3  (test1.c)
+) show Nl
+Lpt(          fclosepipe..................3  (test1.c)) show Nl
+Lpt(          fopenpipe                   2  (test1.c)
+) show Nl
+Lpt(          getopt......................5  (test2.c)) show Nl
+Lpt(          openpipe                    1  (test1.c)
+) show Nl
+grestore
+15 30 translate .64 .64 scale
+Ip HF setfont /Ypos Tm Bh sub Ps 2 div add def
+Ps Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 2) stringwidth pop sub dup Ypos moveto
+(Page 2) show
+exch sub 2 div add (Function Index) stringwidth pop 2 div sub Ypos moveto
+(Function Index) show
+CF setfont /Vpos Tm Bh sub Ps sub def
+showpage
+%%Page: 3 3
+gsave
+15 405 translate .64 .64 scale
+Ip HF setfont /Ypos Tm Bh sub Ps 2 div add def
+Ps Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1) stringwidth pop sub dup Ypos moveto
+(Page 1) show
+exch sub 2 div add (File Index) stringwidth pop 2 div sub Ypos moveto
+(File Index) show
+CF setfont /Vpos Tm Bh sub Ps sub def
+          Lpt(    test1.c                      1) BF setfont show CF setfont Nl
+          Lpt(          closepipe...................3) show Nl
+          Lpt(          fclosepipe                  3) show Nl
+          Lpt(          fopenpipe...................2) show Nl
+          Lpt(          openpipe                    1) show Nl
+          Lpt(    test2.c                      5) BF setfont show CF setfont Nl
+          Lpt(          getopt                      5) show Nl
+          grestore
+15 30 translate .64 .64 scale
+Ip HF setfont /Ypos Tm Bh sub Ps 2 div add def
+Ps Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 2) stringwidth pop sub dup Ypos moveto
+(Page 2) show
+exch sub 2 div add (File Index) stringwidth pop 2 div sub Ypos moveto
+(File Index) show
+CF setfont /Vpos Tm Bh sub Ps sub def
+showpage
+%%Page: 5 4
+gsave
+15 405 translate .64 .64 scale
+Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
+Ps Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1 of 6) stringwidth pop sub dup Ypos moveto
+(Page 1 of 6) show
+exch sub 2 div add (openpipe) stringwidth pop 2 div sub Ypos moveto
+(openpipe) show
+/Vpos Tm Bh sub Ps sub def
+Lpt CFs setfont (     1     ) show (/*) IF setfont show  Nl
+Lpt CFs setfont (     2     ) show ( * Source file:) IF setfont show  Nl
+Lpt CFs setfont (     3     ) show ( *      openpipe.c) IF setfont show  Nl
+Lpt CFs setfont (     4     ) show ( *) IF setfont show  Nl
+Lpt CFs setfont (     5     ) show ( * Contains openpipe - a replacement for the non-POSIX function popen.) IF setfont show  Nl
+Lpt CFs setfont (     6     ) show ( * This returns an int rather than a FILE * to make it general purpose -) IF setfont show  Nl
+Lpt CFs setfont (     7     ) show ( * fdopen can be used outside to convert this to a FILE *) IF setfont show  Nl
+Lpt CFs setfont (     8     ) show ( */) IF setfont show  Nl
+Lpt CFs setfont (           ) show () IF setfont show  Nl
+Lpt CFs setfont (    10     ) show (#define _POSIX_SOURCE) CF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (    12     ) show (#include <errno.h>) CF setfont show  Nl
+Lpt CFs setfont (    13     ) show (#include <stdio.h>) CF setfont show  Nl
+Lpt CFs setfont (    14     ) show (#include <stdlib.h>) CF setfont show  Nl
+Lpt CFs setfont (    15     ) show (#include <string.h>) CF setfont show  Nl
+Lpt CFs setfont (    16     ) show (#include <sys/types.h>) CF setfont show  Nl
+Lpt CFs setfont (    17     ) show (#include <sys/wait.h>) CF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (    19     ) show (#ifdef _ultrix) CF setfont show  Nl
+Lpt CFs setfont (    20     ) show (extern int close\(int fildes\);) CF setfont show  Nl
+Lpt CFs setfont (    21     ) show (extern int dup\(int fildes\);) CF setfont show  Nl
+Lpt CFs setfont (    22     ) show (extern pid_t fork\(void\);) CF setfont show  Nl
+Lpt CFs setfont (    23     ) show (extern int pipe\(int fildes[2]\);) CF setfont show  Nl
+Lpt CFs setfont (    24     ) show (#else) CF setfont show  Nl
+Lpt CFs setfont (    25     ) show (#include <unistd.h>) CF setfont show  Nl
+Lpt CFs setfont (    26     ) show (#endif) CF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (    28     ) show (#include "trueprint.h") CF setfont show  Nl
+Lpt CFs setfont (    29     ) show (#include "main.h") CF setfont show  Nl
+Lpt CFs setfont (    30     ) show (#include "openpipe.h") CF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (    32     ) show (int) CF setfont show  Nl
+Lpt CFs setfont (    33     ) show (openpipe) BF setfont show (\(const char *command, char *mode\)) CF setfont show  Nl
+Lpt CFs setfont (           ) show () BF setfont show  Nl
+Lpt CFs setfont (    35  1  ) show ({) CF setfont show  Nl
+Lpt CFs setfont (    36  1  ) show (  int fildes[2];) CF setfont show  Nl
+Lpt CFs setfont (    37  1  ) show (  int parent_pipe_end;) CF setfont show  Nl
+Lpt CFs setfont (    38  1  ) show (  int child_pipe_end;) CF setfont show  Nl
+Lpt CFs setfont (    39  1  ) show (  char *child_pipe_mode;) CF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (    41  2  ) show (  if \(strcmp\(mode, "w"\) == 0\) {) CF setfont show  Nl
+Lpt CFs setfont (    42  2  ) show (    parent_pipe_end = 1; child_pipe_end = 0;) CF setfont show  Nl
+Lpt CFs setfont (    43  2  ) show (    child_pipe_mode = "read";) CF setfont show  Nl
+Lpt CFs setfont (    44  2  ) show (  } else if \(strcmp\(mode, "r"\) == 0\) {) CF setfont show  Nl
+Lpt CFs setfont (    45  2  ) show (    parent_pipe_end = 0; child_pipe_end = 1;) CF setfont show  Nl
+Lpt CFs setfont (    46  2  ) show (    child_pipe_mode = "write";) CF setfont show  Nl
+Lpt CFs setfont (    47  2  ) show (  } else {) CF setfont show  Nl
+Lpt CFs setfont (    48  2  ) show (    \(void\)fprintf\(stderr, "%s: Internal error: popen\(\) called with bad mode %s", cmd_name, mode\);) CF setfont show  Nl
+Lpt CFs setfont (    49  2  ) show (    exit\(2\);) CF setfont show  Nl
+Lpt CFs setfont (    50  1  ) show (  }) CF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+grestore
+15 30 translate .64 .64 scale
+Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
+Ps Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 2 of 6) stringwidth pop sub dup Ypos moveto
+(Page 2 of 6) show
+exch sub 2 div add (openpipe) stringwidth pop 2 div sub Ypos moveto
+(openpipe) show
+/Vpos Tm Bh sub Ps sub def
+Lpt CFs setfont (    52  2  ) show (  if \(pipe\(fildes\) != 0\) {) CF setfont show  Nl
+Lpt CFs setfont (    53  2  ) show (    \(void\)fprintf\(stderr, "%s: Cannot create pipe, %s\\n", cmd_name, strerror\(errno\)\);) CF setfont show  Nl
+Lpt CFs setfont (    54  2  ) show (    exit\(2\);) CF setfont show  Nl
+Lpt CFs setfont (    55  1  ) show (  }) CF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (    57  2  ) show (  switch \(fork\(\)\) {) CF setfont show  Nl
+Lpt CFs setfont (    58  2  ) show (  case -1:) CF setfont show  Nl
+Lpt CFs setfont (    59  2  ) show (    ) CF setfont show (/* Error */) IF setfont show  Nl
+Lpt CFs setfont (    60  2  ) show (    \(void\)fprintf\(stderr, "%s: Cannot fork, %s\\n", cmd_name, strerror\(errno\)\);) CF setfont show  Nl
+Lpt CFs setfont (    61  2  ) show (    exit\(2\);) CF setfont show  Nl
+Lpt CFs setfont (    62  2  ) show (    ) CF setfont show (/*NOTREACHED*/) IF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (    64  2  ) show (  case 0:) CF setfont show  Nl
+Lpt CFs setfont (    65  2  ) show (    ) CF setfont show (/* Child process */) IF setfont show  Nl
+Lpt CFs setfont (    66  2  ) show (    if \(!\(\(close\(fildes[parent_pipe_end]\) == 0\) &&) CF setfont show  Nl
+Lpt CFs setfont (    67  2  ) show (         \(close\(child_pipe_end\) == 0\) &&) CF setfont show  Nl
+Lpt CFs setfont (    68  3  ) show (         \(dup\(fildes[child_pipe_end]\) == child_pipe_end\)\)\) {) CF setfont show  Nl
+Lpt CFs setfont (    69  3  ) show (      \(void\)fprintf\(stderr,"%s: Cannot redirect %s for child, %s\\n", cmd_name, child_pipe_mode, strerror\(errno\)\);) CF setfont show  Nl
+Lpt CFs setfont (    70  3  ) show (      exit\(2\);) CF setfont show  Nl
+Lpt CFs setfont (    71  2  ) show (    }) CF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (    73  3  ) show (    if \(system\(command\) < 0\) {) CF setfont show  Nl
+Lpt CFs setfont (    74  3  ) show (      \(void\)fprintf\(stderr,"%s: Cannot start pipe, %s\\n",cmd_name, strerror\(errno\)\);) CF setfont show  Nl
+Lpt CFs setfont (    75  3  ) show (      exit\(2\);) CF setfont show  Nl
+Lpt CFs setfont (    76  2  ) show (    } else exit\(0\);) CF setfont show  Nl
+Lpt CFs setfont (    77  2  ) show (    ) CF setfont show (/*NOTREACHED*/) IF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (    79  2  ) show (  default:) CF setfont show  Nl
+Lpt CFs setfont (    80  2  ) show (    ) CF setfont show (/* Parent process */) IF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (    82  3  ) show (    if \(close\(fildes[child_pipe_end]\) != 0\) {) CF setfont show  Nl
+Lpt CFs setfont (    83  3  ) show (      \(void\)fprintf\(stderr,"%s: Cannot close %s end of pipe for parent, %s\\n",cmd_name, child_pipe_mode, strerror\(errno\)\);) CF setfont show  Nl
+Lpt CFs setfont (    84  3  ) show (      exit\(2\);) CF setfont show  Nl
+Lpt CFs setfont (    85  2  ) show (    }) CF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (    87  2  ) show (    return fildes[parent_pipe_end];) CF setfont show  Nl
+Lpt CFs setfont (    88  1  ) show (  }) CF setfont show  Nl
+Lpt CFs setfont (    89     ) show (}) CF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (    91     ) show (FILE *) CF setfont show  Nl
+Lpt CFs setfont (    92     ) show (fopenpipe) BF setfont show (\(const char *command, char *mode\)) CF setfont show  Nl
+Lpt CFs setfont (           ) show () BF setfont show  Nl
+Lpt CFs setfont (    94  1  ) show ({) CF setfont show  Nl
+Lpt CFs setfont (    95  1  ) show (  int handle;) CF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (    97  1  ) show (  handle = openpipe\(command, mode\);) CF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (    99  1  ) show (  return fdopen\(handle, mode\);) CF setfont show  Nl
+Lpt CFs setfont (   100     ) show (}) CF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (   102     ) show (void) CF setfont show  Nl
+showpage
+%%Page: 7 5
+gsave
+15 405 translate .64 .64 scale
+Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
+Ps Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 3 of 6) stringwidth pop sub dup Ypos moveto
+(Page 3 of 6) show
+exch sub 2 div add (closepipe) stringwidth pop 2 div sub Ypos moveto
+(closepipe) show
+/Vpos Tm Bh sub Ps sub def
+Lpt CFs setfont (   103     ) show (closepipe) BF setfont show (\(int handle\)) CF setfont show  Nl
+Lpt CFs setfont (           ) show () BF setfont show  Nl
+Lpt CFs setfont (   105  1  ) show ({) CF setfont show  Nl
+Lpt CFs setfont (   106  1  ) show (  int statloc;) CF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (   108  1  ) show (  \(void\)close\(handle\);) CF setfont show  Nl
+Lpt CFs setfont (   109  1  ) show (  \(void\)waitpid\(-1, &statloc, WNOHANG\);) CF setfont show  Nl
+Lpt CFs setfont (   110     ) show (}) CF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (   112     ) show (void) CF setfont show  Nl
+Lpt CFs setfont (   113     ) show (fclosepipe) BF setfont show (\(FILE *fp\)) CF setfont show  Nl
+Lpt CFs setfont (           ) show () BF setfont show  Nl
+Lpt CFs setfont (   115  1  ) show ({) CF setfont show  Nl
+Lpt CFs setfont (   116  1  ) show (  closepipe\(fileno\(fp\)\);) CF setfont show  Nl
+Lpt CFs setfont (   117     ) show (}) CF setfont show  Nl
+grestore
+15 30 translate .64 .64 scale
+Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
+Ps Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 4 of 6) stringwidth pop sub dup Ypos moveto
+(Page 4 of 6) show
+exch sub 2 div add () stringwidth pop 2 div sub Ypos moveto
+() show
+/Vpos Tm Bh sub Ps sub def
+showpage
+%%Page: 9 6
+gsave
+15 405 translate .64 .64 scale
+Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
+Ps Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 5 of 6) stringwidth pop sub dup Ypos moveto
+(Page 5 of 6) show
+exch sub 2 div add (getopt) stringwidth pop 2 div sub Ypos moveto
+(getopt) show
+/Vpos Tm Bh sub Ps sub def
+Lpt CFs setfont (     1     ) show (/* @\(#\)getopt.c */) IF setfont show  Nl
+Lpt CFs setfont (           ) show () IF setfont show  Nl
+Lpt CFs setfont (     3     ) show (#define _POSIX_SOURCE) CF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (     5     ) show (#include <stdio.h>) CF setfont show  Nl
+Lpt CFs setfont (     6     ) show (#include <string.h>) CF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (     8     ) show (#include "trueprint.h") CF setfont show  Nl
+Lpt CFs setfont (     9     ) show (#include "main.h") CF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (    11     ) show (/*) IF setfont show  Nl
+Lpt CFs setfont (    12     ) show ( * get option letter from argument vector) IF setfont show  Nl
+Lpt CFs setfont (    13     ) show ( */) IF setfont show  Nl
+Lpt CFs setfont (    14     ) show (int             optind = 1;             ) CF setfont show (/* index into parent argv vector */) IF setfont show  Nl
+Lpt CFs setfont (    15     ) show (char            *optarg;                ) CF setfont show (/* argument associated with option */) IF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (    17     ) show (static int      optopt;                 ) CF setfont show (/* character checked for validity */) IF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (    19     ) show (int) CF setfont show  Nl
+Lpt CFs setfont (    20     ) show (getopt) BF setfont show (\(int nargc, char **nargv, char *ostr\)) CF setfont show  Nl
+Lpt CFs setfont (    21  1  ) show ({) CF setfont show  Nl
+Lpt CFs setfont (    22  1  ) show (        register char   *oli;           ) CF setfont show (/* option letter list index */) IF setfont show  Nl
+Lpt CFs setfont (    23  1  ) show (        static char     *place = "";    ) CF setfont show (/* option letter processing */) IF setfont show  Nl
+Lpt CFs setfont (           ) show () CF setfont show  Nl
+Lpt CFs setfont (    25  2  ) show (        if\(!*place\) {                   ) CF setfont show (/* update scanning pointer */) IF setfont show  Nl
+Lpt CFs setfont (    26  3  ) show (                if\(optind >= nargc || *\(place = nargv[optind]\) != '-' || !*++place\) {) CF setfont show  Nl
+Lpt CFs setfont (    27  3  ) show (                  place = "";) CF setfont show  Nl
+Lpt CFs setfont (    28  3  ) show (                  return\(EOF\);) CF setfont show  Nl
+Lpt CFs setfont (    29  2  ) show (                }) CF setfont show  Nl
+Lpt CFs setfont (    30  3  ) show (                if \(*place == '-'\) {    ) CF setfont show (/* found "--" */) IF setfont show  Nl
+Lpt CFs setfont (    31  3  ) show (                  ++optind;) CF setfont show  Nl
+Lpt CFs setfont (    32  3  ) show (                  place = "";) CF setfont show  Nl
+Lpt CFs setfont (    33  3  ) show (                  return EOF;) CF setfont show  Nl
+Lpt CFs setfont (    34  2  ) show (                }) CF setfont show  Nl
+Lpt CFs setfont (    35  1  ) show (        }                               ) CF setfont show (/* option letter okay? */) IF setfont show  Nl
+Lpt CFs setfont (    36  2  ) show (        if \(\(optopt = \(int\)*place++\) == \(int\)':' || !\(oli = strchr\(ostr,optopt\)\)\) {) CF setfont show  Nl
+Lpt CFs setfont (    37  2  ) show (                if\(!*place\) ++optind;) CF setfont show  Nl
+Lpt CFs setfont (    38  2  ) show (                \(void\)fprintf\(stderr, "%s: illegal option -- %c\\n", cmd_name, optopt\);) CF setfont show  Nl
+Lpt CFs setfont (    39  2  ) show (                return '?';) CF setfont show  Nl
+Lpt CFs setfont (    40  1  ) show (        }) CF setfont show  Nl
+Lpt CFs setfont (    41  2  ) show (        if \(*++oli != ':'\) {            ) CF setfont show (/* don't need argument */) IF setfont show  Nl
+Lpt CFs setfont (    42  2  ) show (                optarg = NULL;) CF setfont show  Nl
+Lpt CFs setfont (    43  2  ) show (                if \(!*place\) ++optind;) CF setfont show  Nl
+Lpt CFs setfont (    44  2  ) show (        } else {                                ) CF setfont show (/* need an argument */) IF setfont show  Nl
+Lpt CFs setfont (    45  3  ) show (                if \(*place\) {                   ) CF setfont show (/* no white space */) IF setfont show  Nl
+Lpt CFs setfont (    46  3  ) show (                        optarg = place;) CF setfont show  Nl
+Lpt CFs setfont (    47  3  ) show (                } else if \(nargc <= ++optind\) { ) CF setfont show (/* no arg */) IF setfont show  Nl
+Lpt CFs setfont (    48  3  ) show (                        place = "";) CF setfont show  Nl
+Lpt CFs setfont (    49  3  ) show (                        \(void\)fprintf\(stderr, "%s: option requires an argument -- %c\\n", cmd_name, optopt\);) CF setfont show  Nl
+Lpt CFs setfont (    50  3  ) show (                        optopt = '?';) CF setfont show  Nl
+Lpt CFs setfont (    51  3  ) show (                } else {) CF setfont show  Nl
+grestore
+15 30 translate .64 .64 scale
+Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
+Ps Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 6 of 6) stringwidth pop sub dup Ypos moveto
+(Page 6 of 6) show
+exch sub 2 div add (getopt) stringwidth pop 2 div sub Ypos moveto
+(getopt) show
+/Vpos Tm Bh sub Ps sub def
+Lpt CFs setfont (    52  3  ) show (                        optarg = nargv[optind]; ) CF setfont show (/* white space */) IF setfont show  Nl
+Lpt CFs setfont (    53  2  ) show (                }) CF setfont show  Nl
+Lpt CFs setfont (    54  2  ) show (                place = "";) CF setfont show  Nl
+Lpt CFs setfont (    55  2  ) show (                ++optind;) CF setfont show  Nl
+Lpt CFs setfont (    56  1  ) show (        }) CF setfont show  Nl
+Lpt CFs setfont (    57  1  ) show (        return optopt;                  ) CF setfont show (/* dump back option letter */) IF setfont show  Nl
+Lpt CFs setfont (    58     ) show (}) CF setfont show  Nl
+showpage
+%%Trailer
+%%EOF

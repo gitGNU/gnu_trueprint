@@ -50,7 +50,12 @@ statusdict /setduplexmode known {
 showpage
 %%Page: 1 2
 15 30 translate
-Ip HF setfont /Ypos Tm Bh sub Ps 2 div add def
+Ip gsave
+.9 setgray
+Rm 2 div Tm 2 div translate 60 rotate
+/Courier-Bold findfont 41 scalefont setfont -216 0 moveto (Overprint-test) show
+grestore
+HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
 (Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1 of 1) stringwidth pop sub dup Ypos moveto
 (Page 1 of 1) show
@@ -64,13 +69,9 @@ exch sub 2 div add (test7 1) stringwidth pop 2 div sub Ypos moveto
 (test7 1) show
 /Vpos Tm Bh sub Ps sub def
 Lpt CFs setfont ( ) show (This is a short line) CF setfont show  Nl
-Lpt CFs setfont ( ) show (1234567890123456789012345678901234567890) CF setfont show  Nl
-Lpt CFs setfont ( ) show (1234567890123456789012345678901234567890) CF setfont show  Nl
-Lpt CFs setfont ( ) show (1234567890) CF setfont show  Nl
-Lpt CFs setfont ( ) show (This is a very long line that extends wa) CF setfont show  Nl
-Lpt CFs setfont ( ) show (y beyond the normal width of a normal li) CF setfont show  Nl
-Lpt CFs setfont ( ) show (ne and goes on until at least the hundre) CF setfont show  Nl
-Lpt CFs setfont ( ) show (dth column.) CF setfont show  Nl
+Lpt CFs setfont ( ) show (123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890) CF setfont show  Nl
+Lpt CFs setfont ( ) show (This is a very long line that extends way beyond the normal width of a normal line and goes on ) CF setfont show  Nl
+Lpt CFs setfont ( ) show (                                                          until at least the hundredth column.) CF setfont show  Nl
 Lpt CFs setfont ( ) show (This is another short line.) CF setfont show  Nl
 showpage
 %%Trailer

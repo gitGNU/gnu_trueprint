@@ -1,5 +1,25 @@
 Reverse history of Trueprint:
 
+Version 5.3:
+	Trueprint now uses autoconf and automake (Paul Smith, and the
+	book GNU Autoconf, Automake and Libtool by Gary V. Vaughan et al,
+	published by New Riders).
+	Mention of trueprint.uu removed from README (Othmar Pasteka).
+	Suffix .pike added for pike programs (Othmar Pasteka).
+	Added include of sys/types.h before sys/stat.h to support
+	FreeBSD (Dmitry Sivachenko).
+	README.mswin removed (John Morey).
+	If there isn't an lp or lpr command on your system when you
+	run configure, trueprint will now be built to send postscript output
+	to stdout by default (Othmar Pasteka).
+	Choice options like --landscape and --option were broken due
+	to a serious bug in options.c (Paul Smith).
+	Added Canon LBP 3260 (Bjorn Wingman).
+	Added HP Laserjet 1100 (Peter Green).
+	Fix for handling arithmetic << in Perl (Peter Green).
+	Added --new-sheet-after-file and --no-new-sheet-after-file, from
+	a suggestion by David Karr.
+
 Version 5.2.1:
 	Fixed bug that ignored the double-sided/single-sided setting
 	for printers in the printers file.
@@ -35,7 +55,7 @@ Version 5.2:
 	+ Rewritten man page (see author in the man page itself).
 
 Version 5.1:
-	Many thanks to everybody who gave me feedback and reported
+	Many thanks to everyxbody who gave me feedback and reported
 	problems in version 5.0!  I've found the best advantage of
 	making Trueprint a GNU program is the users!  The changes
 	in 5.1 are all relatively minor - there are no major rewrites.

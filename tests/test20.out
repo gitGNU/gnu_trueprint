@@ -16,7 +16,7 @@ statusdict /setduplexmode known {
 /IFs	/Courier-Oblique findfont SPs scalefont def
 /BFs	/Courier-Bold findfont SPs scalefont def
 /HF	/Helvetica findfont Ps scalefont def
-/Li CFs setfont (1234567890) stringwidth pop def
+/Li 0 def
 /Nl	{ /Vpos Vpos Lh sub def } def
 /Lpt	{ 0 Vpos moveto } def
 /Gb	{
@@ -35,5 +35,87 @@ statusdict /setduplexmode known {
 /Ul	{ gsave	dup stringwidth pop 0 -1 rmoveto 0 rlineto fill grestore } def
 /Bs	{ gsave	dup show grestore 0.5 0.5 rmoveto show } def
 <</PageSize [605 806]>> setpagedevice
+%%Page: Cover 1
+70 70 moveto
+/Helvetica findfont 10 scalefont setfont
+(Trueprint 3.6.5) show
+70 725 moveto
+/Helvetica-Bold findfont 20 scalefont setfont
+(For: testuser) show
+70 700 moveto
+(Printed on: Fri Apr 16 03:00:00 1982) show
+70 675 moveto
+(Last page number: 2) show
+70 650 moveto (File: test4.new) show
+70 625 moveto (File: test4.old) show
+showpage
+%%Page: 1 2
+15 30 translate
+Ip HF setfont /Ypos Tm Bh sub Ps 2 div add def
+Ps Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1) stringwidth pop sub dup Ypos moveto
+(Page 1) show
+exch sub 2 div add (File Index) stringwidth pop 2 div sub Ypos moveto
+(File Index) show
+HF setfont /Ypos Ps 2 div def
+Ps Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1) stringwidth pop sub dup Ypos moveto
+(Page 1) show
+exch sub 2 div add (File Index) stringwidth pop 2 div sub Ypos moveto
+(File Index) show
+CF setfont /Vpos Tm Bh sub Ps sub def
+          Lpt(    test4.new                    1) BF setfont show CF setfont Nl
+          Lpt(    test4.old                    2) BF setfont show CF setfont Nl
+          showpage
+%%Page: 2 3
+15 30 translate
+Ip gsave
+.9 setgray
+Rm 2 div Tm 2 div translate 60 rotate
+/Courier-Bold findfont 63 scalefont setfont -216 0 moveto (test4.new) show
+grestore
+HF setfont /Ypos Tm Bh sub Ps 2 div add def
+Ps Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1 of 2) stringwidth pop sub dup Ypos moveto
+(Page 1 of 2) show
+exch sub 2 div add () stringwidth pop 2 div sub Ypos moveto
+() show
+HF setfont /Ypos Ps 2 div def
+Ps Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1 of 2) stringwidth pop sub dup Ypos moveto
+(Page 1 of 2) show
+exch sub 2 div add (test4.new 1) stringwidth pop 2 div sub Ypos moveto
+(test4.new 1) show
+/Vpos Tm Bh sub Ps sub def
+Lpt CFs setfont ( ) show (These two lines) CF setfont show  Nl
+Lpt CFs setfont ( ) show (remain) CF setfont show  Nl
+Lpt CFs setfont ( ) show (Last two lines) CF setfont show  Nl
+Lpt CFs setfont ( ) show (added) CF setfont show  Nl
+showpage
+%%Page: 3 4
+15 30 translate
+Ip gsave
+.9 setgray
+Rm 2 div Tm 2 div translate 60 rotate
+/Courier-Bold findfont 63 scalefont setfont -216 0 moveto (test4.old) show
+grestore
+HF setfont /Ypos Tm Bh sub Ps 2 div add def
+Ps Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 2 of 2) stringwidth pop sub dup Ypos moveto
+(Page 2 of 2) show
+exch sub 2 div add () stringwidth pop 2 div sub Ypos moveto
+() show
+HF setfont /Ypos Ps 2 div def
+Ps Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 2 of 2) stringwidth pop sub dup Ypos moveto
+(Page 2 of 2) show
+exch sub 2 div add (test4.old 1) stringwidth pop 2 div sub Ypos moveto
+(test4.old 1) show
+/Vpos Tm Bh sub Ps sub def
+Lpt CFs setfont ( ) show (First two lines) CF setfont show  Nl
+Lpt CFs setfont ( ) show (deleted) CF setfont show  Nl
+Lpt CFs setfont ( ) show (These two lines) CF setfont show  Nl
+Lpt CFs setfont ( ) show (remain) CF setfont show  Nl
+showpage
 %%Trailer
 %%EOF

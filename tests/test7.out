@@ -46,7 +46,7 @@ statusdict /setduplexmode known {
 (Printed on: Fri Apr 16 03:00:00 1982) show
 70 675 moveto
 (Last page number: 1) show
-70 650 moveto (File: test7) show
+70 650 moveto (File: test4.old) show
 showpage
 %%Page: 1 2
 15 30 translate
@@ -60,14 +60,15 @@ HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
 (Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1 of 1) stringwidth pop sub dup Ypos moveto
 (Page 1 of 1) show
-exch sub 2 div add (test7 1) stringwidth pop 2 div sub Ypos moveto
-(test7 1) show
+exch sub 2 div add (test4.old 1) stringwidth pop 2 div sub Ypos moveto
+(test4.old 1) show
 /Vpos Tm Bh sub Ps sub def
-Lpt CFs setfont ( ) show (This is a short line) CF setfont show  Nl
-Lpt CFs setfont ( ) show (123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890) CF setfont show  Nl
-Lpt CFs setfont ( ) show (This is a very long line that extends way beyond the normal width of a normal line and goes on ) CF setfont show  Nl
-Lpt CFs setfont ( ) show (                                                          until at least the hundredth column.) CF setfont show  Nl
-Lpt CFs setfont ( ) show (This is another short line.) CF setfont show  Nl
+Lpt BFs setfont (+) show (First two lines) BF setfont show  Nl
+Lpt BFs setfont (+) show (deleted) BF setfont show  Nl
+Lpt CFs setfont ( ) show (These two lines) CF setfont show  Nl
+Lpt CFs setfont ( ) show (remain) CF setfont show  Nl
+Lpt (-) CFs setfont show (Last two lines) CF setfont So show  Nl
+Lpt (-) CFs setfont show (added) CF setfont So show  Nl
 showpage
 %%Trailer
 %%EOF

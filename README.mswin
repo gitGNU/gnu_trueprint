@@ -1,3 +1,0 @@
-To build for Microsoft Windows platforms, first copy
-mswinconfig.h to config.h, then compile with the
-preprocessor symbol MSWIN defined.

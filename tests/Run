@@ -1,11 +1,16 @@
 #!/bin/sh
 
 # To run the tests, run "make check" from the parent directory.
-# To regenerate the outputs, run "./Run ../trueprint generate"
+# To regenerate the outputs, run:
+#   top_builddir=<trueprint-directory> srcdir=<this-directory> ./Run generate
 
 passed=0
-TRUEPRINT=$1
-shift
+
+echo top_builddir = $top_builddir
+echo srcdir = $srcdir
+
+top_builddir=`cd $top_builddir && pwd`
+TRUEPRINT=$top_builddir/src/trueprint
 
 TP_OPTS="--N"
 TP_PRINT_CMD=cat
@@ -16,9 +21,9 @@ test=1
 echo -n "$test Single C source file... "
 args="test1.c"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -31,9 +36,9 @@ test=2
 echo -n "$test Two C source files... "
 args="test1.c test2.c"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -46,9 +51,9 @@ test=3
 echo -n "$test Text file followed by C source file... "
 args="test3 test1.c"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -61,9 +66,9 @@ test=4
 echo -n "$test Diff of two files... "
 args="-O test4.old test4.new"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -73,12 +78,12 @@ else
 fi
 
 test=5
-echo -n "$test Another diff of two files... "
-args="-O test4.new test4.old"
+echo -n "$test Diff of two files with long options... "
+args="--diff=test4.old test4.new"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -88,12 +93,12 @@ else
 fi
 
 test=6
-echo -n "$test Diffs using a prefix... "
-args="-O OLD test6.c"
+echo -n "$test Another diff of two files... "
+args="-O test4.new test4.old"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -103,12 +108,12 @@ else
 fi
 
 test=7
-echo -n "$test Very long source line... "
-args="test7"
+echo -n "$test Another diff of two files with long options... "
+args="--diff=test4.new test4.old"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -118,12 +123,12 @@ else
 fi
 
 test=8
-echo -n "$test Set interline gap & pointsize & page length -g -p -l... "
-args="-g7 -p9 -l45 test1.c test3"
+echo -n "$test Diffs using a prefix... "
+args="-O OLD test6.c"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -133,12 +138,12 @@ else
 fi
 
 test=9
-echo -n "$test Change date & time in headers -X... "
-args="-X Header-test test4.new test4.old"
+echo -n "$test Diffs using a prefix with long options... "
+args="--diff=OLD test6.c"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -148,12 +153,12 @@ else
 fi
 
 test=10
-echo -n "$test Use login name in headers -X %l... "
-args="-X %l test6.c test1.c"
+echo -n "$test Very long source line... "
+args="test7"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -163,12 +168,12 @@ else
 fi
 
 test=11
-echo -n "$test Print message over page -m... "
-args="-m Overprint-test test7"
+echo -n "$test Set interline gap & pointsize & page length -g -p -l... "
+args="-g7 -p9 -l45 test1.c test3"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -178,12 +183,12 @@ else
 fi
 
 test=12
-echo -n "$test Use current filename for message string -m %n... "
-args="-m %n test4.new test4.old"
+echo -n "$test Set interline gap & pointsize & page length with long options... "
+args="--leading=7 --point-size=9 --page-length=45 test1.c test3"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -193,12 +198,12 @@ else
 fi
 
 test=13
-echo -n "$test Use landscape mode -ol... "
-args="-ol test1.c test7"
+echo -n "$test Change date & time in headers -X... "
+args="-X Header-test test4.new test4.old"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -208,12 +213,12 @@ else
 fi
 
 test=14
-echo -n "$test Print 2-on-1 -2... "
-args="-2 test1.c test7 test6.c"
+echo -n "$test Change date & time in headers with long options... "
+args="--left-header=Header-test test4.new test4.old"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -223,12 +228,12 @@ else
 fi
 
 test=15
-echo -n "$test Print 4-on-1 -4... "
-args="-4 test1.c test7 test6.c"
+echo -n "$test Use login name in headers -X %l... "
+args="-X %l test6.c test1.c"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -238,12 +243,12 @@ else
 fi
 
 test=16
-echo -n "$test Long lines & page width -w... "
-args="-w 40 test7"
+echo -n "$test Use login name in headers --left-header=%l... "
+args="--left-header=%l test6.c test1.c"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -253,12 +258,12 @@ else
 fi
 
 test=17
-echo -n "$test Turn off intelligent linewrap -Wn... "
-args="-W -w 40 test7"
+echo -n "$test Print message over page -m... "
+args="-m Overprint-test test7"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -268,12 +273,12 @@ else
 fi
 
 test=18
-echo -n "$test Exclude braces depth count for C, line number count -in -nn... "
-args="-i -n test1.c test2.c"
+echo -n "$test Print message over page --message... "
+args="--message=Overprint-test test7"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -283,12 +288,12 @@ else
 fi
 
 test=19
-echo -n "$test Print double-sided -S2... "
-args="-S2 test1.c test2.c"
+echo -n "$test Use current filename for message string -m %n... "
+args="-m %n test4.new test4.old"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -298,12 +303,12 @@ else
 fi
 
 test=20
-echo -n "$test Suppress everything -C -F -f -B... "
-args="-C -F -f -B test1.c test2.c"
+echo -n "$test Use current filename for message string --message %n... "
+args="--message=%n test4.new test4.old"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -313,12 +318,12 @@ else
 fi
 
 test=21
-echo -n "$test Set tabsize wierdly -T5... "
-args="-T5 test21"
+echo -n "$test Use landscape mode -ol... "
+args="-ol test1.c test7"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -328,12 +333,12 @@ else
 fi
 
 test=22
-echo -n "$test Set headers/footers... "
-args="-x Test-%%-%m-%d-%y -y %D-%L-%H-%M -z %S-%T-%j-%w -X %a-%h-%r-%p -Y %h-%r-%p-%P -Z %f-%F-%n-%N -m Login-%l test1.c test2.c"
+echo -n "$test Use landscape mode with long option... "
+args="--landscape test1.c test7"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -343,12 +348,12 @@ else
 fi
 
 test=23
-echo -n "$test Indent for holepunch --I... "
-args="--I -ol -2 test1.c test2.c"
+echo -n "$test Print 2-on-1 -2... "
+args="-2 test1.c test7 test6.c"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -358,12 +363,12 @@ else
 fi
 
 test=24
-echo -n "$test Suppress headers --K... "
-args="--K test1.c test2.c"
+echo -n "$test Print 2-on-1 --two-up... "
+args="--two-up test1.c test7 test6.c"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -373,12 +378,12 @@ else
 fi
 
 test=25
-echo -n "$test Suppress footers --k... "
-args="--k -ol -2 test1.c test2.c"
+echo -n "$test Print 4-on-1 -4... "
+args="-4 test1.c test7 test6.c"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -388,12 +393,12 @@ else
 fi
 
 test=26
-echo -n "$test Stdin for default... "
-args=""
+echo -n "$test Print 4-on-1 --four-up... "
+args="--four-up test1.c test7 test6.c"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out < test1.c
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args < test1.c | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -403,12 +408,12 @@ else
 fi
 
 test=27
-echo -n "$test - for stdin... "
-args="test1.c - test2.c"
+echo -n "$test Long lines & page width -w... "
+args="-w 40 test7"
 if [ "$1" = "generate" ] ; then
-	$TRUEPRINT $args > test$test.out < test6.c
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
-	$TRUEPRINT $args < test6.c | diff - test$test.out > test$test.dif
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
 	if [ $? -ne "0" ] ; then
 		echo "failed"
 	else
@@ -417,7 +422,338 @@ else
 	fi
 fi
 
-echo "$passed out of 27 tests passed"
+test=28
+echo -n "$test Long lines & page width --line-wrap... "
+args="--line-wrap=40 test7"
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
+else
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+test=29
+echo -n "$test Turn off intelligent linewrap -Wn... "
+args="-W -w 40 test7"
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
+else
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+test=30
+echo -n "$test Turn off intelligent linewrap with long options... "
+args="--no-intelligent-line-wrap --line-wrap=40 test7"
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
+else
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+test=31
+echo -n "$test Exclude braces depth count for C, line number count -in -nn... "
+args="-i -n test1.c test2.c"
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
+else
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+test=32
+echo -n "$test Exclude braces depth count for C, line number count with long options... "
+args="--no-braces-depth --no-line-numbers test1.c test2.c"
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
+else
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+test=33
+echo -n "$test Print double-sided -S2... "
+args="-S2 test1.c test2.c"
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
+else
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+test=34
+echo -n "$test Print double-sided --double-sided... "
+args="--double-sided test1.c test2.c"
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
+else
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+test=35
+echo -n "$test Suppress everything -C -F -f -B... "
+args="-C -F -f -B test1.c test2.c"
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
+else
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+test=36
+echo -n "$test Suppress everything using long options... "
+args="--no-cover-sheet --no-file-index --no-function-index --no-print-body test1.c test2.c"
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
+else
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+test=37
+echo -n "$test Set tabsize wierdly -T5... "
+args="-T5 test21"
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
+else
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+test=38
+echo -n "$test Set tabsize wierdly using long option... "
+args="--tabsize=5 test21"
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
+else
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+test=39
+echo -n "$test Set headers/footers... "
+args="-x Test-%%-%m-%d-%y -y %D-%L-%H-%M -z %S-%T-%j-%w -X %a-%h-%r-%p -Y %h-%r-%p-%P -Z %f-%F-%n-%N -m Login-%l test1.c test2.c"
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
+else
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+test=40
+echo -n "$test Set headers/footers using long options... "
+args="--left-footer=Test-%%-%m-%d-%y --center-footer=%D-%L-%H-%M --right-footer=%S-%T-%j-%w --left-header=%a-%h-%r-%p --center-header=%h-%r-%p-%P --right-header=%f-%F-%n-%N --message=Login-%l test1.c test2.c"
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
+else
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+test=41
+echo -n "$test Indent for holepunch --I... "
+args="--I -ol -2 test1.c test2.c"
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
+else
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+test=42
+echo -n "$test Indent for holepunch using long options... "
+args="--holepunch --landscape --two-up test1.c test2.c"
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
+else
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+test=43
+echo -n "$test Suppress headers --K... "
+args="--K test1.c test2.c"
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
+else
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+test=44
+echo -n "$test Suppress headers using long options... "
+args="--no-headers test1.c test2.c"
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
+else
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+test=45
+echo -n "$test Suppress footers --k... "
+args="--k -ol -2 test1.c test2.c"
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
+else
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+test=46
+echo -n "$test Suppress footers using long options... "
+args="--no-footers --landscape --two-up test1.c test2.c"
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
+else
+	( cd $srcdir; $TRUEPRINT $args ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+test=47
+echo -n "$test Stdin for default... "
+args=""
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out < test1.c
+else
+	( cd $srcdir; $TRUEPRINT $args < test1.c ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+test=48
+echo -n "$test - for stdin... "
+args="test1.c - test2.c"
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out < test6.c
+else
+	( cd $srcdir; $TRUEPRINT $args < test6.c ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+test=49
+echo -n "$test No new sheet for new file"
+args="--no-new-sheet-after-file --four-up test1.c test2.c"
+if [ "$1" = "generate" ] ; then
+	( cd $srcdir; $TRUEPRINT $args ) > test$test.out < test6.c
+else
+	( cd $srcdir; $TRUEPRINT $args < test6.c ) | diff - $srcdir/test$test.out > test$test.dif
+	if [ $? -ne "0" ] ; then
+		echo "failed"
+	else
+		echo "passed" ; rm test$test.dif
+		passed=`expr $passed + 1`
+	fi
+fi
+
+echo "$passed out of 49 tests passed"
 echo "To complete the test, print a file using trueprint"
 
+if test $passed -eq 49; then exit 0; else exit 1; fi
 
