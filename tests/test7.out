@@ -46,7 +46,7 @@ statusdict /setduplexmode known {
 (Printed on: Fri Apr 16 03:00:00 1982) show
 70 675 moveto
 (Last page number: 1) show
-70 650 moveto (File: test4.old) show
+70 650 moveto (File: test4.previous) show
 showpage
 %%Page: 1 2
 15 30 translate
@@ -60,8 +60,8 @@ HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
 (Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1 of 1) stringwidth pop sub dup Ypos moveto
 (Page 1 of 1) show
-exch sub 2 div add (test4.old 1) stringwidth pop 2 div sub Ypos moveto
-(test4.old 1) show
+exch sub 2 div add (test4.previous 1) stringwidth pop 2 div sub Ypos moveto
+(test4.previous 1) show
 /Vpos Tm Bh sub Ps sub def
 Lpt BFs setfont (+) show (First two lines) BF setfont show  Nl
 Lpt BFs setfont (+) show (deleted) BF setfont show  Nl

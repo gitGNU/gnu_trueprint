@@ -506,7 +506,7 @@ print_files(void)
 	  init_diffs(current_filename);
 
 	  print_file();
-	  
+
 	  dm('d',3,"Ending diffs for pass %d, file %s\n", pass, current_filename);
 	  end_diffs();
 	}
@@ -533,6 +533,17 @@ print_files(void)
 	  end_file(file_number, page_number);
 	}
 
+    }
+
+  if (pass==1)
+    {
+      /*
+       * Print blank pages until the end of the current (last) physical page.
+       * The global file_number was left as one more than the last file number
+       * by the for loop, so we need to decrement it.
+       */
+      file_number--;
+      fill_sheet_with_blank_pages();
     }
 
 }

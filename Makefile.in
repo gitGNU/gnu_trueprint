@@ -67,7 +67,7 @@ VERSION = @VERSION@
 
 SUBDIRS = replace src doc tests
 
-EXTRA_DIST = config/install-sh 	config/mdate-sh 	config/missing 	config/mkinstalldirs 	config/sys_errlist.m4 	doc/trueprint.1 	doc/trueprint.spec 	bootstrap
+EXTRA_DIST = config/install-sh 	config/mdate-sh 	config/missing 	config/mkinstalldirs 	config/sys_errlist.m4 	doc/trueprint.1 	doc/trueprint.spec 	data/printers 	data/testprint 	BUGS 	bootstrap
 
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -273,7 +273,7 @@ distdir: $(DISTFILES)
 	-rm -rf $(distdir)
 	mkdir $(distdir)
 	-chmod 777 $(distdir)
-	$(mkinstalldirs) $(distdir)/config $(distdir)/doc
+	$(mkinstalldirs) $(distdir)/config $(distdir)/data $(distdir)/doc
 	@for file in $(DISTFILES); do \
 	  d=$(srcdir); \
 	  if test -d $$d/$$file; then \

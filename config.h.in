@@ -63,12 +63,12 @@
 /* Define if you have the <unistd.h> header file.  */
 #undef HAVE_UNISTD_H
 
+/* Define if you have the intl library (-lintl).  */
+#undef HAVE_LIBINTL
+
 /* Name of package */
 #undef PACKAGE
 
 /* Version number of package */
 #undef VERSION
-
-/* Define if your system libraries have a sys_errlist variable. */
-#undef HAVE_SYS_ERRLIST
 

@@ -13,6 +13,12 @@
  * Modified by Lezz to fit in with Trueprint 4.1.1 codebase (thanks Terry!)
  *
  * $Log: lang_java.c,v $
+ * Revision 1.1  2003/02/22 20:55:59  lgiles
+ * *** empty log message ***
+ *
+ * Revision 1.1.1.1  2001/07/18 01:24:43  lgiles
+ * Trueprint 5.3
+ *
  * Revision 1.1  1999/08/25 01:00:05  lgiles
  * Initial revision
  *

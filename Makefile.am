@@ -9,4 +9,7 @@ EXTRA_DIST = config/install-sh \
 	config/sys_errlist.m4 \
 	doc/trueprint.1 \
 	doc/trueprint.spec \
+	data/printers \
+	data/testprint \
+	BUGS \
 	bootstrap

@@ -1,4 +1,15 @@
-Reverse history of Trueprint:
+Reverse history of Trueprint.  Changes are also logged in ChangeLog which
+is generated in emacs with C-x v a (the only reason I'm putting the emacs
+keystrokes in here is to remind myself in the future!).
+
+Version 5.3.1:
+	Now builds for cygwin 1.3.2 (fix to bug reported by David Karr).
+	Put files printers and testprint back in - they were lost by
+	automake :-(  Unfortunately I've lost the definitions added in
+	version 5.3 - I can't find the original mails anywhere and since
+	I wasn't storing trueprint in CVS until after I'd released that
+	version.... a mistake I won't make again :-)
+	There's a totally rewritten lang_perl.c from Steve Fink.
 
 Version 5.3:
 	Trueprint now uses autoconf and automake (Paul Smith, and the

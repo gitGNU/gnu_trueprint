@@ -272,6 +272,10 @@ ruin your eyesight!) use `--four-up'.  There is another mode called
 pointsize - for portrait format each logical page is very tall and
 narrow, and for landscape format each logical page is very wide.
 
+   Sometimes in order to get the best results from a double-sided
+printer you want to rotate the back side of every sheet by 180 degrees.
+The option `--rotate-alternate-sheets' will do this.
+
    To leave a gap down the left-hand-side of each physical page so that
 you can punch holes in the page without punching out any information,
 use `--holepunch', and to leave a gap at the top of the page (if you
@@ -1084,6 +1088,7 @@ Option Index
 * no-page-furniture-lines:               Page Furniture.
 * no-print-body:                         Print Selection.
 * no-prompt:                             Print Selection.
+* no-rotate-alternate-sheets:            Page Formatting.
 * no-top-holepunch:                      Page Formatting.
 * one-up:                                Page Formatting.
 * output:                                Output Options.
@@ -1099,6 +1104,7 @@ Option Index
 * redirect:                              Output Options.
 * right-footer:                          Page Furniture.
 * right-header:                          Page Furniture.
+* rotate-alternate-sheets:               Page Formatting.
 * single-sided:                          Page Formatting.
 * tabsize:                               Text Formatting.
 * top-holepunch:                         Page Formatting.
@@ -1217,13 +1223,13 @@ Node: Overview1263
 Node: Installing Trueprint3182
 Node: Languages6932
 Node: Page Formatting9516
-Node: Page Furniture11221
-Node: Text Formatting15295
-Node: Output Options18546
-Node: Print Selection19822
-Node: Miscellaneous Features21938
-Node: Options and Environment Variables List25531
-Node: Option Index31993
-Node: Concept Index36053
+Node: Page Furniture11413
+Node: Text Formatting15487
+Node: Output Options18738
+Node: Print Selection20014
+Node: Miscellaneous Features22130
+Node: Options and Environment Variables List25723
+Node: Option Index32185
+Node: Concept Index36361
 
 End Tag Table

@@ -41,7 +41,7 @@ EXTRA_DIST		= \
 	test38.out \
 	test39.out \
 	test4.new \
-	test4.old \
+	test4.previous \
 	test4.out \
 	test40.out \
 	test41.out \
@@ -52,6 +52,7 @@ EXTRA_DIST		= \
 	test46.out \
 	test47.out \
 	test48.out \
+	test49.out \
 	test5.out \
 	test6.c \
 	test6.out \

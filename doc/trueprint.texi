@@ -353,6 +353,12 @@ logical pages on each sheet at four-up pointsize - for portrait format
 each logical page is very tall and narrow, and for landscape format
 each logical page is very wide.
 
+@findex rotate-alternate-sheets
+@findex no-rotate-alternate-sheets
+Sometimes in order to get the best results from a double-sided printer
+you want to rotate the back side of every sheet by 180 degrees.  The option
+@code{--rotate-alternate-sheets} will do this.
+
 @findex holepunch
 @findex no-holepunch
 @findex top-holepunch

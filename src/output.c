@@ -45,7 +45,7 @@ typedef enum {
 static void	add_char(short position,char character,char_status status,char *line,char_status line_status[]);
 static int	line_end(char *input_line, int last_char_printed);
 static stream_status printnextline(void);
-static boolean	blank_page(unsigned int file_number, boolean print_page);
+static boolean	blank_page(boolean print_page);
 
 /*
  * Local variables
@@ -587,7 +587,7 @@ printnextline()
  * prints out a blank page (well, what did you expect!).
  */
 boolean
-blank_page(unsigned int file_number, boolean output_page)
+blank_page(boolean output_page)
 
 {
   file_page_number += 1;
@@ -674,14 +674,20 @@ print_file(void)
 
   if (new_sheet_after_file)
     {
-      /*
-       * Print blank pages until the last page printed was the last page
-       * on a physical sheet.
-       */
-      while (!reached_end_of_sheet)
-	{
-	  dm('O',3,"output.c:print_page() Printing a blank page\n");
-	  reached_end_of_sheet = blank_page(file_number, print_prompt(PAGE_BLANK, 0, NULL));
-	}
+      fill_sheet_with_blank_pages();
+    }
+}
+
+/*
+ * Print blank pages until the last page printed was the last page
+ * on a physical sheet.
+ */
+void
+fill_sheet_with_blank_pages(void)
+{
+  while (!reached_end_of_sheet)
+    {
+      dm('O',3,"output.c:print_page() Printing a blank page\n");
+      reached_end_of_sheet = blank_page(print_prompt(PAGE_BLANK, 0, NULL));
     }
 }

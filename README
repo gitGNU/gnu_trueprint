@@ -1,5 +1,1 @@
-This is GNU Trueprint version 5.3.  I'm using automake and autoconf for the
-first time with this version, so if you encounter any installation problems
-let me know.  Also note that the ChangeLog is empty - due to the change
-to automake in this release, there were too many changes to put into the
-ChangeLog.  Next release should have a ChangeLog.
+This is GNU Trueprint version 5.3.1b.  This is a Beta version.

@@ -415,5 +415,21 @@ Lpt CFs setfont (    55  2  ) show (                ++optind;) CF setfont show  
 Lpt CFs setfont (    56  1  ) show (        }) CF setfont show  Nl
 Lpt CFs setfont (    57  1  ) show (        return optopt;                  ) CF setfont show (/* dump back option letter */) IF setfont show  Nl
 Lpt CFs setfont (    58     ) show (}) CF setfont show  Nl
+grestore
+304 30 translate .5 .5 scale
+Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
+Ps Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 4 of 3) stringwidth pop sub dup Ypos moveto
+(Page 4 of 3) show
+exch sub 2 div add () stringwidth pop 2 div sub Ypos moveto
+() show
+HF setfont /Ypos Ps 2 div def
+Ps Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 4 of 3) stringwidth pop sub dup Ypos moveto
+(Page 4 of 3) show
+exch sub 2 div add (test2.c 2) stringwidth pop 2 div sub Ypos moveto
+(test2.c 2) show
+/Vpos Tm Bh sub Ps sub def
+showpage
 %%Trailer
 %%EOF

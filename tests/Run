@@ -64,7 +64,7 @@ fi
 
 test=4
 echo -n "$test Diff of two files... "
-args="-O test4.old test4.new"
+args="-O test4.previous test4.new"
 if [ "$1" = "generate" ] ; then
 	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
@@ -79,7 +79,7 @@ fi
 
 test=5
 echo -n "$test Diff of two files with long options... "
-args="--diff=test4.old test4.new"
+args="--diff=test4.previous test4.new"
 if [ "$1" = "generate" ] ; then
 	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
@@ -94,7 +94,7 @@ fi
 
 test=6
 echo -n "$test Another diff of two files... "
-args="-O test4.new test4.old"
+args="-O test4.new test4.previous"
 if [ "$1" = "generate" ] ; then
 	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
@@ -109,7 +109,7 @@ fi
 
 test=7
 echo -n "$test Another diff of two files with long options... "
-args="--diff=test4.new test4.old"
+args="--diff=test4.new test4.previous"
 if [ "$1" = "generate" ] ; then
 	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
@@ -199,7 +199,7 @@ fi
 
 test=13
 echo -n "$test Change date & time in headers -X... "
-args="-X Header-test test4.new test4.old"
+args="-X Header-test test4.new test4.previous"
 if [ "$1" = "generate" ] ; then
 	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
@@ -214,7 +214,7 @@ fi
 
 test=14
 echo -n "$test Change date & time in headers with long options... "
-args="--left-header=Header-test test4.new test4.old"
+args="--left-header=Header-test test4.new test4.previous"
 if [ "$1" = "generate" ] ; then
 	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
@@ -289,7 +289,7 @@ fi
 
 test=19
 echo -n "$test Use current filename for message string -m %n... "
-args="-m %n test4.new test4.old"
+args="-m %n test4.new test4.previous"
 if [ "$1" = "generate" ] ; then
 	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
@@ -304,7 +304,7 @@ fi
 
 test=20
 echo -n "$test Use current filename for message string --message %n... "
-args="--message=%n test4.new test4.old"
+args="--message=%n test4.new test4.previous"
 if [ "$1" = "generate" ] ; then
 	( cd $srcdir; $TRUEPRINT $args ) > test$test.out
 else
@@ -738,7 +738,7 @@ else
 fi
 
 test=49
-echo -n "$test No new sheet for new file"
+echo -n "$test No new sheet for new file... "
 args="--no-new-sheet-after-file --four-up test1.c test2.c"
 if [ "$1" = "generate" ] ; then
 	( cd $srcdir; $TRUEPRINT $args ) > test$test.out < test6.c

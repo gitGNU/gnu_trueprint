@@ -11,5 +11,5 @@ extern void init_output(void);
 extern void	print_file(void);
 extern boolean	print_page(void);
 extern stream_status	getnextline(stream_status (*get_input_char)(char *,char_status *), boolean *, char input_line[], char_status input_status[]);
-
+extern void fill_sheet_with_blank_pages(void);
 

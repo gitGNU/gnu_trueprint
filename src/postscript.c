@@ -52,6 +52,7 @@ static boolean	include_footers;
 static short	pointsize;
 static char	orientation;
 static page_layouts layout;
+static boolean rotate_alternate_sheets;
 static boolean	no_cover_sheet;
 static char	*user_name;
 static unsigned short printable_width;
@@ -193,6 +194,10 @@ setup_postscript(void)
   noparm_option("2", "two-up", FALSE, &set_layout_2, NULL, OPT_PAGE_FORMAT, "print 2-on-1");
   noparm_option("3", "two-tall-up", FALSE, &set_layout_3, NULL, OPT_PAGE_FORMAT, "print 2-on-1 at 4-on-1 pointsize");
   noparm_option("4", "four-up", FALSE, &set_layout_4, NULL, OPT_PAGE_FORMAT, "print 4-on-1");
+  boolean_option(NULL,"rotate-alternate-sheets","no-rotate-alternate-sheets",FALSE,&rotate_alternate_sheets,NULL,NULL,
+		 OPT_PAGE_FURNITURE,
+		 "rotate every other sheet 180 degrees. Only works in double-sided modes",
+		 "don't rotate every other sheet 180 degrees.");
 }
 
 /*
@@ -533,8 +538,16 @@ PS_startpage(char *head1, char *head2, char *head3,
     {
     case ONE_ON_ONE:
       printf("%%%%Page: %d %ld\n",logical_page_no, physical_page_no);
-      if (orientation == 'p') printf("%d %d translate\n", 	      pos_left+gap,  pos_bottom);
-      if (orientation == 'l') printf("%d %d translate 90 rotate\n", pos_right+gap, pos_bottom);
+      if (rotate_alternate_sheets && left_page)
+	{
+	  if (orientation == 'p') printf("%d %d translate 180 rotate\n", pos_right+gap,  pos_top);
+	  if (orientation == 'l') printf("%d %d translate 270 rotate\n", pos_left+gap, pos_top);
+	}
+      else
+	{
+	  if (orientation == 'p') printf("%d %d translate\n", 	        pos_left+gap,  pos_bottom);
+	  if (orientation == 'l') printf("%d %d translate 90 rotate\n", pos_right+gap, pos_bottom);
+	}
       break;
     case TWO_ON_ONE:
       switch (logical_page_no & 1)
@@ -542,17 +555,37 @@ PS_startpage(char *head1, char *head2, char *head3,
 	case 1:
 	  printf("%%%%Page: %d %ld\n",logical_page_no, physical_page_no);
 	  printf("gsave\n");
-	  if (orientation == 'p')
-	    printf("%d %d translate .64 .64 scale 90 rotate\n", pos_right+gap, pos_bottom);
+	  if (rotate_alternate_sheets && left_page)
+	    {
+	      if (orientation == 'p')
+		printf("%d %d translate .64 .64 scale 270 rotate\n", pos_left+gap, pos_top);
+	      else
+		printf("%d %d translate .64 .64 scale 180 rotate\n", pos_right+gap,  pos_centre_bottom);
+	    }
 	  else
-	    printf("%d %d translate .64 .64 scale\n",           pos_left+gap,  pos_centre_top);
+	    {
+	      if (orientation == 'p')
+		printf("%d %d translate .64 .64 scale 90 rotate\n", pos_right+gap, pos_bottom);
+	      else
+		printf("%d %d translate .64 .64 scale\n",           pos_left+gap,  pos_centre_top);
+	    }
 	  break;
 	case 0:
 	  printf("grestore\n");
-	  if (orientation == 'p')
-	    printf("%d %d translate .64 .64 scale 90 rotate\n", pos_right+gap, pos_centre_top);
+	  if (rotate_alternate_sheets && left_page)
+	    {
+	      if (orientation == 'p')
+		printf("%d %d translate .64 .64 scale 270 rotate\n", pos_left+gap, pos_centre_bottom);
+	      else
+		printf("%d %d translate .64 .64 scale 180 rotate\n", pos_right+gap,  pos_top);
+	    }
 	  else
-	    printf("%d %d translate .64 .64 scale\n",           pos_left+gap,  pos_bottom);
+	    {
+	      if (orientation == 'p')
+		printf("%d %d translate .64 .64 scale 90 rotate\n", pos_right+gap, pos_centre_top);
+	      else
+		printf("%d %d translate .64 .64 scale\n",           pos_left+gap,  pos_bottom);
+	    }
 	}
       break;
     case THREE_ON_ONE:
@@ -561,17 +594,37 @@ PS_startpage(char *head1, char *head2, char *head3,
 	case 1:
 	  printf("%%%%Page: %d %ld\n",logical_page_no, physical_page_no);
 	  printf("gsave\n");
-	  if (orientation == 'p')
-	    printf("%d %d translate .5 .5 scale\n",           pos_left+gap,        pos_bottom);
+	  if (rotate_alternate_sheets && left_page)
+	    {
+	      if (orientation == 'p')
+		printf("%d %d translate .5 .5 scale 180 rotate\n", pos_right+gap,        pos_top);
+	      else
+		printf("%d %d translate .5 .5 scale 270 rotate\n", pos_centre_right+gap, pos_top);
+	    }
 	  else
-	    printf("%d %d translate .5 .5 scale 90 rotate\n", pos_centre_left+gap, pos_bottom);
+	    {
+	      if (orientation == 'p')
+		printf("%d %d translate .5 .5 scale\n",           pos_left+gap,        pos_bottom);
+	      else
+		printf("%d %d translate .5 .5 scale 90 rotate\n", pos_centre_left+gap, pos_bottom);
+	    }
 	  break;
 	case 0:
 	  printf("grestore\n");
-	  if (orientation == 'p')
-	    printf("%d %d translate .5 .5 scale\n",           pos_centre_right+gap, pos_bottom);
+	  if (rotate_alternate_sheets && left_page)
+	    {
+	      if (orientation == 'p')
+		printf("%d %d translate .5 .5 scale 180 rotate\n", pos_centre_left+gap, pos_top);
+	      else
+		printf("%d %d translate .5 .5 scale 270 rotate\n", pos_left+gap,        pos_top);
+	    }
 	  else
-	    printf("%d %d translate .5 .5 scale 90 rotate\n", pos_right+gap,        pos_bottom);
+	    {
+	      if (orientation == 'p')
+		printf("%d %d translate .5 .5 scale\n",           pos_centre_right+gap, pos_bottom);
+	      else
+		printf("%d %d translate .5 .5 scale 90 rotate\n", pos_right+gap,        pos_bottom);
+	    }
 	}
       break;
     case FOUR_ON_ONE:
@@ -580,31 +633,71 @@ PS_startpage(char *head1, char *head2, char *head3,
 	case 1:
 	  printf("%%%%Page: %d %ld\n",logical_page_no, physical_page_no);
 	  printf("gsave\n");
-	  if (orientation == 'p')
-	    printf("%d %d translate .5 .5 scale\n",           pos_left+gap,        pos_centre_top);
+	  if (rotate_alternate_sheets && left_page)
+	    {
+	      if (orientation == 'p')
+		printf("%d %d translate .5 .5 scale 180 rotate\n", pos_right+gap,        pos_centre_bottom);
+	      else
+		printf("%d %d translate .5 .5 scale 270 rotate\n", pos_centre_right+gap, pos_top);
+	    }
 	  else
-	    printf("%d %d translate .5 .5 scale 90 rotate\n", pos_centre_left+gap, pos_bottom);
+	    {
+	      if (orientation == 'p')
+		printf("%d %d translate .5 .5 scale\n",           pos_left+gap,        pos_centre_top);
+	      else
+		printf("%d %d translate .5 .5 scale 90 rotate\n", pos_centre_left+gap, pos_bottom);
+	    }
 	  break;
 	case 2:
 	  printf("grestore gsave\n");
-	  if (orientation == 'p')
-	    printf("%d %d translate .5 .5 scale\n",           pos_left+gap,  pos_bottom);
+	  if (rotate_alternate_sheets && left_page)
+	    {
+	      if (orientation == 'p')
+		printf("%d %d translate .5 .5 scale 180 rotate\n", pos_right+gap,  pos_top);
+	      else
+		printf("%d %d translate .5 .5 scale 270 rotate\n", pos_left+gap, pos_top);
+	    }
 	  else
-	    printf("%d %d translate .5 .5 scale 90 rotate\n", pos_right+gap, pos_bottom);
+	    {
+	      if (orientation == 'p')
+		printf("%d %d translate .5 .5 scale\n",           pos_left+gap,  pos_bottom);
+	      else
+		printf("%d %d translate .5 .5 scale 90 rotate\n", pos_right+gap, pos_bottom);
+	    }
 	  break;
 	case 3:
 	  printf("grestore gsave\n");
-	  if (orientation == 'p')
-	    printf("%d %d translate .5 .5 scale\n",           pos_centre_right+gap, pos_centre_top);
+	  if (rotate_alternate_sheets && left_page)
+	    {
+	      if (orientation == 'p')
+		printf("%d %d translate .5 .5 scale 180 rotate\n", pos_centre_left+gap, pos_centre_bottom);
+	      else
+		printf("%d %d translate .5 .5 scale 270 rotate\n", pos_centre_right+gap,  pos_centre_bottom);
+	    }
 	  else
-	    printf("%d %d translate .5 .5 scale 90 rotate\n", pos_centre_left+gap,  pos_centre_top);
+	    {
+	      if (orientation == 'p')
+		printf("%d %d translate .5 .5 scale\n",           pos_centre_right+gap, pos_centre_top);
+	      else
+		printf("%d %d translate .5 .5 scale 90 rotate\n", pos_centre_left+gap,  pos_centre_top);
+	    }
 	  break;
 	case 0:
 	  printf("grestore\n");
-	  if (orientation == 'p')
-	    printf("%d %d translate .5 .5 scale\n",           pos_centre_right+gap, pos_bottom);
+	  if (rotate_alternate_sheets && left_page)
+	    {
+	      if (orientation == 'p')
+		printf("%d %d translate .5 .5 scale 180 rotate\n", pos_centre_left+gap, pos_top);
+	      else
+		printf("%d %d translate .5 .5 scale 270 rotate\n", pos_left+gap,        pos_centre_bottom);
+	    }
 	  else
-	    printf("%d %d translate .5 .5 scale 90 rotate\n", pos_right+gap,        pos_centre_top);
+	    {
+	      if (orientation == 'p')
+		printf("%d %d translate .5 .5 scale\n",           pos_centre_right+gap, pos_bottom);
+	      else
+		printf("%d %d translate .5 .5 scale 90 rotate\n", pos_right+gap,        pos_centre_top);
+	    }
 	}
       break;
     case NO_LAYOUT:
