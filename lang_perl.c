@@ -87,7 +87,7 @@ get_perl_char(char *input_char, char_status *status)
   static short	here_marker_index;
   static short	here_marker_length;
   static long	f1_page_number;
-  static char	sub[]="sub";
+  static char	sub[]="sub ";
   static boolean	escaped;
   static int prepodstate;
 

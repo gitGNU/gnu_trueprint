@@ -45,6 +45,7 @@ static long physical_page_no;
 static short	greenlines;
 static boolean	no_holepunch;
 static boolean	no_top_holepunch;
+static boolean	page_furniture;
 static int	interline_gap;
 static boolean	include_headers;
 static boolean	include_footers;
@@ -75,6 +76,7 @@ static unsigned short top_margin;
 static unsigned short bottom_margin;
 static boolean left_page, right_page;
 static char	no_of_sides;
+static char ps_level;		/* postscript level output ... either 1 or 2 */
 
 static void balance_strings(char *string1, char *string2, char *string3, long page_no, boolean index_page);
 static void set_layout_default(void);
@@ -115,6 +117,11 @@ setup_postscript(void)
 		 OPT_PAGE_FORMAT,
 		 "don't leave space for holepunch at the top of each page",
 		 "leave space for holepunch at the top of each page");
+
+  boolean_option("u", "page-furniture-lines", "no-page-furniture-lines", TRUE, &page_furniture, NULL, NULL,
+		 OPT_PAGE_FURNITURE,
+		 "Draw lines around headers and footers and include left margin line",
+		 "No lines around headers or footers and no left margin line");
 
   greenlines = -1;
   short_option("G", "gray-bands", 0,
@@ -170,6 +177,13 @@ setup_postscript(void)
 		OPT_PAGE_FORMAT,
 		"print single-sided",
 		"print double-sided");
+
+  ps_level = '2';
+  choice_option("R", "ps-level-two", "ps-level-one",
+		'2', '1', &ps_level, NULL, NULL,
+		OPT_PAGE_FORMAT,
+		"generate postscript level 2 code",
+		"generate postscript level 1 code");
 
   layout = NO_LAYOUT;
   noparm_option("1", "one-up", TRUE, &set_layout_1, &set_layout_default, OPT_PAGE_FORMAT, "print 1-on-1 (default)");
@@ -236,7 +250,7 @@ PS_header(char *version, boolean print_body)
 {
   unsigned int	file_index;
 
-  printf("%%!PS-Adobe-2.0\n");
+  printf("%%!PS-Adobe-%c.0\n", ps_level);
 
   printf("statusdict /setduplexmode known {\n");
   if (no_of_sides == '2')
@@ -282,33 +296,45 @@ PS_header(char *version, boolean print_body)
       printf("		grestore\n");
     }
   printf("		} def\n");
-  printf("/Ip	{ Gb .5 setlinewidth\n");
-  if (include_headers)
+
+  if (page_furniture)
     {
-      printf("		0 Tm moveto 0 Bh neg rlineto Rm 0 rlineto 0 Bh rlineto closepath\n");
+      printf("/Ip	{ Gb .5 setlinewidth\n");
+      if (include_headers)
+	{
+	  printf("		0 Tm moveto 0 Bh neg rlineto Rm 0 rlineto 0 Bh rlineto closepath\n");
+	}
+      else
+	{
+	  printf("		0 Tm moveto Rm 0 rlineto\n");
+	}
+      printf("		gsave .98 setgray fill grestore stroke\n");
+      if (include_footers)
+	{
+	  printf("		0 0 moveto 0 Bf rlineto Rm 0 rlineto 0 Bf neg rlineto closepath\n");
+	}
+      else
+	{
+	  printf("		0 0 moveto Rm 0 rlineto\n");
+	}
+      printf("		gsave .98 setgray fill grestore stroke\n");
+      printf("		0 Bf moveto 0 Tm Bh sub lineto stroke newpath\n");
+      printf("		} def\n");
     }
   else
     {
-      printf("		0 Tm moveto Rm 0 rlineto\n");
+      printf("/Ip { } def\n");
     }
-  printf("		gsave .98 setgray fill grestore stroke\n");
-  if (include_footers)
-    {
-      printf("		0 0 moveto 0 Bf rlineto Rm 0 rlineto 0 Bf neg rlineto closepath\n");
-    }
-  else
-    {
-      printf("		0 0 moveto Rm 0 rlineto\n");
-    }
-  printf("		gsave .98 setgray fill grestore stroke\n");
-  printf("		0 Bf moveto 0 Tm Bh sub lineto stroke newpath\n");
-  printf("		} def\n");
   printf("/Cp	{ Ip .3 setlinewidth newpath\n");
   printf("		Li 0 Bf add moveto Li Tm Bh sub lineto stroke newpath\n");
   printf("		} def\n");
   printf("/So	{ gsave dup stringwidth pop Ps 3 div 0 exch rmoveto 0 rlineto fill grestore } def\n");
   printf("/Ul	{ gsave	dup stringwidth pop 0 -1 rmoveto 0 rlineto fill grestore } def\n");
   printf("/Bs	{ gsave	dup show grestore 0.5 0.5 rmoveto show } def\n");
+
+  if (ps_level == '2'){
+	printf("<</PageSize [%d %d]>> setpagedevice\n", left_margin+right_margin, top_margin+bottom_margin);
+  }
 
   /*
    * Print cover sheet

@@ -31,6 +31,7 @@
 
 #include <ctype.h>
 #include <stdio.h>   /* XXDEBUG */
+#include <stdlib.h>
 
 #include "trueprint.h"
 #include "main.h"

@@ -34,5 +34,6 @@ statusdict /setduplexmode known {
 /So	{ gsave dup stringwidth pop Ps 3 div 0 exch rmoveto 0 rlineto fill grestore } def
 /Ul	{ gsave	dup stringwidth pop 0 -1 rmoveto 0 rlineto fill grestore } def
 /Bs	{ gsave	dup show grestore 0.5 0.5 rmoveto show } def
+<</PageSize [605 806]>> setpagedevice
 %%Trailer
 %%EOF

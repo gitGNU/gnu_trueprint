@@ -2,12 +2,13 @@ dnl Process this file with autoconf to produce a configure script.
 AC_INIT(debug.c)
 AC_CONFIG_HEADER(config.h)
 
-VERSID="5.1"
+VERSID="5.2"
 AC_DEFINE_UNQUOTED(VERSID,"$VERSID")
 AC_SUBST(VERSID)
 
 dnl Checks for programs.
 AC_PROG_CC
+AC_PROG_INSTALL
 
 dnl Need this two-stage search for diff so we end
 dnl up with either a defined variable with the value of the

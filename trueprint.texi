@@ -91,6 +91,11 @@ to change the tool itself - just remember that it's covered by
 the GPL and be sure to send a copy of the changes to
 @email{enhance-trueprint@@gnu.org}!
 
+The original author and current maintainer of trueprint is
+Lezz Giles.  His email addresses at the time of writing are
+@email{gilesfamily@@mediaone.net}, @email{lgiles@@avici.com},
+and @email{giles@@world.std.com}.
+
 @node Installing Trueprint, Languages, Overview, Top
 @chapter Installing Trueprint
 
@@ -420,6 +425,15 @@ and of course you can force them on with @code{--headers} and
 
 If you're printing double-sided then the left and right headers and
 footers are swapped on every second page.
+
+@findex page-furniture-lines
+@findex no-page-furniture-lines
+Normally headers and footers have a line drawn around them and a line is
+also drawn down the left side of each page.  By
+specifying @code{--no-page-furniture-lines} these lines are not
+drawn.  In fact if you turn off headers, footers, line count and braces
+depth then no page furniture will be drawn at all, i.e.
+@code{--no-page-furniture-lines --no-headers --no-footers --no-braces-depth --no-line-numbers}.
 
 @findex message
 There is also an optional message string that is printed across
@@ -847,6 +861,18 @@ options override all other sets.
 
 If you want to set some personal default options, then simply set
 the environment variable @code{$TP_OPTS}.
+
+@section Postscript level
+
+@cindex postscript level
+It is possible to request that trueprint generate level 1 or
+level 2 postscript. Level 2 is the default.  If level 2 is
+set then trueprint will send the appropriate instructions
+to select the proper paper size.  You shouldn't normally need
+to use this option.  To select postscript level 1 use
+@code{--ps-level-one} and to select postscript level 2 use
+@code{--ps-level-two}.  In the future this option may be
+used to turn on more features.
 
 @section Environment Information
 

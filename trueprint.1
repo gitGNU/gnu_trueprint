@@ -1,34 +1,38 @@
-.TH TRUEPRINT 1 "LOCAL" "ULTRIX 4.1"
-.ad b
-.SA 1
+.\" Diese Anleitung ist unter der GPL veröffentlicht.
+.\" Alle Richtlinien der GPL sind in diesem Dokument zu beachten.
+.\" Um ein ASCII-Textfile zu bekommen, folgenden Befehl ausführen.
+.\" groff -man -Tascii pon.1 > pon.txt
+.\"
+.TH TRUEPRINT 1 "7. 1. 2000" GNU "User Manual"
+
 .SH NAME
-trueprint - print program listings on postscript printer.
+trueprint \- print program listings on postscript printer.
+
 .SH SYNOPSIS
-.B trueprint [ -HVbdDghlmnoOpPStwx24 ]
-files
+.B trueprint
+[
+.B options
+] [
+.B files
+]
+
 .SH DESCRIPTION
-.I trueprint
+.B trueprint
 is a general purpose program printing program.  It tries to produce everything
 that anybody could need in a program printout without the need for large
 numbers of switches or pipelines.
-.I trueprint
-can currently handle C, C++, Verilog, shell (including ksh),
-perl, pascal, listing files and plain text files.
-.PP
-This man page is not the most complete source of documentation
-for
-.I trueprint.
-The definitive documentation is in the info file.  You can
-also use the --help option to trueprint for a quick summary of
-options and other information.
+.B trueprint
+can currently handle C, C++, Java, Perl, Verilog, shell (including ksh), Pascal,
+pseudo C, report files (trueprint report file, see NOTES), listing files, text
+files.
 .PP
 Each page in the output has a default header consisting of the date or a
 user-defined string, the current function name, and the overall page number
 (which is used in the indexes); and a footer consisting of the date, the
 current file name and page number within file, and the overall page number.
-Each page can also have a string printed in large shaded
-characters diagonally over the centre of each page - this could for example
-give the version number or say "For your eyes only".
+If the language contains the concept of braces then
+.B trueprint 
+will include a braces depth count in the left-hand margin.
 .PP
 The printout has two function indexes at the front - one is an alphabetical
 list of all functions and the other is a list of files with functions in
@@ -37,441 +41,585 @@ functions and the second is suppressed if there is only one file.
 .PP
 If no language is specified on the command line then options are defaulted
 to be appropriate for the first file specified on the command line.  The
-filetype is taken from the suffix - valid suffixes are .c, .h, .cxx, .cpp, .hpp,
-.v, .pas, .rep, .lst, .pl,
-and .sh.  Any other suffix, or no suffix at all, is taken to be plain text.
-.PP
-The text of the printout has line numbers with
-current brace depth (by default only for C and pascal) down the left hand
-side.  Function names are in bold and comments are in italics.
-.PP
-It is possible to show differences between file versions, in which case
-deleted lines are shown struck out with a minus sign in the extreme left-hand
-margin, and added lines are shown in bold with a plus sign in the extreme
-left-hand margin.
-.PP
-The shell variable $TP_OPTS can be set with parameters which will become
-defaults; thus if TP_OPTS is set to "-p15" then the pointsize will default
-to 15, but can be overriden on the command line.  This allows the user to
-set up personal defaults.
-.PP
-.I trueprint
-is under constant development, and any suggested enhancements should
-be sent to enhance-trueprint@gnu.org.
+filetype is taken from the suffix - valid suffixes are
+.TP
+.B "Language		Suffix			language option"
 
-.SH ARGUMENTS
-.TP 15
-.I filenames
-The name of the files containing source code to be printed out.
+.TP
+C			.c .h			-language=c
+.TP
+C++			.cxx .cpp .cc		-langauge=cxx 
+.br
+	   .C .hpp .H	
+.TP
+Java			.java			-language=java
+.TP
+Shell		.sh				-language=sh
+.TP
+Perl			.pl				-language=perl
+.TP
+Pascal		.pas				-language=pascal
+.TP
+Verilog		.v				-language=v
+.TP
+Pseudo C		.pc .ph			-language=pseudoc
+.TP
+Report format	.rep				-language=report
+.TP
+Listing		.lst				-language=list
+.TP
+Plain Text	default			-language=text
+.PP
+When Trueprint starts it uses four sets of options:
+.PP
+\(em Hard-coded defaults
+.br
+\(em Language-specific defaults
+.br
+\(em Options taken from the environment variable `$TP_OPTS'
+.br
+\(em Command-line options
+.PP
+Each set of options overrides the earlier sets, so command-line
+options override all other sets.
+.br
+If you want to set some personal default options, then simply set
+the environment variable `$TP_OPTS'.
+
 .SH OPTIONS
-Options can be used to customize just about every aspect of the
-output.  Note that the list of options changes
-over time and that this man page may get out of date - the latest list
-is always available via the --help option.
 
-
-
-.SH Miscellaneous options
-
-.TP 15
-.BI \-D " string" ", --debug=" string
-set debug options to 
-.I string
-
-.TP 15
-.BI \-O " string" ", --diff=" string
-if
-.I string
-is a file then print diffs between
-.I string
-and input file otherwise use as a prefix and print diffs
-
-.TP 15
-.BI \-t " string" ", --language=" string
-treat input as language.  Use --help languages for list.
-
-.TP 15
-.BI \-U " string" ", --username=" string
+.SS Miscellaneous Options
+.TP
+.B \-D <string>,  \-\-debug=<string>
+set debug options to <string> (see USAGE whatfor <string> is).
+.TP
+.B \-O <string>,  \-\-diff=<string>
+if <string> is a file then print diffs between <string> and input file
+otherwise use as a prefix and print diffs. See USAGE for more information on
+usage.
+.TP
+.B \-t <string>, \-\-language=<string>
+treat input as language.  Use --help=language for list.
+.TP
+.B \-U <string>,  \-\-username=<string>
 set username for coversheet
-
-.TP 15
-.B \-H, --help
-Type help information
-
-.TP 15
-.BI "--help=" string
-Type specific help information.  Use --help for a list of possible
-strings.
-
-.TP 15
-.B \-V, --version
+.TP
+.B \-H,  \-\-help[=<string>]
+Type help information and given the <string> option it lists options for the
+following topics:
+.IP
+.B all-options 
+\- all options
+.br
+.B misc-options 
+\- miscellaneous options
+.br
+.B page-furniture-options 
+\- page furniture options
+.br
+.B text-format-options 
+\- text formatting options
+.br
+.B print-options 
+\- options that select what to print
+.br
+.B page-format-options 
+\- page format options
+.br
+.B output-options 
+\- options affecting output 
+.br
+.B language 
+\- languages
+.br
+.B prompt 
+\- format for --print-pages string
+.br
+.B debug 
+\- format for --debug string
+.br
+.B header 
+\- format for header & footer strings
+.br
+.B report 
+\- file format for --language=report input
+.br
+.B environment 
+\- environment vars used
+.TP
+.B \-V,  \-\-version
 Type version information
-
-.TP 15
-.B \-N, --use-environment
+.TP
+.B \-N,  \-\-use\-environment
 use environment variables
+.TP
+.B \-\-N,  \-\-ignore\-environment
+don't use values from environment, such as time, $USER, etc.  
+This is for test purposes, to make test results more reproducible
+.TP
+.B \-R 1, \-\-ps\-level\-one
+Use level one postscript.
+.TP
+.B \-R 2, \-\-ps\-level\-two
+Use level two postscript.
 
-.TP 15
-.B \--N, --ignore-environment
-don't use values from environment, such as time,
-$USER, etc.  This is for test purposes, to make test results
-more reproducible.
+.SS Text Formatting
+.TP
+.B \-b,  \-\-no\-page\-break\-after\-function
+don't print page breaks at the end of functions
+.TP	
+.B \-\-b,  \-\-page\-break\-after\-function
+print page breaks at the end of functions
+.TP
+.B \-W,  \-\-no\-intelligent\-line\-wrap
+Wrap lines at exactly the line-wrap column
+.TP
+.B \-\-W,  \-\-intelligent\-line\-wrap
+Wrap lines intelligently at significant characters, such as a space
+.TP
+.B \-L <number>,  \-\-minimum\-line\-length=<number>
+minimum line length permitted by intelligent line wrap (default 10)
+.TP						
+.B \-T <number>,  \-\-tabsize=<number>
+set tabsize (default 8)
+.TP
+.B \-E,  \-\-ignore\-form\-feeds
+don't expand form feed characters to new page
+.TP
+.B \-\-E,  \-\-form\-feeds
+expand form feed characters to new page
+.TP
+.B \-p <number>,  \-\-point\-size=<number>
+specify point size (default 10)
+.TP
+.B \-g <number>,  \-\-leading=<number>
+specify interline gap in points (default 1)
+.TP
+.B \-w <number>,  \-\-line\-wrap=<number>
+specify the line-wrap column.
+.TP
+.B \-\-no\-line\-wrap
+turn off line-wrap
+.TP
+.B \-l <number>,  \-\-page\-length=<number>
+specify number of lines on a page, point size is calculated appropriately
 
+.SS Page Formatting
+.TP
+.B \-I, \-\-no\-holepunch
+don't leave space for holepunch at the side of each page
+.TP
+.B \-\-I, \-\-holepunch
+leave space for holepunch at the side of each page
+.TP
+.B \-J, \-\-no\-top\-holepunch
+don't leave space for holepunch at the top of each page
+.TP
+.B \-\-J,  \-\-top\-holepunch
+leave space for holepunch at the top of each page
+.TP
+.B \-o p,  \-\-portrait
+print using portrait orientation
+.TP
+.B \-o l,  \-\-landscape
+print using landscape orientation
+.TP
+.B \-S 1,  \-\-single-sided
+print single-sided
+.TP
+.B \-S 2,  \-\-double\-sided
+print double-sided
+.TP
+.B \-1,  \-\-one\-up
+print 1-on-1 (default)
+.TP
+.B \-2,  \-\-two\-up
+print 2-on-1
+.TP
+.B \-3,  \-\-two\-tall\-up
+print 2-on-1 at 4-on-1 pointsize
+.TP
+.B \-4,  \-\-four\-up
+print 4-on-1
 
-.SH Page furniture options
-
-.TP 15
-.BI \-X " string" ", --left-header=" string
-Specify string for left side of header.
-
-.TP 15
-.BI \-x " string" ", --left-footer=" string
-Specify string for left side of footer.
-
-.TP 15
-.BI \-Y " string" ", --center-header=" string
-Specify string for center of header.
-
-.TP 15
-.BI \-y " string" ", --center-footer=" string
-Specify string for center of footer.
-
-.TP 15
-.BI \-Z " string" ", --right-header=" string
-Specify string for right side of header.
-
-.TP 15
-.BI \-z " string" ", --right-footer=" string
-Specify string for right side of footer.
-
-.TP 15
-.BI \-m " string" ", --message=" string
-Message to be printed over page.
-
-.TP 15
-.BI \-G " number" ", --gray-bands=" number
+.SS Page Furniture
+.TP
+.B \-X <string>,  \-\-left\-header=<string>
+specify string for left side of header
+.TP
+.B \-x <string>,  \-\-left\-footer=<string>
+specify string for left side of footer
+.TP
+.B \-Y <string>,  \-\-center\-header=<string>
+specify string for center of header
+.TP
+.B \-y <string>,  \-\-center\-footer=<string>
+specify string for center of footer
+.TP
+.B \-Z <string>,  \-\-right\-header=<string>
+specify string for right side of header
+.TP
+.B \-z <string>,  \-\-right\-footer=<string>
+specify string for right side of footer
+.TP
+.B \-m <string>,  \-\-message=<string>
+message to be printed over page. Will be printed in a very large, 
+light gray font. There are a few escapes as a replacement for <string>; see
+USAGE for more information.
+.TP
+.B \-G <number>,  \-\-gray\-bands=<number>
 Emulate the old lineprinter paper with gray bands
-across each page.  The value of number gives the width of
-the bands and the gaps between them.
+across each page.  The value of <number> gives the width of
+the bands and the gaps between them
+.TP
+.B \-K,  \-\-headers
+include the header on each page
+.TP
+.B \-\-K,  \-\-no\-headers
+suppress the header on each page
+.TP
+.B \-k,  \-\-footers
+include the footer on each page
+.TP
+.B \-\-k,  \-\-no\-footers
+suppress the footer on each page
+.TP
+.B \-u, \-\-page\-furniture\-lines
+Draw lines around header & footer boxes and down left side of page.
+.TP
+.B \-\-u, \-\-no\-page\-furniture\-lines
+Don't draw lines around header & footer boxes or down left side of page.
+.TP
+.B \-i,  \-\-no\-braces-depth
+exclude the braces depth count
+.TP
+.B \-\-i,  \-\-braces\-depth
+include the braces depth count
+.TP
+.B \-n,  \-\-no\-line\-numbers
+exclude the line number count
+.TP
+.B \-\-n,  \-\-line\-numbers
+include the line number count
 
-.TP 15
-.B \-K, --headers
-Include the header on each page.
+.SS Output Options
+Per
+.RB default " trueprint " will
+send the postscript output to `lp' or `lpr' and it will explicitly set 
+the destination to the value of the environment variable `$PRINTER'.
+.TP
+.B \-d <string>,  \-\-printer=<string>
+use printer <string>
+.TP
+.B \-P <string>,  \-\-printer=<string>
+use printer <string>
+.TP
+.B \-s <string>,  \-\-output=<string>
+send output to filename <string>; use - for stdout
+.TP
+.B \-r,  \-\-redirect\-output
+redirect output to .ps file named after first filename
+.TP
+.B \-\-r,  \-\-no\-redirect\-output
+don't redirect output
+.TP
+.B \-c <number>,  \-\-copies=<number>
+specify number of copies to be printed
 
-.TP 15
-.B \--K, --no-headers
-Suppress the header on each page.
+.SS Print Selection
+.TP
+.B \-C,  \-\-no\-cover\-sheet
+don't print cover sheet
+.TP
+.B \-\-C,  \-\-cover\-sheet
+print cover sheet
+.TP
+.B \-A <selection>,  \-\-print\-pages=<selection>
+specify list of pages to be printed (see USAGE whatfor <selection> is).
+.TP
+.B \-a,  \-\-no\-prompt
+don't prompt for each page, whether it should be printed or not
+.TP
+.B \-\-a,  \-\-prompt
+prompt for each page, whether it should be printed or not
+.TP
+.B \-F,  \-\-no\-file\-index
+don't print file index
+.TP
+.B \-\-F,  \-\-file\-index
+print file index
+.TP
+.B \-f,  \-\-no\-function\-index
+don't print function index
+.TP
+.B \-\-f,  \-\-function\-index
+print function index
+.TP
+.B \-B,  \-\-no\-print\-body
+don't print body of text
+.TP
+.B \-\-B,  \-\-print\-body
+print body of text
 
-.TP 15
-.B \-k, --footers
-Include the footer on each page.
+.SH USAGE
 
-.TP 15
-.B \--k, --no-footers
-Suppress the footer on each page.
+The usage of the 
+.RB ` "\-D <string>" ',
+.RB ` "\-\-debug=<string>" '
+is as follows:
+.br
+Each letter turns on a set of debugging messages, and the corresponding
+digit indicates the level of messages, with 1 indicating the least
+number of messags and 9 turning on all messages.  The letter `@' can be
+used to turn on all areas, so `--debug=@9' will turn on all messages.
+Use `--help=debug' for details of what letters turn on what areas.
+.br
+Note that this feature is not uniformly implemented - messages were
+only typically added where they were needed.  Also note that messages
+will not be generated in code prior to the code that sets the debug
+string!
+.PP
+The usage of the
+.RB ` "\-O <string>" ',
+.RB ` "\-\-diff=<string>" '
+option looks as follows:
+.br
+You specify the old version of the file or files with
+`--diff=<pathname>'.  If <pathname> suffixed with the current filename is a
+valid file then the differences between <pathname>/<filename> are displayed.
+Alternatively, if <pathname> is a file and you're printing one file, then
+the differences between <pathname> and the current file are displayed.
+Examples how to make it are shown below:
+.IP
+trueprint --diff=../old- this.c that.c
+.PP
+will print the differences between ../old-this.c and this.c, and ../old-that.c 
+and that.c.
+.IP
+trueprint --diff=../old/ this.c that.c
+.PP
+will print the differences between ../old/this.c and this.c, and ../old/that.c 
+and that.c.  Note that the trailing / is important.
+.IP
+trueprint --diff=this.c that.c
+.PP
+will print the differences between this.c and that.c.
+.PP
+The usage of the
+.RB ` "\-A <selection>" ',  
+.RB ` "\-\-print\-pages=<selection>" '
+option looks as follows:
+.br
+<selection> consists of a comma-seperated list of page selections:
+.IP
+.B `<number>'
+-- print the specific page
+.br
+.B `<number>-<number>'
+-- Print all pages between, and including, the specified pages
+.br
+.B `<function-name>'
+-- Print all pages that include function-name.
+.br
+.B `d' 
+-- Print all pages that have changed (this is only useful with the `--diff'
+(see above) option.
+.br
+.B `D'
+-- Print all pages containing functions that have changed (this is only
+useful with the `--diff' (see above) option.
+.br
+.B `f'
+-- Print the function index
+.br
+.B `F' 
+-- Print the file index.
+.PP
+For example,
+.IP
+--print-pages=1-5,main,f
+.PP
+will print the function
+index, pages 1 to 5, and all the pages for the function `main'.
+.PP
+If you specify 
+.RB ` "--prompt" ' then 
+.B trueprint
+will prompt you for each page, whether or not it should print that page.  
+It will give you information such as the current filename, current 
+functionname, page number, and so on.  The possible responses are:
+.IP
+.B `y'
+-- Print this page.
+.br
+.B `y<number>'
+-- Print <number> pages.
+.br
+.B `y*'
+-- Print all the remaining pages.
+.br
+.B  `n'
+-- Skip this page
+.br
+.B `n<number>'
+-- Skip <number> pages.
+.br
+.B `n*'
+-- Skip all the remaining pages.
+.br
+.B `p<selection>'
+-- Print all remaining pages that match <selection>, where
+<selection> is in the format defined above.
+.br
+.B `?'
+-- Print a help message.
+.PP
+The
+.RB ` "--message=<string>" '
+option takes a few % escapes for <string> which are listed below:
+.IP
+.B `%%'
+-- Print a simple %.
+.br
+.B `%m'
+--  Print the current month of the year as a number, e.g. 05.
+.br
+.B `%d'
+--  Print the current day of the month, e.g. 01.
+.br
+.B `%y'
+--  Print the current year, e.g. 1999
+.br
+.B `%D'
+-- Print the date in the format mm/dd/yy.
+.br
+.B `%L'
+-- Print the date and time in long format, e.g. Fri Oct 8 11:49:51 1999
+.br
+.B  `%c'
+-- Print the last modified date of the current file in the format mm/dd/yy.
+.br
+.B `%C'
+-- Print the last modified date and time of the current file in long
+format, e.g. Fri Oct 8 11:49:51 1999
+.br
+.B `%H'
+-- Print the current hour.
+.br
+.B `%M'
+-- Print the current minute.
+.br
+.B `%S'
+-- Print the current second.
+.br
+.B `%T'
+-- Print the time in the format HH:MM:SS.
+.br
+.B `%j'
+-- Print the day of the year, e.g. 095.
+.br
+.B `%w'
+-- Print the day of the week, e.g. Sunday.
+.br
+.B										`%a'
+-- Print the abbreviated day of the week, e.g. Sun.
+.br
+.B `%h'
+-- Print the abbreviated month name, e.g. Mar.
+.br
+.B `%r'
+-- Print the time in am/pm notation, e.g. 10:45pm.
+.br
+.B `%p'
+-- Print the page number in the current file.
+.br
+.B `%P'
+-- Print the overall page number.
+.br
+.B `%f'
+-- Print the total number of pages of the current file.
+.br
+.B `%F'
+-- Print the total number of pages.
+.br
+.B `%n'
+-- Print the current filename.
+.br
+.B `%N'
+-- Print the current function name.
+.br
+.B `%l'
+-- Print the username of the current user.
+.PP
+Default Values are:
+.IP
+`left-header'     `%L'
+.br
+`center-header'   `%N'
+.br
+`right-header'    `Page %P of %F'
+.br
+`left-footer'     `%L'
+.br
+`center-footer'   `%n %p'
+.br
+`right-footer'    `Page %P of %F'
 
-.TP 15
-.B \-i, --no-braces-depth
-Exclude the braces depth count.
+ 
+.SH NOTES
 
-.TP 15
-.B \--i, --braces-depth
-Include the braces depth count.
+For most of the languages, 
+.B trueprint 
+uses the language to work out
+where comments are (so it can print them in italics) and where the
+function names are (so it can print them in bold and include them in
+the function index).  However there are some special features for some
+of the languages:
+.PP
+Pseudo C is like C, except it has a more forgiving syntax.  In
+particular it ignores strings, so if you leave off a closing quote then
+pseudo C will print out using a vaguely sensible format.  Pseudo C is
+intended for printing code that doesn't yet compile.
+.PP
+Listing format assumes very wide lines and a fixed page length of
+sixty-six characters, so it turns off line-wrap and sets the page
+length appropriately.
+.PP
+Report format uses a few special characters: anything between ^A and
+^E is printed in bold and included in the function index, and anything
+between a pair of ^Cs is printed in italics.
 
-.TP 15
-.B \-n, --no-line-numbers
-Exclude the line number count.
-
-.TP 15
-.B \--n, --line-numbers
-Include the line number count.
-
-
-.SH Text formatting options
-
-.TP 15
-.B \-b, --no-page-break-after-function
-Don't print page breaks at the end of functions.
-
-.TP 15
-.B \--b, --page-break-after-function
-Print page breaks at the end of functions.
-
-.TP 15
-.B \-W, --no-intelligent-line-wrap
-Wrap lines at exactly the line-wrap column.
-
-.TP 15
-.B \--W, --intelligent-line-wrap
-Wrap lines intelligently at significant characters, such
-as a space
-
-.TP 15
-.BI \-L " number" ", --minimum-line-length=" number
-Ensure lines created using intelligent line wrap are
-at least the indicated width.
-
-.TP 15
-.BI \-T " number" ", --tabsize=" number
-Set tabsize (default 8).
-
-.TP 15
-.B \-E, --ignore-form-feeds
-Don't expand form feed characters to new page.
-
-.TP 15
-.B \--E, --form-feeds
-Expand form feed characters to new page.
-
-.TP 15
-.BI \-p " number" ", --point-size=" number
-Specify point size (default 10).
-
-.TP 15
-.BI \-g " number" ", --leading=" number
-Specify interline gap in points (default 1).
-
-.TP 15
-.BI \-w " number" ", --line-wrap=" number
-Specify the line-wrap column.
-
-.TP 15
-.B --no-line-wrap
-Turn off line-wrap.
-
-.TP 15
-.BI \-l " number" ", --page-length=" number
-Specify number of lines on a page, point size is
-calculated appropriately.
-
-
-.SH Print selection options
-
-.TP 15
-.B \-C, --no-cover-sheet
-Don't print cover sheet.
-
-.TP 15
-.B \--C, --cover-sheet
-Print cover sheet.
-
-.TP 15
-.BI \-A " string" ", --print-pages=" string
-Specify list of pages to be printed.
-
-.TP 15
-.B \-a, --no-prompt
-Don't prompt for each page, whether it should be printed or not.
-
-.TP 15
-.B \--a, --prompt
-Prompt for each page, whether it should be printed or not.
-
-.TP 15
-.B \-F, --no-file-index
-Don't print file index.
-
-.TP 15
-.B \--F, --file-index
-Print file index.
-
-.TP 15
-.B \-f, --no-function-index
-Don't print function index.
-
-.TP 15
-.B \--f, --function-index
-Print function index.
-
-.TP 15
-.B \-B, --no-print-body
-Don't print body of text.
-
-.TP 15
-.B \--B, --print-body
-Print body of text.
-
-
-.SH Page format options
-
-.TP 15
-.B \-I, --no-holepunch
-Don't leave space for holepunch at the side of each page.
-
-.TP 15
-.B \--I, --holepunch
-Leave space for holepunch at the side of each page.
-
-.TP 15
-.B \-J, --no-top-holepunch
-Don't leave space for holepunch at the top of each page.
-
-.TP 15
-.B \--J, --top-holepunch
-Leave space for holepunch at the top of each page.
-
-.TP 15
-.B \-o p, --portrait
-Print using portrait orientation.
-
-.TP 15
-.B \-o l, --landscape
-Print using landscape orientation.
-
-.TP 15
-.B \-S 1, --single-sided
-Print single-sided.
-
-.TP 15
-.B \-S 2, --double-sided
-Print double-sided.
-
-.TP 15
-.B \-1, --one-up
-Print 1-on-1 (default).
-
-.TP 15
-.B \-2, --two-up
-Print 2-on-1.
-
-.TP 15
-.B \-3, --two-tall-up
-Print 2-on-1 at 4-on-1 pointsize.
-
-.TP 15
-.B \-4, --four-up
-Print 4-on-1.
-
-
-.SH Output options
-
-.TP 15
-.BI \-d " string" ", --printer=" string
-Use printer string.
-
-.TP 15
-.BI \-P " string" ", --printer=" string
-Use printer string.
-
-.TP 15
-.BI \-s " string" ", --output=" string
-Send output to filename string; use - for stdout.
-
-.TP 15
-.B \-r, --redirect-output
-Send output to filename named after first filename arg with .ps suffix.
-
-.TP 15
-.B \--r, --no-redirect-output
-Turn off --redirect-output behaviour.
-
-.TP 15
-.BI \-c " number" ", --copies=" number
-Specify number of copies to be printed.
-
-.TP 15
-
-.SH STRING EXPANSION
-Many options take a string that can contain sequences which will be
-expanded as follows:
-.IP %%
-a percent character
-.IP %m
-month of year
-.IP %d
-day of month
-.IP %y
-year e.g. 1993
-.IP %D
-date mm/dd/yy
-.IP %L
-long date e.g. Fri Oct 8 11:49:51 1993
-.IP %c
-modification time of file in format mm/dd/yy
-.IP %C
-modification time of file in long format
-.IP %H
-hour
-.IP %M
-minute
-.IP %S
-second
-.IP %T
-time HH:MM:SS
-.IP %j
-day of year ddd
-.IP %w
-day of week (Sunday = 0)
-.IP %a
-abbreviated weekday
-.IP %h
-abbreviated month
-.IP %r
-time in am/pm notation
-.IP %p
-page number in current file
-.IP %P
-overall page number
-.IP %f
-number of pages in current file
-.IP %F
-final overall page number
-.IP %n
-current filename
-.IP %N
-current functionname
-.IP %l
-login name
-
-.SH ENVIRONMENT VARIABLES
-.TP 15
-.BI TP_OPTS
-Specify options.  These options override any default options including
-language defaults, but are overridden by command line options.
-.TP 15
-.BI TP_DIFF_CMD
+.SH ENVIRONMENT
+By default Trueprint uses environment variables and the current
+username.
+.TP
+.B PRINTER
+Specify the printer to use when sending postscript output to the printer.
+.TP
+.B TP_OPTS
+Specify options.  These options override any default options
+including language defaults, but are overridden by command line options.
+.TP
+.B TP_DIFF_CMD
 Specify the diff command to be used.  The command must produce output
 in the same format as the classic Unix diff.  This variable can be used
 to add flags to the diff command used, for example to make diff ignore
 whitespace.
-.TP 15
-.BI TP_PRINT_CMD
-Specify the print command.  The default is lpr.  If this is set then it
-should be set to a command that takes standard input.  If this is set
+.TP
+.B TP_PRINT_CMD
+Specify the print command.  The default is lpr.  If this is set then
+it should be set to a command that takes standard input.  If this is set
 then the destination and number of copies have no effect, i.e. there is
 no mechanism to pass these values to your print command.  If you set
 this to /bin/cat then the postscript output will appear on stdout.
-.TP 15
-.BI TP_PRINTERS_FILE
+.TP
+.B TP_PRINTERS_FILE
 Specify the printers file.  The default is the printers file that
-was initially configured when trueprint was installed.  This can
-be used to test out a new printers file.
+was initially configured when trueprint was installed.  This can be
+used to test out a new printers file.
 
-.SH EXAMPLES
-To print out all the C source files in the current directory:
-.PP
-  trueprint *.c
-.PP
-To print out a shell script:
-.PP
-  trueprint -t sh shellscript
-.PP
-To print all changed pages and complete changed functions, and
-the function and file indexes, page 93, and pages 2 to 23, for a
-changed set of files:
-.PP
-  trueprint -A d,D,f,F,93,2-23 -O ../OLD/ *.c
-.PP
-To print out a shell script showing changes:
-.PP
-  trueprint -t sh -O oldshell shellscript
 .SH AUTHOR
-Lezz Giles    giles@world.std.com
-.SH SEE ALSO
-.nf
-.PP
-diff(1)
-.PP
-lpr(1)
-.PP
-Trueprint Users' Manual
+The program was written by Lezz Giles. Please send bug reports to
+<bug-trueprint@gnu.org> and ideas for enhancement or similar things to
+<enhance-trueprint@gnu.org>.
+The manpage was written by Othmar Pasteka <othmar@tron.at>.

@@ -18,6 +18,11 @@
 
 #include "config.h"
 
+#ifdef MSWIN
+#include <sys/stat.h>
+#include <io.h>
+#endif
+
 #include <ctype.h>
 #include <errno.h>
 #include <fcntl.h>
@@ -117,6 +122,14 @@ int main(int argc, char **argv)
 {
   unsigned int		last_param_used;
   int			pipe_handle = -1;
+#ifdef MSWIN
+  FILE			*pipe_fhandle = NULL;
+#endif
+
+  /*
+   * Need to set this here as it is used by setup_printers_fl()
+   */
+  use_environment = TRUE;
 
   /*
    * Set up various modules, including option declaration.
@@ -293,7 +306,11 @@ int main(int argc, char **argv)
     }
   else if (strlen(output_filename) > 0)
     {
+#ifdef MSWIN
+      pipe_handle = _creat(output_filename, _S_IREAD | _S_IWRITE );
+#else
       pipe_handle = creat(output_filename, 0666);
+#endif
       if (pipe_handle == -1)
 	{
 	  fprintf(stderr, gettext(CMD_NAME ": cannot open %s for writing, %s\n"),
@@ -302,8 +319,13 @@ int main(int argc, char **argv)
 	}
 
       /* now dup the pipe_handle into stdout so all stdout goes to the pipe */
+#ifdef MSWIN
+      if (!((close(1) == 0) && (_dup(pipe_handle) == 1)))
+	abort();
+#else
       if (!((close(1) == 0) && (dup(pipe_handle) == 1)))
 	abort();
+#endif
 
       dm('O',1,"Sending output to %s\n",output_filename);
     }
@@ -325,12 +347,21 @@ int main(int argc, char **argv)
 
       dm('P',1,"Printer command is %s\n", print_cmd_line);
 
+#ifdef MSWIN
+      pipe_fhandle = _popen(print_cmd_line, "w");
+      if (pipe_fhandle == NULL) abort();
+	  
+      /* now dup the pipe_handle into stdout so all stdout goes to the pipe */
+      if (!((close(1) == 0) && (dup(_fileno(pipe_fhandle)) == 1)))
+        abort();
+#else
       /* openpipe exits on failure, so don't bother to check return code */
       pipe_handle = openpipe(print_cmd_line, "w");
 
       /* now dup the pipe_handle into stdout so all stdout goes to the pipe */
       if (!((close(1) == 0) && (dup(pipe_handle) == 1)))
 	abort();
+#endif
     }
 
   /*
@@ -371,8 +402,14 @@ int main(int argc, char **argv)
 
   fflush(stdout);
   close(1);
+
+#ifdef MSWIN
+  if (pipe_fhandle != NULL)
+    _pclose(pipe_fhandle);
+#else
   if (pipe_handle != -1)
     closepipe(pipe_handle);
+#endif
 
   return(0);
 }

@@ -1,5 +1,35 @@
 Reverse history of Trueprint:
 
+Version 5.2:
+	As of this release I'm going to include the contributors name
+	in every change description.  Sorry I didn't do that for version
+	5.1.
+	+ Added NEC SuperScript 870 printer details (Craig Pinfold).
+	+ Added A4 settings for HP Laserjet 4 Si MX (Ian Brown).
+	+ Use configure to find the proper install tool (George Lindholm).
+	+ Use mandir and man1dir vars in Makefile properly (Michael Somos).
+	+ Added missing colon to printers file (Michael Somos).
+	+ Handle unknown language with a message instead of a core dump
+	(Craig Pinfold).
+	+ Added -R to specify postscript level (Ian Brown).
+	+ Initialize use_environment in main() (Ian Brown and others).
+	+ Added <stdlib.h> to lang_java.c to get abort() (Ian Brown).
+	+ C++ comments are now recognized in C code.  OK, this isn't ANSI
+	but GCC is a better standard than ANSI any day... :-)  This solves
+	a problem reported by Bruce Tenison.
+	+ Changes made to support compiling for Microsoft Windows
+	platforms are added (Ian Brown).
+	+ Option -u added: --u will suppress even minimal headers, footers
+	and left margin line (suggested by... )
+	+ When using the perl5 "use subs" pragma, trueprint incorrectly
+	identifies "s" as a subroutine.  This is fixed in lang_perl.c with
+	a fix submitted by Jim Eshleman.
+	+ Added printer HP Laserjet 8100N (Kris Berbeeck).
+	+ Added printer CalComp (sorry, I lost the name of the contributor -
+	send me a mail and I'll add it in the next release)
+	+ Added support for language pike (see pike.idonex.se) (Martin Bahr).
+	+ Rewritten man page (see author in the man page itself).
+
 Version 5.1:
 	Many thanks to everybody who gave me feedback and reported
 	problems in version 5.0!  I've found the best advantage of

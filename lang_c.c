@@ -33,6 +33,7 @@ typedef enum {
   IP_CODE,
   IP_COMMENT_START,
   IP_COMMENT,
+  IP_COMMENT_LINE,
   IP_COMMENT_END,
   IP_STRING,
   IP_QUOTE_STRING,
@@ -102,7 +103,7 @@ get_c_char(char *input_char, char_status *status)
 	    stream_status s;
 	    char          c;
 	    s = getnextchar(&c);
-	    if (c == '*') *status = CHAR_ITALIC;
+	    if ((c == '*') || (c == '/')) *status = CHAR_ITALIC;
 	    ungetnextchar(c,s);
 	  }
 	  break;
@@ -133,7 +134,7 @@ get_c_char(char *input_char, char_status *status)
     case IP_COMMENT_START:
       switch (*input_char)
 	{
-	case '/': break;
+	case '/': state=IP_COMMENT_LINE; *status=CHAR_ITALIC; break;
 	case '*': state=IP_COMMENT; *status=CHAR_ITALIC; break;
 	case '{': state=IP_CODE; braces_depth+=1; break;
 	case '}': if ((braces_depth -= 1) == 0) retval|=STREAM_FUNCTION_END;
@@ -146,6 +147,15 @@ get_c_char(char *input_char, char_status *status)
       switch (*input_char)
 	{
 	case '*': state=IP_COMMENT_END; break;
+	default:
+	  ;
+	}
+      break;
+    case IP_COMMENT_LINE:
+      *status = CHAR_ITALIC;
+      switch (*input_char)
+	{
+	case '\n': state=IP_CODE; break;
 	default:
 	  ;
 	}

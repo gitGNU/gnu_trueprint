@@ -75,6 +75,11 @@ Trueprint can format your output appropriately.
 change the tool itself - just remember that it's covered by the GPL and
 be sure to send a copy of the changes to <enhance-trueprint@gnu.org>!
 
+   The original author and current maintainer of trueprint is Lezz
+Giles.  His email addresses at the time of writing are
+<gilesfamily@mediaone.net>, <lgiles@avici.com>, and
+<giles@world.std.com>.
+
 
 File: trueprint.info,  Node: Installing Trueprint,  Next: Languages,  Prev: Overview,  Up: Top
 
@@ -314,6 +319,13 @@ turn off either headers or footers you can use `--no-headers' or
 
    If you're printing double-sided then the left and right headers and
 footers are swapped on every second page.
+
+   Normally headers and footers have a line drawn around them and a
+line is also drawn down the left side of each page.  By specifying
+`--no-page-furniture-lines' these lines are not drawn.  In fact if you
+turn off headers, footers, line count and braces depth then no page
+furniture will be drawn at all, i.e.  `--no-page-furniture-lines
+--no-headers --no-footers --no-braces-depth --no-line-numbers'.
 
    There is also an optional message string that is printed across the
 middle of each page in a very large, light gray font.  You can use this
@@ -651,6 +663,17 @@ options override all other sets.
 
    If you want to set some personal default options, then simply set
 the environment variable `$TP_OPTS'.
+
+Postscript level
+================
+
+   It is possible to request that trueprint generate level 1 or level 2
+postscript. Level 2 is the default.  If level 2 is set then trueprint
+will send the appropriate instructions to select the proper paper size.
+You shouldn't normally need to use this option.  To select postscript
+level 1 use `--ps-level-one' and to select postscript level 2 use
+`--ps-level-two'.  In the future this option may be used to turn on
+more features.
 
 Environment Information
 =======================
@@ -1043,12 +1066,14 @@ Option Index
 * no-line-numbers:                       Page Furniture.
 * no-line-wrap:                          Text Formatting.
 * no-page-break-after-function:          Text Formatting.
+* no-page-furniture-lines:               Page Furniture.
 * no-print-body:                         Print Selection.
 * no-prompt:                             Print Selection.
 * no-top-holepunch:                      Page Formatting.
 * one-up:                                Page Formatting.
 * output:                                Output Options.
 * page-break-after-function:             Text Formatting.
+* page-furniture-lines:                  Page Furniture.
 * page-length:                           Text Formatting.
 * pointsize:                             Text Formatting.
 * portrait:                              Page Formatting.
@@ -1144,6 +1169,7 @@ Concept Index
 * pointsize:                             Text Formatting.
 * portrait:                              Page Formatting.
 * postscript:                            Output Options.
+* postscript level:                      Miscellaneous Features.
 * printer destination:                   Output Options.
 * printer queues:                        Installing Trueprint.
 * printer specification:                 Installing Trueprint.
@@ -1173,16 +1199,16 @@ Concept Index
 Tag Table:
 Node: Top320
 Node: Overview1265
-Node: Installing Trueprint2986
-Node: Languages6736
-Node: Page Formatting9721
-Node: Page Furniture11426
-Node: Text Formatting15191
-Node: Output Options18112
-Node: Print Selection19388
-Node: Miscellaneous Features21593
-Node: Options and Environment Variables List24717
-Node: Option Index30890
-Node: Concept Index34778
+Node: Installing Trueprint3184
+Node: Languages6934
+Node: Page Formatting9919
+Node: Page Furniture11624
+Node: Text Formatting15793
+Node: Output Options18714
+Node: Print Selection19990
+Node: Miscellaneous Features22195
+Node: Options and Environment Variables List25788
+Node: Option Index31961
+Node: Concept Index35963
 
 End Tag Table

@@ -268,7 +268,7 @@ struct printer_record *parse_printer_record(char *line)
 
   r->next     = NULL;
 
-  dm('D',3,"Read printer %s entry: %s:%s\n",
+  dm('D',3,"Read printer entry: %s:%s\n",
      r->names,r->type);
 
   return r;

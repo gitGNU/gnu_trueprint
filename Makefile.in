@@ -1,6 +1,6 @@
 prefix = @prefix@
 bindir = $(prefix)/bin
-mandir = $(prefix)/man/man1
+mandir = $(prefix)/man
 man1dir = $(mandir)/man1
 libdir = $(prefix)/lib
 srcdir = @srcdir@
@@ -8,9 +8,9 @@ infodir = @infodir@
 
 version = @VERSID@
 
-INSTALL = install
-INSTALL_DATA = $(INSTALL)
-INSTALL_PROGRAM = $(INSTALL)
+INSTALL = @INSTALL@
+INSTALL_DATA = @INSTALL_DATA@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
 TEXI2DVI = texi2dvi
 MAKEINFO = makeinfo
 DVIPS = dvips
@@ -22,7 +22,7 @@ VPATH = $(srcdir)
 SHELL = /bin/sh
 
 OBJECTS = \
-	debug.o diffs.o expand_str.o headers.o index.o \
+	debug.o diffs.o expand_str.o headers.o index.o lang_pike.o \
 	input.o lang_c.o lang_cxx.o lang_verilog.o lang_pascal.o lang_perl.o lang_report.o \
 	lang_sh.o lang_text.o lang_java.o language.o main.o options.o \
 	openpipe.o output.o postscript.o print_prompt.o \
@@ -56,6 +56,7 @@ SOURCES = \
 	index.h \
 	input.c \
 	input.h \
+	install-sh \
 	lang_c.c \
 	lang_c.h \
 	lang_cxx.c \
@@ -66,6 +67,8 @@ SOURCES = \
 	lang_pascal.h \
 	lang_perl.c \
 	lang_perl.h \
+	lang_pike.c \
+	lang_pike.h \
 	lang_report.c \
 	lang_report.h \
 	lang_sh.c \
@@ -95,6 +98,7 @@ SOURCES = \
 	trueprint.1 \
 	trueprint.dvi \
 	trueprint.info \
+	trueprint.spec \
 	trueprint.texi \
 	trueprint.h \
 	utils.c \
@@ -154,7 +158,7 @@ trueprint: $(OBJECTS)
 	$(CC) $(OBJECTS) $(LIBFILES) -o trueprint
 
 install: $(bindir)/trueprint \
-	$(mandir)/trueprint.1 \
+	$(man1dir)/trueprint.1 \
 	$(libdir)/printers \
 	$(infodir)/trueprint.info
 
@@ -164,8 +168,8 @@ install-strip:
 $(bindir)/trueprint: trueprint
 	$(INSTALL_PROGRAM) trueprint $(bindir)
 
-$(mandir)/trueprint.1: $(srcdir)/trueprint.1
-	$(INSTALL_DATA) $(srcdir)/trueprint.1 $(mandir)	
+$(man1dir)/trueprint.1: $(srcdir)/trueprint.1
+	$(INSTALL_DATA) $(srcdir)/trueprint.1 $(man1dir)	
 
 $(libdir)/printers: $(srcdir)/printers
 	if test -f $(libdir)/printers; then \
@@ -186,7 +190,7 @@ $(infodir)/trueprint.info: trueprint.info
 uninstall:
 	$(PRE_UNINSTALL) # Pre-uninstall commands follow
 	rm $(bindir)/trueprint
-	rm $(mandir)/trueprint.1
+	rm $(man1dir)/trueprint.1
 	rm $(libdir)/printers
 	install-info --dir-file=$(infodir)/dir --remove $(infodir)/trueprint.info
 	rm $(infodir)/trueprint.info
@@ -203,7 +207,7 @@ dist: $(SOURCES) $(TESTSOURCES)
 	chmod 644 trueprint-$(version)/*
 	chmod 755 trueprint-$(version) trueprint-$(version)/tests
 	chmod 644 trueprint-$(version)/tests/*
-	chmod +x trueprint-$(version)/tests/Run trueprint-$(version)/configure
+	chmod +x trueprint-$(version)/tests/Run trueprint-$(version)/configure trueprint-$(version)/install-sh
 	tar cf - trueprint-$(version) |gzip > trueprint-$(version).tar.gz
 
 clean:
@@ -239,7 +243,7 @@ trueprint.info: $(srcdir)/trueprint.texi
 	$(MAKEINFO) $<
 
 check:
-	cwd=`/bin/pwd`; cd $(srcdir)/tests; ./Run $$cwd/trueprint
+	cwd=`pwd`; cd $(srcdir)/tests; ./Run $$cwd/trueprint
 
 $(OBJECTS): config.h
 
@@ -255,14 +259,16 @@ expand_str.o: \
 diffs.o headers.o index.o language.o main.o output.o: \
   $(srcdir)/headers.h
 
-expand_str.o index.o lang_c.o lang_cxx.o lang_verilog.o lang_pascal.o lang_perl.o \
+expand_str.o index.o lang_c.o lang_cxx.o lang_verilog.o lang_pascal.o \
+  lang_perl.o lang_pike.o \
   lang_report.o lang_sh.o main.o output.o postcript.o print_prompt.o: \
   $(srcdir)/index.h
 
-input.o lang_c.o lang_cxx.o lang_verilog.o lang_pascal.o lang_perl.o lang_report.o lang_sh.o lang_text.o lang_java.o main.o : \
+input.o lang_c.o lang_cxx.o lang_verilog.o lang_pascal.o lang_perl.o \
+  lang_pike.o lang_report.o lang_sh.o lang_text.o lang_java.o main.o : \
   $(srcdir)/input.h
 
-diffs.o expand_str.o options.o index.o input.o lang_c.o lang_cxx.o\
+diffs.o expand_str.o options.o index.o input.o lang_c.o lang_cxx.o lang_pike.o \
   lang_verilog.o lang_pascal.o lang_perl.o lang_report.o lang_sh.o language.o main.o \
   openpipe.o output.o postscript.o print_prompt.o printers_fl.o: \
   $(srcdir)/main.h
@@ -280,7 +286,7 @@ headers.o index.o main.o output.o postscript.o: \
   $(srcdir)/postscript.h
 
 debug.o diffs.o expand_str.o options.o headers.o index.o \
-  input.o lang_c.o lang_cxx.o lang_verilog.o lang_pascal.o lang_perl.o lang_report.o lang_sh.o \
+  input.o lang_c.o lang_cxx.o lang_verilog.o lang_pascal.o lang_perl.o lang_pike.o lang_report.o lang_sh.o \
   lang_text.o lang_java.o language.o main.o openpipe.o output.o postscript.o \
   print_prompt.o printers_fl.o: \
   $(srcdir)/trueprint.h
