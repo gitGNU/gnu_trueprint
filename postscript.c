@@ -85,7 +85,8 @@ static void set_layout_2(const char *p, const char *s);
 static void set_layout_3(const char *p, const char *s);
 static void set_layout_4(const char *p, const char *s);
 static boolean PS_side_full(void);
-
+static void set_no_of_sides(const char *p, const char *s, char value);
+static void set_no_of_sides_default(char value);
 
 /*
  * Function:
@@ -173,7 +174,9 @@ setup_postscript(void)
 
   no_of_sides = '0';
   choice_option("S", "single-sided", "double-sided",
-		'1', '2', &no_of_sides, NULL, NULL,
+		'1', '2', NULL,
+		set_no_of_sides,
+		set_no_of_sides_default,
 		OPT_PAGE_FORMAT,
 		"print single-sided",
 		"print double-sided");
@@ -729,7 +732,6 @@ PS_pagesize(char *printer, int *width_ptr, int *length_ptr)
   short tmp_sides;
 
   printer_stats(printer, &tmp_sides, &left_margin, &right_margin, &top_margin, &bottom_margin);
-
   if (no_of_sides == '0')
     {
       if (tmp_sides == 1)
@@ -860,3 +862,17 @@ PS_pagesize(char *printer, int *width_ptr, int *length_ptr)
 	
   dm('O',3,"postscript.c:PS_pagesize width to be used %d, length to be used %d\n", *width_ptr, *length_ptr);
 }	
+
+static void
+set_no_of_sides_default(char value)
+
+{
+  no_of_sides = '0';
+}
+
+static void
+set_no_of_sides(const char *p, const char *s, char value)
+
+{
+  no_of_sides = value;
+}

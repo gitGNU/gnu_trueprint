@@ -1,6 +1,6 @@
 Summary: Prints the source files in PostScript
 Name: trueprint
-Version: 5.2
+Version: 5.2.1
 Release: 1
 Source: ftp://ftp.gnu.org/pub/gnu/trueprint/trueprint-%{PACKAGE_VERSION}.tar.gz
 Copyright: GPL
@@ -20,6 +20,9 @@ Trueprint can currently handle C, C++, Verilog, shell (including ksh),
 perl, pascal, listing files and plain text files.
 
 %changelog
+* Wed Feb 16 2000 Lezz Giles <gilesfamily@mediaone.net>
+- Updated to the 5.2.1 release.
+
 * Wed Nov 3 1999 Lezz Giles <gilesfamily@mediaone.net>
 - Updated to the 5.2 release.
 

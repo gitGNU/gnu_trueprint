@@ -1,5 +1,9 @@
 Reverse history of Trueprint:
 
+Version 5.2.1:
+	Fixed bug that ignored the double-sided/single-sided setting
+	for printers in the printers file.
+
 Version 5.2:
 	As of this release I'm going to include the contributors name
 	in every change description.  Sorry I didn't do that for version

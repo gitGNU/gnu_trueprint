@@ -38,6 +38,7 @@ SOURCES = \
 	Makefile.in \
 	NEWS \
 	README \
+	README.mswin \
 	config.h.in \
 	configure \
 	configure.in \
@@ -207,7 +208,7 @@ dist: $(SOURCES) $(TESTSOURCES)
 	chmod 644 trueprint-$(version)/*
 	chmod 755 trueprint-$(version) trueprint-$(version)/tests
 	chmod 644 trueprint-$(version)/tests/*
-	chmod +x trueprint-$(version)/tests/Run trueprint-$(version)/configure trueprint-$(version)/install-sh
+	chmod +x trueprint-$(version)/tests/Run trueprint-$(version)/configure
 	tar cf - trueprint-$(version) |gzip > trueprint-$(version).tar.gz
 
 clean:
@@ -243,7 +244,7 @@ trueprint.info: $(srcdir)/trueprint.texi
 	$(MAKEINFO) $<
 
 check:
-	cwd=`pwd`; cd $(srcdir)/tests; ./Run $$cwd/trueprint
+	cwd=`/bin/pwd`; cd $(srcdir)/tests; ./Run $$cwd/trueprint
 
 $(OBJECTS): config.h
 

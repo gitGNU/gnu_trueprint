@@ -40,5 +40,5 @@ type:NEC SuperScript 870: 1: 12:600:780:12
 type:QMS 860:		  1: 11:580:829:11
 type:CalComp:		  1:  8:583:829:8
 
-printer:pr1:HP Laserjet 5 Si MX
+printer:pr1:HP Laserjet 4000N
 printer:pr2:HP Laserjet 8000

@@ -523,7 +523,7 @@ fi
 
 
 
-VERSID="5.2"
+VERSID="5.2.1"
 cat >> confdefs.h <<EOF
 #define VERSID "$VERSID"
 EOF

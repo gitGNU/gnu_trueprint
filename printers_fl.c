@@ -216,6 +216,9 @@ printer_stats(char *printer, short *sides,
   *tm	= this_type->top;
   *bm	= this_type->bottom;
   *sides = this_type->sides;
+
+  dm('D',3,"left = %d, right = %d, top = %d, bottom = %d, sides = %d\n",
+     *lm,*rm,*tm,*bm,*sides);
 }
 
 /******************************************************************************

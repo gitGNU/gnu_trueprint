@@ -1,4 +1,4 @@
-This is GNU Trueprint version 5.2
+This is GNU Trueprint version 5.2.1
 
 This program is part of the GNU project, released under the aegis of GNU.
 
@@ -141,46 +141,6 @@ understands viewpaths then you should simply make multiple copies
 of the entire source directory, one for each target architecture.
 
 
-To install trueprint on Microsoft systems:
-------------------------------------------
-First of all, note that trueprint is not a standalone application.
-It depends on at least two other programs for normal functioning,
-specifically either lp or lpr and diff.  These programs can be
-found on basically any variant of Unix, but are sadly missing on
-Microsoft systems.  Since any installation of trueprint needs to
-know where it can find these tools, it is not possible (currently)
-to have a binary distribution of trueprint for non-standard
-environments.  You must install trueprint from source in order
-to tell it where to find these standard utilities.
-
-If you want to run trueprint on a Microsoft platform, therefore,
-you need to follow a few extra steps:
-
-- There is a number of standard GNU tools that you need in order
-to install trueprint.  They include shell, make, gcc, plus
-various other tools.  The easiest way to proceed is to install
-something like Cygwin from Cygnus Software which gives you all the
-standard tools at once, or you can just download them all from
-any GNU ftp mirror site.
-
-- Next you need to have a print command that can take postscript
-on stdin.  For this, assuming you don't have a postsript printer,
-you need two things - GNU's ghostscript and a program to drive
-a printer from ghostscript.  You should be able to find both
-easily by searching the web (unfortunately instead of a printer
-I have a Multi-Function-Device that doesn't let me drive it
-from ghostscript, so you're on your own).
-
-- And finally you need the trueprint package.  If you've got
-this far you should be able to unpack, configure, build, check and
-install trueprint as normal.  If you come across really interesting
-problems or gotchas send me mail at one of the addresses below
-and I'll include them in the next README.  If you want
-to take on the task of recoding trueprint to remove the dependency
-on diff and lp/lpr on Microsoft systems, then please do - just
-make sure that the resulting code uses gcc rather than a
-proprietary compiler.
-
 Other notes:
 ------------
 If there are other languages that you would like to have supported
@@ -196,15 +156,13 @@ latest version of trueprint - if you aren't and I can't reproduce
 the bug with the latest version then I'll simply ask you to upgrade.
 Otherwise I'll try to fix the bug and I'll send you the fixed version.
 
-If you have any enhancement requests then mail me at lgiles@avici.com,
-gilesfamily@mediaone.net or giles@world.std.com.  I can't promise
-anything but I'll do my best.  If you take the time to implement
-the enhancement and mail me the changes then I'm very likely to include
-your changes.
+If you have any enhancement requests then mail me.  I can't promise
+anything but I'll do my best.
 
 Dedication:
 -----------
-Version 5.2 of GNU Trueprint is dedicated to all those long-suffering
-trueprint users who wait patiently for me to release new versions -
-which always takes me much longer than I expect.
+Version 5.0 of GNU Trueprint is dedicated to everybody in the computing
+industry who has made their work freely available to the larger
+community.  I got where I am only because I can stand on the shoulders
+of giants...
 
