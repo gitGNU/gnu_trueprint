@@ -1,0 +1,3 @@
+Known bugs:
+perl - an associative array that starts with 'sub' gets confusing
+

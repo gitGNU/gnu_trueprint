@@ -1,0 +1,37 @@
+%!PS-Adobe
+statusdict /setduplexmode known {
+  false statusdict /setduplexmode get exec
+} if
+/Ps	10 def
+/SPs	7 def
+/Lh	11 def
+/Rm	575 def
+/Tm	746 def
+/Bh	15 def
+/Bf	15 def
+/CF	/Courier findfont Ps scalefont def
+/IF	/Courier-Oblique findfont Ps scalefont def
+/BF	/Courier-Bold findfont Ps scalefont def
+/CFs	/Courier findfont SPs scalefont def
+/IFs	/Courier-Oblique findfont SPs scalefont def
+/BFs	/Courier-Bold findfont SPs scalefont def
+/HF	/Helvetica findfont Ps scalefont def
+/Li CFs setfont (1234567890) stringwidth pop def
+/Nl	{ /Vpos Vpos Lh sub def } def
+/Lpt	{ 0 Vpos moveto } def
+/Gb	{
+		} def
+/Ip	{ Gb .5 setlinewidth
+		0 Tm moveto 0 Bh neg rlineto Rm 0 rlineto 0 Bh rlineto closepath
+		gsave .98 setgray fill grestore stroke
+		0 0 moveto 0 Bf rlineto Rm 0 rlineto 0 Bf neg rlineto closepath
+		gsave .98 setgray fill grestore stroke } def
+/Cp	{ Ip .3 setlinewidth newpath
+		Li 0 Bf add moveto Li Tm Bh sub lineto stroke newpath
+		0 Bf moveto 0 Tm Bh sub lineto stroke newpath
+		} def
+/So	{ gsave dup stringwidth pop Ps 3 div 0 exch rmoveto 0 rlineto fill grestore } def
+/Ul	{ gsave	dup stringwidth pop 0 -1 rmoveto 0 rlineto fill grestore } def
+/Bs	{ gsave	dup show grestore 0.5 0.5 rmoveto show } def
+%%Trailer
+%%EOF

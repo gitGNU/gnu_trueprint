@@ -1,0 +1,72 @@
+%!PS-Adobe
+statusdict /setduplexmode known {
+  false statusdict /setduplexmode get exec
+} if
+/Ps	10 def
+/SPs	7 def
+/Lh	11 def
+/Rm	575 def
+/Tm	746 def
+/Bh	15 def
+/Bf	15 def
+/CF	/Courier findfont Ps scalefont def
+/IF	/Courier-Oblique findfont Ps scalefont def
+/BF	/Courier-Bold findfont Ps scalefont def
+/CFs	/Courier findfont SPs scalefont def
+/IFs	/Courier-Oblique findfont SPs scalefont def
+/BFs	/Courier-Bold findfont SPs scalefont def
+/HF	/Helvetica findfont Ps scalefont def
+/Li 0 def
+/Nl	{ /Vpos Vpos Lh sub def } def
+/Lpt	{ 0 Vpos moveto } def
+/Gb	{
+		} def
+/Ip	{ Gb .5 setlinewidth
+		0 Tm moveto 0 Bh neg rlineto Rm 0 rlineto 0 Bh rlineto closepath
+		gsave .98 setgray fill grestore stroke
+		0 0 moveto 0 Bf rlineto Rm 0 rlineto 0 Bf neg rlineto closepath
+		gsave .98 setgray fill grestore stroke } def
+/Cp	{ Ip .3 setlinewidth newpath
+		Li 0 Bf add moveto Li Tm Bh sub lineto stroke newpath
+		0 Bf moveto 0 Tm Bh sub lineto stroke newpath
+		} def
+/So	{ gsave dup stringwidth pop Ps 3 div 0 exch rmoveto 0 rlineto fill grestore } def
+/Ul	{ gsave	dup stringwidth pop 0 -1 rmoveto 0 rlineto fill grestore } def
+/Bs	{ gsave	dup show grestore 0.5 0.5 rmoveto show } def
+%%Page: Cover 1
+70 70 moveto
+/Helvetica findfont 10 scalefont setfont
+(Trueprint 3.6.5) show
+70 725 moveto
+/Helvetica-Bold findfont 20 scalefont setfont
+(For: testuser) show
+70 700 moveto
+(Printed on: Thu Apr 15 22:00:00 1982) show
+70 675 moveto
+(Last page number: 1) show
+70 650 moveto (File: test4.new) show
+showpage
+%%Page: 1 2
+15 30 translate
+Ip HF setfont /Ypos Tm Bh sub Ps 2 div add def
+Ps Ypos moveto
+(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1 of 1) stringwidth pop sub dup Ypos moveto
+(Page 1 of 1) show
+exch sub 2 div add () stringwidth pop 2 div sub Ypos moveto
+() show
+HF setfont /Ypos Ps 2 div def
+Ps Ypos moveto
+(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1 of 1) stringwidth pop sub dup Ypos moveto
+(Page 1 of 1) show
+exch sub 2 div add (test4.new 1) stringwidth pop 2 div sub Ypos moveto
+(test4.new 1) show
+/Vpos Tm Bh sub Ps sub def
+Lpt (-) CFs setfont show (First two lines) CF setfont So show  Nl
+Lpt (-) CFs setfont show (deleted) CF setfont So show  Nl
+Lpt CFs setfont ( ) show (These two lines) CF setfont show  Nl
+Lpt CFs setfont ( ) show (remain) CF setfont show  Nl
+Lpt BFs setfont (+) show (Last two lines) BF setfont show  Nl
+Lpt BFs setfont (+) show (added) BF setfont show  Nl
+showpage
+%%Trailer
+%%EOF

@@ -1,0 +1,39 @@
+# Trueprint printers file.
+# A comment is any line starting with a '#' or a blank line.
+# Spaces are significant except in numeric fields (be especially careful
+# of trailing spaces at the end of a line...).
+#
+# Two types of line:
+#
+# type line has fields:
+# "type"
+# type of printer
+# number of sides (1 = single-sided, 2 = double-sided)
+# left margin
+# right margin
+# top margin
+# bottom margin
+#
+# printer line has fields:
+# "printer"
+# comma-seperated list of printer names, name used by lpr is first name
+# printer type
+#
+# To get the figures for a particular printer type, print the file
+# "testprint" on the printer
+#
+
+type:Apple Laserwriter II:1: 15:597:784:8
+type:DEC LNO3:            1: 18:593:775:8
+type:DEC Printserver 32:  2:  7:605:783:9
+type:HP Laserjet IIISi:   2: 18:593:774:19
+	# Imagen 3320 numbers supplied by Chris Hughes
+type:Imagen 3320:         1:  3:612:792:0
+
+type:HP Laserjet 8000:    2: 12:599:779:12
+type:HP Laserjet 5 Si MX: 2: 12:600:780:13
+
+printer:pr1-dupl:HP Laserjet 5 Si MX duplex
+printer:pr1-simp:HP Laserjet 5 Si MX simplex
+printer:pr2-dupl:HP Laserjet 8000 duplex
+printer:pr2-simp:HP Laserjet 8000 simplex

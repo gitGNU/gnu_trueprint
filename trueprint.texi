@@ -1,0 +1,1188 @@
+\input texinfo  @c -*-texinfo-*-
+@c %**start of header
+@setfilename trueprint.info
+@settitle Trueprint
+@c %**end of header
+
+@dircategory Miscellaneous
+@direntry
+* Trueprint: (trueprint).		Format & print text files on a printer
+@end direntry
+
+@setchapternewpage odd
+
+@ifinfo
+This is the documentation for GNU Trueprint
+
+Copyright @copyright{} 1999 Free Software Foundation Inc.
+@end ifinfo
+
+@titlepage
+@sp 10
+@center @titlefont{Trueprint 5.0}
+@page
+@vskip 0pt plus 1filll
+Copyright @copyright{} 1999 Free Software Foundation Inc.
+@end titlepage
+
+@node Top, Overview, , (dir)
+
+@top Trueprint
+
+Trueprint is a program for printing source code and other text files.
+
+@menu
+* Overview::			Trueprint in brief.
+* Installing Trueprint::	How to install Trueprint.
+* Languages::			How Trueprint handles source files
+				for different computer languages.
+* Page Formatting::             Getting the right number of pages on a sheet.
+* Page Furniture::		Headers, footers and other page decorations.
+* Text Formatting::		Font size, line breaks, and other text
+				formatting tweaks.
+* Output Options::		Sending the output to the right place.
+* Print Selection::		Printing just the stuff you want.
+* Miscellaneous Features::      All the stuff that doesn't belong
+				anywhere else.
+* Options and Environment Variables List::
+				A reference list of all options.
+* Option Index::		Index to options
+* Concept Index::		Index to concepts throughout this manual
+
+@end menu
+
+
+@node Overview, Installing Trueprint, Top, Top
+@chapter Overview
+
+@cindex flower
+@cindex smell
+@cindex overview
+
+What is Trueprint?  Trueprint is an ugly flower that smells beautiful.
+
+Trueprint is intended to be the only printing program you will ever
+need to print your program source code and other text files.  It
+tries to achieve this by being simple to use, providing
+powerful features, and being intelligent enough to provide those
+features when you need them.
+
+Trueprint knows about common computer languages and will select
+features appropriate to each language.  For example if the language
+contains functions then Trueprint will generate a function index.
+And if the language contains the concept of braces then Trueprint
+will include a braces depth count in the left-hand margin.
+
+If you need to customize the appearance of the printed output then
+you can use options to turn any of Trueprint's features on or off.
+For example you can specify that the output be printed landscape, two-up,
+using an eight-point font with line numbers.
+By setting an environment variable you can create personal defaults for
+Trueprint which will override the language defaults and which will
+in turn be overridden by the command line options.
+
+Trueprint knows about the printers available on your system via
+a special @code{printers} file.  This file tells it how large a page
+is and whether the printer is double or single sided.  Using this
+information, Trueprint can format your output appropriately.
+
+If there's anything that Trueprint doesn't do, you are welcome
+to change the tool itself - just remember that it's covered by
+the GPL and be sure to send a copy of the changes to
+@email{enhance-trueprint@@gnu.org}!
+
+@node Installing Trueprint, Languages, Overview, Top
+@chapter Installing Trueprint
+
+Installing Trueprint is almost as simple as installing any well-behaved
+GNU program.  For details, read the README file that comes with the
+package.  This section provides an overview of the process, plus
+details of the @code{printers} file.
+
+@section Installation Overview
+
+@cindex installing
+@cindex invoking make
+@cindex testing the installation
+@cindex make install
+@cindex make test
+
+In the simplest case, assuming you want to install trueprint into
+/usr/local/bin, installing trueprint is just a matter of five
+short steps:
+@itemize @bullet
+@item
+@code{./configure}
+@item
+@code{make}
+@item
+@code{make test}
+@item
+Update the printers file with your printer information.
+@item
+@code{make install}
+@end itemize
+
+If you want to change the installation root directory from
+@code{/usr/local} to, for example, @code{/usr} (so that
+the executable would be put into  @code{/usr/bin/trueprint}) then
+just pass the new root directory to @code{./configure} using
+@code{--prefix}, e.g. @code{./configure --prefix=/usr}.
+
+If the tests fail then cd to the tests subdirectory and look
+at the appropriate @code{.dif} file.  If you can't work out
+what's gone wrong then report the problem to @email{bug-trueprint@@gnu.org}.
+
+@section The @code{printers} file
+
+@cindex printers file
+@cindex printer specification
+@cindex printer queues
+
+The printers file is the most complicated part of Trueprint.
+Put simply, it contains two lists: a list of printer types,
+and a list of the printers at your site.  The list of printer
+types is long (well, actually it's fairly short) and it should
+contain the most common office printers.  The list of printers
+in the distribution printers file is just a set of example
+entries - you should delete these examples and replace them
+with your own printer information.
+
+An example type entry is:
+@example
+type:Apple Laswerwriter II:1: 15:597:784:8
+@end example
+
+The first field just specifies this as a @code{type} entry.
+
+The second field contains the printer type name.  Whitespace
+is significant, so there shouldn't be any spaces between
+the start and end of the name, and the colons.  The third
+field is 1 for a single-sided printer and 2 for a double-sided
+printer.  The final four fields give the left, right, top and
+bottom margins respectively in points from the bottom left
+corner of the paper; more specifically they are the coordinates
+of the bounding box that the postscript engine on the printer
+can print in.
+
+The first three fields are typically easy to fill in; however
+the final four fields need to be calculated for each printer
+type.  Fortunately the postscript interpreter knows what
+the coordinates are - it's just a matter of asking it nicely,
+and the file @code{testprint} contains a little postscript
+program that will do just that.  If you print @code{testprint}
+using either @code{lpr} or @code{lp} then it will print out
+the four numbers needed in the @code{printers} file (on the
+other hand, if it simply prints the contents of the file then
+either your printer is not configured properly or it isn't
+a postscript printer - you'll need to rectify the situation
+before you can use Trueprint on that printer).
+
+The second half of the file contains printer entries, for example:
+@example
+printer:pr2-simp:HP Laserjet 8000 simplex
+@end example
+
+Once again, the first entry simply specifies that this is
+a @code{printer} entry.  The second entry contains the printer
+queue name as known to your operating system (i.e. the value
+you would pass to @code{lp} or @code{lpr}).  The third field
+contains the appropriate printer type name; once again whitespace
+is important so make sure there are no trailing space or tab
+characters at the end of the line.
+
+If you have two queues set up to one printer, one for single-sided
+output and one for double-sided output, simply set up two
+printer types.  Similarly if you have multiple queues for the
+same printer for different paper sizes.
+
+@node Languages, Page Formatting, Installing Trueprint, Top
+@chapter Languages
+
+@cindex languages
+@cindex language defaults
+@cindex c language
+@cindex verilog
+@cindex c++
+@cindex shell
+@cindex pascal
+@cindex perl
+@cindex java
+@cindex plain text
+@cindex pseudo C
+@cindex listing files
+@cindex report format
+@cindex filename extensions
+
+Different programming languages have different features and look
+their best with different formats.  Since Trueprint tries to be all
+things to all people, it understands a number of different languages
+and tries to accomodate all of them.  In version 5.0 Trueprint
+understands:
+@itemize @bullet
+@item
+C
+@item
+Verilog
+@item
+C++
+@item
+Shell
+@item
+Pascal
+@item
+Perl
+@item
+Java
+@end itemize
+
+It also understands some other formats:
+
+@itemize @bullet
+@item
+Plain text
+@item
+Pseudo C
+@item
+Listing files
+@item
+A special format called "report format"
+@end itemize
+
+Not all of the languages are fully supported.  C is well supported,
+but Java is only minimally supported.  The language support is
+implemented in the @code{lang_*.c} files - if you're not happy
+with the level of support for your favorite language just improve -
+or add - it!
+
+@findex language
+There are a couple of ways that Trueprint can find out what
+type of language a file contains.  It can look at the filename
+suffix, or it can be told using the @code{--language} option.
+The details are:
+
+@multitable @columnfractions .2 .2 .6
+@item @emph{Language} @tab @emph{suffix} @tab @emph{--language option}
+@item C @tab .c .h @tab --language=c
+@item Verilog @tab .v @tab --language=v
+@item C++ @tab .cxx .cpp .cc .C .hpp .H @tab --language=cxx
+@item Shell @tab .sh @tab --language=sh
+@item Pascal @tab .pas @tab --language=pascal
+@item Perl @tab .pl @tab --language=perl
+@item Java @tab .java @tab --language=java
+@item Plain text @tab default @tab --language=text
+@item Pseudo C @tab .pc .ph @tab --language=pseudoc
+@item Listing @tab .lst @tab --language=list
+@item Report format @tab .rep @tab --language=report
+@end multitable
+
+For most of the languages, Trueprint uses the language to
+work out where comments are (so it can print them in italics) and
+where the function names are (so it can print them in bold and include
+them in the function index).  However there are some special features
+for some of the languages:
+
+Pseudo C is like C, except it has a more forgiving syntax.  In particular
+it ignores strings, so if you leave off a closing quote then pseudo C
+will print out using a vaguely sensible format.  Pseudo C is intended
+for printing code that doesn't yet compile.
+
+Listing format assumes very wide lines and a fixed page length of
+sixty-six characters, so it turns off line-wrap and sets the page
+length appropriately.
+
+Report format uses a few special characters: anything between
+^A and ^E is printed in bold and included in the function index,
+and anything between a pair of ^Cs is printed in italics.
+
+@node Page Formatting, Page Furniture, Languages, Top
+@chapter Page Formatting
+
+@cindex page formatting
+@cindex portrait
+@cindex landscape
+@cindex single-sided
+@cindex double-sided
+@cindex one-up
+@cindex two-up
+@cindex two-up with small font
+@cindex four-up
+@cindex holepunch
+@cindex holepunch at top of page
+@cindex top holepunch
+
+There are a few options that you can use to adjust the overall
+page formatting.  Most of these options are pretty self-explanatory.
+
+@findex portrait
+@findex landscape
+For portrait printing use @code{--portrait}, and for landscape printing
+use @code{--landscape}.
+
+@findex single-sided
+@findex double-sided
+To force the printer to print single-sided use @code{--single-sided},
+and to try to force double-sided printing use @code{--double-sided}. 
+These options also affect headers and footers, so forcing @code{--double-sided}
+on a single-sided printer will result in odd-looking headers and footers.
+Also since Trueprint tries to start each file on a new sheet of paper,
+specifying @code{--double-sided} forces occasional pages with no content.
+
+@findex one-up
+@findex two-up
+@findex two-tall-up
+@findex four-up
+To print one page of output on one physical sheet, the default,
+use @code{--one-up}.  To print two-up, i.e. two logical pages on
+one sheet (side-by-side for portrait or one over the other for
+landscape) use @code{--two-up}.  And to print four logical pages
+on each sheet (and to help ruin your eyesight!) use @code{--four-up}.
+There is another mode called @code{two-tall-up} which prints two
+logical pages on each sheet at four-up pointsize - for portrait format
+each logical page is very tall and narrow, and for landscape format
+each logical page is very wide.
+
+@findex holepunch
+@findex no-holepunch
+@findex top-holepunch
+@findex no-top-holepunch
+To leave a gap down the left-hand-side of each physical page so that
+you can punch holes in the page without punching out any information,
+use @code{--holepunch}, and to leave a gap at the top of the page
+(if you want to punch holes at the top) use @code{--top-holepunch}.
+Options @code{--no-holepunch} and @code{no-top-holepunch} exist to
+override these if they've been set up as defaults.
+
+@node Page Furniture, Text Formatting, Page Formatting, Top
+@chapter Page Furniture
+
+@cindex page furniture
+@cindex line numbers
+@cindex braces depth
+@cindex indentation
+@cindex nostalgia
+@cindex gray bands
+
+Page furniture refers to the bits and pieces scattered around the
+edge of each page.  It includes things like headers and footers,
+line numbers, and so on.
+
+@findex line-numbers
+@findex no-line-numbers
+@findex braces-depth
+@findex no-braces-depth
+The left-hand side of each page can include two columns of information:
+line numbers and a count of the current braces depth.  Line numbers
+are normally included, but they can be forced on with @code{--line-numbers}
+and forced off with @code{--no-line-numbers}.  The braces depth count
+is normally only turned on for languages that have the concept of
+braces (e.g. C or Java); it can be explicitly turned on with
+@code{--braces-depth} or it can be turned off with @code{--no-braces-depth}.
+
+@findex gray-bands
+@findex no-gray-bands
+If you are nostalgic for the old line-printer paper with gray or
+green bands running across each page you can turn this on with
+@code{--gray-bands @var{number}} where @var{number} is the width
+of the bands.  For example @code{--gray-bands 3} would print light
+gray bands three lines deep all the way down the page.  Naturally
+you can force this off with @code{--no-gray-bands}.
+
+@section Headers and Footers
+
+@cindex headers
+@cindex footers
+@cindex message string
+@cindex string format characters
+@cindex header string format
+@cindex footer string format
+@cindex message string format
+
+@findex left-header
+@findex center-header
+@findex right-header
+@findex left-footer
+@findex center-footer
+@findex right-footer
+@findex headers
+@findex footers
+@findex no-headers
+@findex no-footers
+Headers and footers are printed in boxes at the top and bottom of
+each page.  There are three header strings and three footer strings,
+and each can be a mixture of constant strings or % escapes.  The
+strings are set with @code{--left-header=@var{string}}, @code{--center-header=@var{string}}, 
+@code{--right-header=@var{string}}, @code{--left-footer=@var{string}}, @code{--center-footer=@var{string}},
+and @code{--right-footer=@var{string}}.  If you want to turn off either headers
+or footers you can use @code{--no-headers} or @code{--no-footers},
+and of course you can force them on with @code{--headers} and
+@code{--footers}.
+
+If you're printing double-sided then the left and right headers and
+footers are swapped on every second page.
+
+@findex message
+There is also an optional message string that is printed across
+the middle of each page in a very large, light gray font.  You
+can use this message to say things like @samp{draft} or @samp{top secret}.
+Use @code{--message=@var{string}} to set the message.
+
+There are quite a few % escapes that you can use inside the
+header, footer and message strings:
+
+@table @code
+@item %%
+Print a simple %.
+
+@item %m
+Print the current month of the year as a number, e.g. 05.
+
+@item %d
+Print the current day of the month, e.g. 01.
+
+@item %y
+Print the current year, e.g. 1999
+
+@item %D
+Print the date in the format mm/dd/yy.
+
+@item %L
+Print the date and time in long format, e.g. Fri Oct 8 11:49:51 1999
+
+@item %H
+Print the current hour.
+
+@item %M
+Print the current minute.
+
+@item %S
+Print the current second.
+
+@item %T
+Print the time in the format HH:MM:SS.
+
+@item %j
+Print the day of the year, e.g. 095.
+
+@item %w
+Print the day of the week, e.g. Sunday.
+
+@item %a
+Print the abbreviated day of the week, e.g. Sun.
+
+@item %h
+Print the abbreviated month name, e.g. Mar.
+
+@item %r
+Print the time in am/pm notation, e.g. 10:45pm.
+
+@item %p
+Print the page number in the current file.
+
+@item %P
+Print the overall page number.
+
+@item %f
+Print the total number of pages of the current file.
+
+@item %F
+Print the total number of pages.
+
+@item %n
+Print the current filename.
+
+@item %N
+Print the current function name.
+
+@item %l
+Print the username of the current user.
+@end table
+
+The default strings are:
+
+@multitable {@code{center-header}} {@code{Page %P of %Flskdfj}}
+@item @code{left-header} @tab @code{%L}
+@item @code{center-header} @tab @code{%N}
+@item @code{right-header} @tab @code{Page %P of %F}
+@item @code{left-footer} @tab @code{%L}
+@item @code{center-footer} @tab @code{%n %p}
+@item @code{right-footer} @tab @code{Page %P of %F}
+@end multitable
+
+@node Text Formatting, Output Options, Page Furniture, Top
+@chapter Text Formatting
+
+@cindex text formatting
+@cindex format
+
+@section Page breaks
+
+@cindex page breaks
+@cindex formfeed character
+@cindex function page breaks
+@cindex page breaks after functions
+@cindex control-L
+
+There are three places that Trueprint can include page breaks: at the
+end of a function (assuming the current language has functions),
+when it finds a form-feed character (control-L), and at the end
+of each file.
+
+@findex page-break-after-function
+@findex no-page-break-after-function
+To force on page breaks at the end of functions use
+@code{--page-break-after-function}.  The default
+behaviour, to not break the page at the end of
+a function, can be forced with
+@code{--no-page-break-after-function}.
+
+@findex form-feeds
+@findex ignore-form-feeds
+You can force Trueprint to expand form-feeds to a new page
+with @code{--form-feeds} and, of course, you can turn it off
+with @code{--ignore-form-feeds}.
+
+@section Line wrap
+
+@cindex line wrap
+@cindex intelligent line wrap
+@cindex line breaks
+
+@findex line-wrap
+@findex no-line-wrap
+@findex intelligent-line-wrap
+@findex no-intelligent-line-wrap
+By default Trueprint will wrap lines that are too long for the
+page.  It will try to break the lines at intelligent locations,
+for example at a space character, and it will print the remainder
+of the line right-justified.  If you don't like this then you
+can turn off line-wrap with @code{--no-line-wrap}, or you can
+set the line-wrap column explicitly with @code{--line-wrap=@var{column}}.
+You can also tell Trueprint to wrap lines at exactly a specific
+column, i.e. to stop trying to be clever, with
+@code{--no-intelligent-line-wrap}.  Of course you can force the
+feature on with @code{--intelligent-line-wrap}.
+
+@section Page length and pointsize
+
+@cindex page length
+@cindex pointsize
+@cindex text size
+@cindex leading
+@cindex line gap
+@cindex page length
+
+@findex pointsize
+The default pointsize used by Trueprint is 10.  Of course, this
+is reduced appropriately if you're printing two-up or four-up.
+You can set the pointsize explicitly with @code{--pointsize=@var{number}},
+although bear in mind that the pointsize will still be scaled down
+for two-up or four-up.
+
+@findex leading
+In the old days of printing, strips of lead were used to seperate
+the lines of text.  If you wanted more seperation you included
+more strips of lead.  Trueprint is nothing if not traditional.
+The default leading (pronounced @samp{ledding}) is one point, but
+you can increase (or decrease) it with @code{--leading=@var{number}}.
+Not suprisingly you can't specify a negative number.
+
+@findex page-length
+You can set the overall page length with @code{--page-length=@var{length}}.
+Trueprint will set the point size appropriately.  Unfortunately, since
+there are a limited number of pointsizes that Trueprint can chose from
+(e.g. it can't select 8.35), using this option may result in a blank
+space at the bottom of each page.  This option is best used if your
+file naturally breaks into pages of a specific length.  You may
+also want to turn off line-wrap so that long lines don't mess up
+your carefully formatted output.
+
+@section Tab size
+
+@cindex tab size
+@findex tabsize
+The default tab size is eight characters.  If this eats up too
+many columns for you, then you can set it with @code{--tabsize=@var{number}}.
+
+@node Output Options, Print Selection, Text Formatting, Top
+@chapter Output Options
+
+@cindex output
+@cindex printer destination
+@cindex $PRINTER
+@cindex lp
+@cindex lpr
+@cindex printing multiple copies
+@cindex copies
+@cindex postscript
+@cindex saving postscript
+@cindex file output
+@cindex output file
+
+@findex printer
+By default Trueprint will simply send the postscript output to @code{lp}
+or @code{lpr} (depending on the ancestry of your version of Unix), and
+it will explicitly set the destination to the value of the environment
+variable @code{$PRINTER}.  You can use @code{--printer=@var{printer}} to
+send the print job to another printer.  If you like @code{lp} options
+then you can also say @code{-P @var{printer}}, or if you are a fan of
+System V then you can say @code{-d @var{printer}} (almost every
+Trueprint option has a single-character equivalent - I only mention
+these two explicitly because they are used exactly the same way as
+the options to @code{lpr} and @code{lp}).
+
+@findex copies
+If you want to print multiple copies then just use
+@code{--copies=@var{number}}.
+
+@findex output
+If you want to save the postscript output then you can redirect
+it to a file using @code{--output=@var{filename}}.  If you use
+@code{-} for the filename then the postscript will be sent to stdout.
+
+@node Print Selection, Miscellaneous Features, Output Options, Top
+@chapter Print Selection
+
+@cindex cover sheet
+@cindex file index
+@cindex function index
+@cindex body
+@cindex selecting pages to print
+
+A Trueprint print job can contain a reasonably long list of pages:
+@itemize @bullet
+@item
+A cover sheet,
+@item
+a file index,
+@item
+a function index,
+@item
+and the files.
+@end itemize
+
+Each of these can be explicitly disabled or enabled:
+
+@findex function-index
+@findex no-function-index
+@findex file-index
+@findex no-file-index
+@findex cover-sheet
+@findex no-cover-sheet
+@findex print-body
+@findex no-print-body
+@multitable @columnfractions .5 .5
+@item @code{--no-cover-sheet} @tab @code{--cover-sheet}
+@item @code{--no-file-index} @tab @code{--file-index}
+@item @code{--no-function-index} @tab @code{--function-index}
+@item @code{--no-print-body} @tab @code{--print-body}
+@end multitable
+
+@findex print-pages
+In addition there is a mechanism for printing only a subset of
+the pages, by using @code{--print-pages=@var{selection}}, where
+selection consists of a comma-seperated list of page selections:
+
+@table @code
+@item @var{number}
+Print the specific page.
+
+@item @var{number}-@var{number}
+Print all pages between, and including, the specified pages.
+
+@item @var{function-name}
+Print all pages that include @var{function-name}.
+
+@item d
+Print all pages that have changed (this is only useful with the @code{--diff}
+(@pxref{Miscellaneous Features}) option.
+
+@item D
+Print all pages containing functions that have changed (this is only useful
+with the @code{--diff} (@pxref{Miscellaneous Features}) option.
+
+@item f
+Print the function index.
+
+@item F
+Print the file index.
+
+@end table
+
+For example, @code{--print-pages=1-5,main,f} will print the function index,
+pages 1 to 5, and all the pages for the function @code{main}.
+
+@findex prompt
+If you specify @code{--prompt} then Trueprint will prompt you for each
+page, whether or not it should print that page.  It will give you
+information such as the current filename, current functionname, page
+number, and so on.  The possible responses are:
+
+@table @code
+@item y
+Print this page.
+
+@item y@var{number}
+Print @var{number} pages.
+
+@item y*
+Print all the remaining pages.
+
+@item n
+Skip this page
+
+@item n@var{number}
+Skip @var{number} pages.
+
+@item n*
+Skip all the remaining pages.
+
+@item p@var{selection}
+Print all remaining pages that match @var{selection}, where @var{selection}
+is in the format defined above.
+
+@item ?
+Print a help message.
+
+@end table
+
+@findex no-prompt
+Of course, you can force the prompting feature off with @code{--no-prompt}.
+
+@node Miscellaneous Features, Options and Environment Variables List, Print Selection, Top
+@chapter Miscellaneous Features
+@section Diff-marking
+
+@cindex diff
+@cindex comparing with old version
+@cindex marking differences
+
+One of the more obscure but more useful features of Trueprint is
+the ability to highlight differences between two versions of sets of
+files.  Added lines are shown in bold, while deleted lines are
+shown struck-out.
+
+@findex diff
+You specify the old version of the file or files with
+@code{--diff=@var{pathname}}.  If @var{pathname} suffixed with
+the current filename is a valid file then the differences
+between @var{pathname}/@var{filename} are displayed.
+Alternatively, if @var{pathname} is a file and you're
+printing one file, then the differences between @var{pathname} and
+the current file are displayed.
+
+Some examples:
+
+@example
+trueprint --diff=../old- this.c that.c
+@end example
+
+will print the differences between ../old-this.c and this.c, and
+../old-that.c and that.c.
+
+@example
+trueprint --diff=../old/ this.c that.c
+@end example
+
+will print the differences between ../old/this.c and this.c, and
+../old/that.c and that.c.  Note that the trailing / is important.
+
+@example
+trueprint --diff=this.c that.c
+@end example
+
+will print the differences between this.c and that.c.
+
+@section Help and Version Information
+
+@cindex help messages
+@cindex version information
+
+@findex help
+Use @code{--help} for general on-line help information.  If you give the
+@code{--help} option a parameter it will give you more detailed information
+about a specific area - use @code{--help} for a list of the areas.
+
+@findex version
+Use @code{--version} to see the current version of Trueprint.
+
+@section Setting personal defaults
+
+@cindex default options
+@cindex personal defaults
+@cindex setting defaults
+
+When Trueprint starts it uses four sets of options:
+
+@itemize @bullet
+@item
+Hard-coded defaults.
+@item
+Language-specific defaults.
+@item
+Options taken from the environment variable @code{$TP_OPTS}.
+@item
+Command-line options.
+@end itemize
+
+Each set of options overrides the earlier sets, so command-line
+options override all other sets.
+
+If you want to set some personal default options, then simply set
+the environment variable @code{$TP_OPTS}.
+
+@section Environment Information
+
+@cindex environment variables
+@findex ignore-environment
+@findex use-environment
+By default Trueprint uses environment variables and the current username.
+You can force it to ignore these by using @code{--ignore-environment}.
+In practice this is only used when running the tests during installation.
+For the sake of completeness there is an option @code{--use-environment}.
+
+@section Debugging
+
+@cindex debugging
+@findex debug
+Trueprint has built-in debugging messages that can be useful for
+tracking down problems.  The debugging messages are turned on with
+@code{--debug=@var{string}}, where @var{string} is a series of
+letter/digit pairs.  Each letter turns on a set of debugging messages,
+and the corresponding digit indicates the level of messages, with 1
+indicating the least number of messags and 9 turning on all messages.
+The letter @code{@@} can be used to turn on all areas, so @code{--debug=@@9}
+will turn on all messages.  Use @code{--help=debug} for details of
+what letters turn on what areas.  Note that this feature is not
+uniformly implemented - messages were only typically added where they
+were needed.  Also note that messages will not be generated in code
+prior to the code that sets the debug string!
+
+@node Options and Environment Variables List, Option Index, Miscellaneous Features, Top
+
+@chapter Options and Environment Variables
+
+@section Miscellaneous options
+
+@table @code
+@item -D
+@itemx --debug=@var{string}
+set debug options to @var{string}
+
+@item -O @var{string}
+@itemx --diff=@var{string}
+if @var{string} is a file then print diffs between @var{string} and input file
+otherwise use as a prefix and print diffs
+
+@item -t @var{string}
+@itemx --language=@var{string}
+treat input as language.  Use --help languages for list.
+
+@item -U @var{string}
+@itemx --username=@var{string}
+set username for coversheet
+
+@item -H
+@itemx --help
+Type help information
+
+@item --help=@var{string}
+Type specific help information.  Use @code{--help} for a list of possible
+@var{string}s.
+
+@item -V
+@itemx --version
+Type version information
+
+@item -N
+@itemx --use-environment
+use environment variables
+
+@item --N
+@itemx --ignore-environment
+don't use values from environment, such as time,
+@code{$USER}, etc.  This is for test purposes, to make test results
+more reproducible.
+
+@end table
+
+@section Page furniture options
+@table @code
+@item -X @var{string}
+@itemx --left-header=@var{string}
+Specify string for left side of header.
+
+@item -x @var{string}
+@itemx --left-footer=@var{string}
+Specify string for left side of footer.
+
+@item -Y @var{string}
+@itemx --center-header=@var{string}
+Specify string for center of header.
+
+@item -y @var{string}
+@itemx --center-footer=@var{string}
+Specify string for center of footer.
+
+@item -Z @var{string}
+@itemx --right-header=@var{string}
+Specify string for right side of header.
+
+@item -z @var{string}
+@itemx --right-footer=@var{string}
+Specify string for right side of footer.
+
+@item -m @var{string}
+@itemx --message=@var{string}
+Message to be printed over page.
+
+@item -G @var{number}
+@itemx --gray-bands=@var{number}
+Emulate the old lineprinter paper with gray bands
+across each page.  The value of @var{number} gives the width of
+the bands and the gaps between them.
+
+@item -K
+@itemx --headers
+Include the header on each page.
+
+@item --K
+@itemx --no-headers
+Suppress the header on each page.
+
+@item -k
+@itemx --footers
+Include the footer on each page.
+
+@item --k
+@itemx --no-footers
+Suppress the footer on each page.
+
+@item -i
+@itemx --no-braces-depth
+Exclude the braces depth count.
+
+@item --i
+@itemx --braces-depth
+Include the braces depth count.
+
+@item -n
+@itemx --no-line-numbers
+Exclude the line number count.
+
+@item --n
+@itemx --line-numbers
+Include the line number count.
+
+@end table
+
+@section Text formatting options
+@table @code
+@item -b
+@itemx --no-page-break-after-function
+Don't print page breaks at the end of functions.
+
+@item --b
+@itemx --page-break-after-function
+Print page breaks at the end of functions.
+
+@item -W
+@itemx --no-intelligent-line-wrap
+Wrap lines at exactly the line-wrap column.
+
+@item --W
+@itemx --intelligent-line-wrap
+Wrap lines intelligently at significant characters, such
+as a space
+
+@item -T @var{number}
+@itemx --tabsize=@var{number}
+Set tabsize (default 8).
+
+@item -E
+@itemx --ignore-form-feeds
+Don't expand form feed characters to new page.
+
+@item --E
+@itemx --form-feeds
+Expand form feed characters to new page.
+
+@item -p @var{number}
+@itemx --point-size=@var{number}
+Specify point size (default 10).
+
+@item -g @var{number}
+@itemx --leading=@var{number}
+Specify interline gap in points (default 1).
+
+@item -w @var{number}
+@itemx --line-wrap=@var{number}
+Specify the line-wrap column.
+
+@item --no-line-wrap
+Turn off line-wrap.
+
+@item -l @var{number}
+@itemx --page-length=@var{number}
+Specify number of lines on a page, point size is
+calculated appropriately.
+
+@end table
+
+@section Print selection options
+@table @code
+@item -C
+@itemx --no-cover-sheet
+Don't print cover sheet.
+
+@item --C
+@itemx --cover-sheet
+Print cover sheet.
+
+@item -A @var{string}
+@itemx --print-pages=@var{string}
+Specify list of pages to be printed.
+
+@item -a
+@itemx --no-prompt
+Don't prompt for each page, whether it should be printed or not.
+
+@item --a
+@itemx --prompt
+Prompt for each page, whether it should be printed or not.
+
+@item -F
+@itemx --no-file-index
+Don't print file index.
+
+@item --F
+@itemx --file-index
+Print file index.
+
+@item -f
+@itemx --no-function-index
+Don't print function index.
+
+@item --f
+@itemx --function-index
+Print function index.
+
+@item -B
+@itemx --no-print-body
+Don't print body of text.
+
+@item --B
+@itemx --print-body
+Print body of text.
+
+@end table
+
+@section Page format options
+@table @code
+@item -I
+@itemx --no-holepunch
+Don't leave space for holepunch at the side of each page.
+
+@item --I
+@itemx --holepunch
+Leave space for holepunch at the side of each page.
+
+@item -J
+@itemx --no-top-holepunch
+Don't leave space for holepunch at the top of each page.
+
+@item --J
+@itemx --top-holepunch
+Leave space for holepunch at the top of each page.
+
+@item -o p
+@itemx --portrait
+Print using portrait orientation.
+
+@item -o l
+@itemx --landscape
+Print using landscape orientation.
+
+@item -S 1
+@itemx --single-sided
+Print single-sided.
+
+@item -S 2
+@itemx --double-sided
+Print double-sided.
+
+@item -1
+@itemx --one-up
+Print 1-on-1 (default).
+
+@item -2
+@itemx --two-up
+Print 2-on-1.
+
+@item -3
+@itemx --two-tall-up
+Print 2-on-1 at 4-on-1 pointsize.
+
+@item -4
+@itemx --four-up
+Print 4-on-1.
+
+@end table
+
+@section Output options
+@table @code
+@item -d @var{string}
+@itemx --printer=@var{string}
+Use printer @var{string}.
+
+@item -P @var{string}
+@itemx --printer=@var{string}
+Use printer @var{string}.
+
+@item -s @var{string}
+@itemx --output=@var{string}
+Send output to filename @var{string}; use - for stdout.
+
+@item -c @var{number}
+@itemx --copies=@var{number}
+Specify number of copies to be printed.
+
+@end table
+
+@section Environment Variables
+
+@subsection TP_OPTS
+Specify options.  These options override any default options including
+language defaults, but are overridden by command line options.
+
+@subsection TP_DIFF_CMD
+Specify the diff command to be used.  The command must produce output
+in the same format as the classic Unix diff.  This variable can be used
+to add flags to the diff command used, for example to make diff ignore
+whitespace.
+
+@subsection TP_PRINT_CMD
+Specify the print command.  The default is lpr.  If this is set then it
+should be set to a command that takes standard input.  If this is set
+then the destination and number of copies have no effect, i.e. there is
+no mechanism to pass these values to your print command.  If you set
+this to /bin/cat then the postscript output will appear on stdout.
+
+@subsection TP_PRINTERS_FILE
+Specify the printers file.  The default is the printers file that
+was initially configured when trueprint was installed.  This can
+be used to test out a new printers file.
+
+@node Option Index, Concept Index, Options and Environment Variables List, Top
+@unnumbered Option Index
+
+@printindex fn
+
+@node Concept Index,  , Option Index, Top
+@unnumbered Concept Index
+
+@printindex cp
+
+@summarycontents
+@contents
+@bye

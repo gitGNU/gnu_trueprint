@@ -1,0 +1,128 @@
+Reverse history of Trueprint:
+
+Version 5.0: Trueprint GNU
+	Changed code to adhere to GNU coding standards.
+	Added long options.  Short options that used to start
+	with '+' now start with '--', e.g. +I is now --I.
+	Default is "off" for page breaks after function calls.
+	Added texinfo documentation.
+020299 4.1.2 Fixed waiting for child pid so lpr message appears
+	before trueprint returns.
+	Fixed bad interaction between turning off linewrap and
+	turning off linecount.
+	Fixed get_function_name() so it can be called many times
+	for the same page (by removing static qualifier to
+	current_function).
+	Included changes from James Card: added .H & .C as valid C++.
+	Fixed tab expansion (tab character was included in output).
+072298 4.1.1 Added C++ & Verilog support and updated the man page.
+	Fixed crash when $USER not set. Map lf/cr (MS-DOS line end) to
+	cr, and cr/ff to ff.  Added -J for holepunch gap at top of
+	page. Improved message for an unknown option.  Empty
+	input -> no print job.  Added file COPYING, which contains
+	the GPL.
+------ 4.1 Fixed header problem in utils.h, removed trueprint.ps from
+        makefile
+082095 4.0 Added stdin handling, fixed one-char fn name bug, fixed
+        filename on blank page bug, added backspace handling for
+        underline & bold, added bold-italic for added comments,
+        can suppress headers & footers, totally new option
+        handling, totally new file printing.
+021795 3.6.5 Fixed -G bug
+021795 3.6.4 Added -G, fixed some small bugs in manpage.
+021794 3.6.3 Fixed 'showpage' printing
+122893 3.6.2 Fixed logging
+120793 3.6.1 Added -3, significantly improved page size handling, added -I.
+101393 3.6 General header, footer & message string processing;
+	Better -D options
+091493 3.5.4 Various minor bugs, and added strike-out for deleted text
+	in diff-ed output.
+090993 3.5.3 Removed limits on various string options; added
+	closepipe and fclosepipe to avoid zombies!
+081993 3.5.2 Removed MAX_FUNCTIONS and MAX_FILES from index.c - should
+        be able to cope with unlimited number of functions/files
+080593 3.5.1 added -A
+080493 3.5 added -a and -treport
+080393 3.4.2 made it POSIX - now compiles on Sun & Ultrix
+063093 3.4.1 made it ANSI
+020393 3.4 added printers file, config.h
+180392 3.3 added perl
+012292 3.2 added -W option, -E option
+120391 3.1.1 fixed clash between -nn -xn -w0.
+112091 3.1 added -B option
+111091 3.0 added -n option, integrated with scm_help.
+060591 2.9.8 fixed minor bug with -c; added -L and -M options.
+280391 2.9.7.3 Added call to lezzlog
+250391 2.9.7.2 Blanked out function name from headers when no function
+	present, altered headers for -S2.
+220391 2.9.7.1 Changed option handling to functions
+210391 2.9.7 Add -T<tabsize>
+140391 2.9.6 Initialize braces_depth at end of first pass (finally!)
+110391 2.9.5 Added cflow pages
+060391 2.9.4 Added language type pseudoc
+010391 2.9.3 Added -C and -U
+250291 2.9.2 Fixed C parsing to cope with function ptr argument.
+220291 2.9.1 Changed definition of line indent in postscript.c to get line at
+	right position.
+070291 2.9 Changed meanings of -F, -f, -b and -x to align with users' manual
+110191 2.8.1 Added -F -f to suppress File and function indices and added
+	-b to suppress page breaks at function end
+030191 2.8 Got -l and -w options working properly, added -c<n>, altered
+	language dynamically according to filename extension.
+311290 2.7 Merged 2-on-1 and 4-on-1 with landscape and portrait modes,
+	added $TP_OPTS, made defaults neater.
+261290 2.6.1 Stripped out the last remnants of APT and Xerox printers
+131290 2.6 Added 2-on-1 and 4-on-1 modes
+151190 2.5.1 Fixed minor bug with comment immediately after function name.
+	added variable old_state to lang_c.c.
+310790 2.5 Tested diffs, fixed minor bug with fontsize of + in added blank
+	lines, released.  Next step version 3....
+300790 2.4.3 Removed -i (standard input) option.  stdin doesn't work!
+260790 2.4.2 Split print.list.c into main.c input.c output.c,
+	tidied up printing lines for postscript.
+	Line and brace depth numbers in smaller font.
+	Blank lines have no line or brace depth numbers.
+	Landscape working.  -m, -p and -g working.
+	Added plain text "language".
+180790 2.4.1 Fixed up postscript headers and footers properly.
+170790 2.4 Added -P x|p option for postscript printers.  Very little
+	tested, but it works.
+110790 2.3 Added -S option, suppressed function index if no functions,
+	suppressed file index if only one file.
+100790 2.2.5a Ported to DECstations, without aptmac.h or lezzlog.c
+	Fixed uninitialised pointer bug in index.c
+	Changed opr to lpr and changed escape strings
+	via #ifdef APT...
+140390 2.2.5 changed coding standards - { put on same line
+	as while, if, etc. to reduce number of lines.
+280290 2.2.4 static char_usage retval in printnextline()
+	was set to INPUT_END at beginning of second
+	pass (value inherited from first pass).  This
+	had the effect that if deleted lines were
+	printed before source then the INPUT_END was
+	taken to be the true retval and only the
+	deleted lines were printed.  So a line
+	initialising retval at beginning of second
+	pass was added.
+270290 2.2.3 a few pascal bugs in lang_pascal.c fixed after
+	trying it out on a decent pascal program
+	for the first time.  Also no_of_functions
+	in index.c initialised explicitly.
+130290 2.2.2 init_diffs() was called too early in getnextchar,
+	and getnextline() was getting confused right
+	at the end of a file about which file the
+	diffs were for.  So init_diffs call was
+	moved to getnextline().
+060290 2.2.1 Newpage was treated like newline - so line
+	were wrong.  This showed up with -O and -P
+	options in files with newpage characters.
+	Fixed by not treating newpage like newline
+	in getnextline().
+240190 2.2 goes through lint (more or less), index functions
+	expected short, got long as param - potential bug.
+230190 2.1 with -P option (multiple files diffs) released.
+	bug with param ending ...[]; fixed.
+	function names in headers starting too early
+	fixed.
+220190 2.0 with -O option (single file differences) released
+261089 First public version released!

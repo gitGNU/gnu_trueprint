@@ -1,0 +1,286 @@
+prefix = @prefix@
+bindir = @prefix@/bin
+mandir = @prefix@/man/man1
+man1dir = $(mandir)/man1
+libdir = @prefix@/lib
+srcdir = @srcdir@
+infodir = @infodir@
+
+version = 5.0
+
+INSTALL = install
+INSTALL_DATA = $(INSTALL)
+INSTALL_PROGRAM = $(INSTALL)
+TEXI2DVI = texi2dvi
+MAKEINFO = makeinfo
+DVIPS = dvips
+
+VPATH = $(srcdir)
+
+.SUFFIXES: .o
+
+SHELL = /bin/sh
+
+OBJECTS = \
+	debug.o diffs.o expand_str.o headers.o index.o \
+	input.o lang_c.o lang_cxx.o lang_verilog.o lang_pascal.o lang_perl.o lang_report.o \
+	lang_sh.o lang_text.o lang_java.o language.o main.o options.o \
+	openpipe.o output.o postscript.o print_prompt.o \
+	printers_fl.o utils.o
+
+SOURCES = \
+	BUGS \
+	COPYING \
+	Makefile.in \
+	NEWS \
+	README \
+	config.h.in \
+	configure \
+	configure.in \
+	debug.c \
+	debug.h \
+	diffs.c \
+	diffs.h \
+	expand_str.c \
+	expand_str.h \
+	headers.c \
+	headers.h \
+	index.c \
+	index.h \
+	input.c \
+	input.h \
+	lang_c.c \
+	lang_c.h \
+	lang_cxx.c \
+	lang_cxx.h \
+	lang_java.c \
+	lang_java.h \
+	lang_pascal.c \
+	lang_pascal.h \
+	lang_perl.c \
+	lang_perl.h \
+	lang_report.c \
+	lang_report.h \
+	lang_sh.c \
+	lang_sh.h \
+	lang_text.c \
+	lang_text.h \
+	lang_verilog.c \
+	lang_verilog.h \
+	language.c \
+	language.h \
+	main.c \
+	main.h \
+	openpipe.c \
+	openpipe.h \
+	options.c \
+	options.h \
+	output.c \
+	output.h \
+	postscript.c \
+	postscript.h \
+	print_prompt.c \
+	print_prompt.h \
+	printers \
+	printers_fl.c \
+	printers_fl.h \
+	testprint \
+	trueprint.1 \
+	trueprint.dvi \
+	trueprint.info \
+	trueprint.texi \
+	trueprint.h \
+	utils.c \
+	utils.h
+
+TESTSOURCES = 	tests/OLDtest6.c \
+	tests/Run \
+	tests/test1.c \
+	tests/test1.out \
+	tests/test10.out \
+	tests/test11.out \
+	tests/test12.out \
+	tests/test13.out \
+	tests/test14.out \
+	tests/test15.out \
+	tests/test16.out \
+	tests/test17.out \
+	tests/test18.out \
+	tests/test19.out \
+	tests/test2.c \
+	tests/test2.out \
+	tests/test20.out \
+	tests/test21 \
+	tests/test21.out \
+	tests/test22.out \
+	tests/test23.out \
+	tests/test24.out \
+	tests/test25.out \
+	tests/test26.out \
+	tests/test27.out \
+	tests/test3 \
+	tests/test3.out \
+	tests/test4.new \
+	tests/test4.old \
+	tests/test4.out \
+	tests/test5.out \
+	tests/test6.c \
+	tests/test6.out \
+	tests/test7 \
+	tests/test7.out \
+	tests/test8.out \
+	tests/test9.out
+
+CC = @CC@ @CFLAGS@ -I$(srcdir) -I. -DPRINTERS_FILE=\"$(libdir)/printers\"
+
+# This CFLAGS is used for development...
+# CFLAGS = -pedantic -ansi -Wall -Wstrict-prototypes -Wmissing-prototypes
+
+# This CFLAGS is used for production...
+CFLAGS =
+
+MKDIR = -mkdir -p
+
+all: trueprint
+
+trueprint: $(OBJECTS)
+	$(CC) $(OBJECTS) $(LIBFILES) -o trueprint
+
+install: $(bindir)/trueprint \
+	$(mandir)/trueprint.1 \
+	$(libdir)/printers \
+	$(infodir)/trueprint.info
+
+install-strip:
+	$(MAKE) INSTALL_PROGRAM='$(INSTALL_PROGRAM) -s' install
+
+$(bindir)/trueprint: trueprint
+	$(INSTALL_PROGRAM) trueprint $(bindir)
+
+$(mandir)/trueprint.1: $(srcdir)/trueprint.1
+	$(INSTALL_DATA) $(srcdir)/trueprint.1 $(mandir)	
+
+$(libdir)/printers: $(srcdir)/printers
+	if test -f $(libdir)/printers; then \
+	    echo "install: Not overwriting existing printers file in $(libdir)/printers"; \
+	else \
+	   $(INSTALL_DATA) $(srcdir)/printers $(libdir);	\
+	fi
+
+$(infodir)/trueprint.info: trueprint.info
+	$(POST_INSTALL) # Post-install commands follow
+	-if test -f $(srcdir)/trueprint.info ; then d=.; \
+	else d=$(srcdir); fi; \
+	$(INSTALL_DATA) $$d/trueprint.info $(infodir)
+	if $(SHELL) -c 'install-info --version' > /dev/null 2>&1; then \
+	install-info --dir-file=$(infodir)/dir $(infodir)/trueprint.info; \
+	else true; fi
+
+uninstall:
+	$(PRE_UNINSTALL) # Pre-uninstall commands follow
+	rm $(bindir)/trueprint
+	rm $(mandir)/trueprint.1
+	rm $(libdir)/printers
+	install-info --dir-file=$(infodir)/dir --remove $(infodir)/trueprint.info
+	rm $(infodir)/trueprint.info
+
+Makefile: Makefile.in
+	./configure
+
+dist: $(SOURCES) $(TESTSOURCES)
+	if test -d trueprint-$(version); then rm -fr trueprint-$(version); fi
+	mkdir trueprint-$(version)
+	cp $(SOURCES) trueprint-$(version)
+	mkdir trueprint-$(version)/tests
+	cp $(TESTSOURCES) trueprint-$(version)/tests
+	tar cf - trueprint-$(version) |gzip > trueprint-$(version).tar.gz
+
+clean:
+	-rm *.o *~ trueprint trueprint-$(version).gz tests/*.dif config.cache config.log config.status TAGS
+
+distclean:
+	$(MAKE) clean
+	-rm Makefile config.h
+
+mostlyclean:
+	$(MAKE) distclean
+
+maintainer-clean:
+	@echo 'This command is intended for maintainers to use; it'
+	@echo 'deletes files that may need special tools to rebuild.'
+	$(MAKE) distclean
+	-rm Makefile
+
+TAGS: $(SOURCES)
+	cd $(srcdir); etags *
+
+info: trueprint.info
+
+dvi: trueprint.dvi
+
+trueprint.dvi: $(srcdir)/trueprint.texi
+	$(TEXI2DVI) $<
+
+trueprint.ps: trueprint.dvi
+	$(DVIPS) -o trueprint.ps trueprint.dvi
+
+trueprint.info: $(srcdir)/trueprint.texi
+	$(MAKEINFO) $<
+
+check:
+	cwd=`/bin/pwd`; cd $(srcdir)/tests; ./Run $$cwd/trueprint
+
+$(OBJECTS): config.h
+
+expand_str.o index.o input.o: \
+  $(srcdir)/debug.h
+
+diffs.o: \
+  $(srcdir)/diffs.h
+
+expand_str.o: \
+  $(srcdir)/expand_str.h
+
+diffs.o headers.o index.o language.o main.o output.o: \
+  $(srcdir)/headers.h
+
+expand_str.o index.o lang_c.o lang_cxx.o lang_verilog.o lang_pascal.o lang_perl.o \
+  lang_report.o lang_sh.o main.o output.o postcript.o print_prompt.o: \
+  $(srcdir)/index.h
+
+input.o lang_c.o lang_cxx.o lang_verilog.o lang_pascal.o lang_perl.o lang_report.o lang_sh.o lang_text.o lang_java.o main.o : \
+  $(srcdir)/input.h
+
+diffs.o expand_str.o options.o index.o input.o lang_c.o lang_cxx.o\
+  lang_verilog.o lang_pascal.o lang_perl.o lang_report.o lang_sh.o language.o main.o \
+  openpipe.o output.o postscript.o print_prompt.o printers_fl.o: \
+  $(srcdir)/main.h
+
+main.o diffs.o openpipe.o: \
+  $(srcdir)/openpipe.h
+
+debug.o diffs.o options.o headers.o language.o: \
+  $(srcdir)/options.h
+
+diffs.o: \
+  $(srcdir)/output.h
+
+headers.o index.o main.o output.o postscript.o: \
+  $(srcdir)/postscript.h
+
+debug.o diffs.o expand_str.o options.o headers.o index.o \
+  input.o lang_c.o lang_cxx.o lang_verilog.o lang_pascal.o lang_perl.o lang_report.o lang_sh.o \
+  lang_text.o lang_java.o language.o main.o openpipe.o output.o postscript.o \
+  print_prompt.o printers_fl.o: \
+  $(srcdir)/trueprint.h
+
+debug.o diffs.o options.o index.o input.o main.o openpipe.o postscript.o print_prompt.o printers_fl.o utils.o: \
+  $(srcdir)/utils.h
+
+
+
+
+
+
+
+

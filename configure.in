@@ -1,0 +1,66 @@
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT(debug.c)
+AC_CONFIG_HEADER(config.h)
+
+AC_DEFINE(VERSID,"5.0")
+
+dnl Checks for programs.
+AC_PROG_CC
+
+dnl Need this two-stage search for diff so we end
+dnl up with either a defined variable with the value of the
+dnl command or an undefined variable
+
+AC_PATH_PROG(GOT_DIFF_CMD,diff)
+if test -n "$GOT_DIFF_CMD" ; then
+    AC_DEFINE_UNQUOTED(DIFF_CMD,"$GOT_DIFF_CMD")
+else
+    AC_MSG_WARN(Cannot find diff command - diff features will not be built)
+fi
+
+AC_PATH_PROGS(PRINT_CMD,lpr lp)
+
+AC_DEFINE_UNQUOTED(PRINT_CMD,"$PRINT_CMD")
+
+case "$PRINT_CMD" in
+*/lp) 
+	AC_DEFINE(PRINT_CMD_DEST_FLAG,"-d")
+	AC_DEFINE(PRINT_CMD_COUNT_FLAG,"-n")
+	;;
+*/lpr)
+	AC_DEFINE(PRINT_CMD_DEST_FLAG,"-P")
+# Need to disable the m4 commenting stuff, otherwise it thinks the '#'
+# is the start of a comment...
+changecom
+	AC_DEFINE(PRINT_CMD_COUNT_FLAG,"-#")
+changecom()
+	;;
+*)
+	AC_MSG_ERROR(Cannot find either an lpr command or an lp command)
+	;;
+esac
+
+dnl Checks for libraries.
+
+dnl Checks for header files.
+AC_HEADER_STDC
+
+if test ! $ac_cv_header_stdc ; then
+	AC_MSG_WARN(You do not have standard ANSI headers.  If trueprint
+fails to compile properly then report the problem to bug-trueprint@gnu.org.)
+fi
+
+AC_HEADER_SYS_WAIT
+AC_CHECK_HEADERS(fcntl.h unistd.h)
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_TYPE_OFF_T
+AC_TYPE_PID_T
+AC_TYPE_SIZE_T
+AC_STRUCT_TM
+
+dnl Checks for library functions.
+AC_CHECK_FUNCS(strdup strerror strtol)
+
+AC_OUTPUT(Makefile)
