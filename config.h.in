@@ -51,8 +51,20 @@
 /* Define if you have the strtol function.  */
 #undef HAVE_STRTOL
 
+/* Define if you have the getopt_long function.  */
+#undef HAVE_GETOPT_LONG
+
+/* Define if you have the gettext function.  */
+#undef HAVE_GETTEXT
+
 /* Define if you have the <fcntl.h> header file.  */
 #undef HAVE_FCNTL_H
 
 /* Define if you have the <unistd.h> header file.  */
 #undef HAVE_UNISTD_H
+
+/* Define if you have the <libintl.h> header file. */
+#undef HAVE_LIBINTL_H
+
+/* Define if you have the <getopt.h> header file. */
+#undef HAVE_GETOPT_H

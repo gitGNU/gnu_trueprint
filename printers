@@ -27,13 +27,14 @@ type:Apple Laserwriter II:1: 15:597:784:8
 type:DEC LNO3:            1: 18:593:775:8
 type:DEC Printserver 32:  2:  7:605:783:9
 type:HP Laserjet IIISi:   2: 18:593:774:19
-	# Imagen 3320 numbers supplied by Chris Hughes
-type:Imagen 3320:         1:  3:612:792:0
-
 type:HP Laserjet 8000:    2: 12:599:779:12
 type:HP Laserjet 5 Si MX: 2: 12:600:780:13
+type:HP Laserjet 4000N:	  1: 18:576:841:15
+type:HP Laserjet 5MP	  1: 12:588:829:12
+type:HP Color Laserjet 4500DN: 2: 12:599:779:12
+type:HP Laserjet 4MV:	  1: 12:583:831:10
+type:Imagen 3320:         1:  3:612:792:0
+type:QMS 860:		  1: 11:580:829:11
 
-printer:pr1-dupl:HP Laserjet 5 Si MX duplex
-printer:pr1-simp:HP Laserjet 5 Si MX simplex
-printer:pr2-dupl:HP Laserjet 8000 duplex
-printer:pr2-simp:HP Laserjet 8000 simplex
+printer:pr1:HP Laserjet 5 Si MX
+printer:pr2:HP Laserjet 8000

@@ -23,7 +23,7 @@
 /*
  * Public part
  */
-char		lang_verilog_defaults[] = "-f --F --i --b";
+char		lang_verilog_defaults[] = "-f --F --i";
 
 /*
  * Private part

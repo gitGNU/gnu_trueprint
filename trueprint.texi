@@ -449,6 +449,13 @@ Print the date in the format mm/dd/yy.
 @item %L
 Print the date and time in long format, e.g. Fri Oct 8 11:49:51 1999
 
+@item %c
+Print the last modified date of the current file in the format mm/dd/yy.
+
+@item %C
+Print the last modified date and time of the current file in long
+format, e.g. Fri Oct 8 11:49:51 1999
+
 @item %H
 Print the current hour.
 
@@ -552,6 +559,7 @@ with @code{--ignore-form-feeds}.
 @findex no-line-wrap
 @findex intelligent-line-wrap
 @findex no-intelligent-line-wrap
+@findex minimum-line-length
 By default Trueprint will wrap lines that are too long for the
 page.  It will try to break the lines at intelligent locations,
 for example at a space character, and it will print the remainder
@@ -561,7 +569,10 @@ set the line-wrap column explicitly with @code{--line-wrap=@var{column}}.
 You can also tell Trueprint to wrap lines at exactly a specific
 column, i.e. to stop trying to be clever, with
 @code{--no-intelligent-line-wrap}.  Of course you can force the
-feature on with @code{--intelligent-line-wrap}.
+feature on with @code{--intelligent-line-wrap}.  And if you want
+to use intelligent line-wrap but you want to ensure that you don't
+end up with incredibly short lines then you can set the minimum
+line length with @code{--minimum-line-length=@var{number}}.
 
 @section Page length and pointsize
 
@@ -636,9 +647,15 @@ If you want to print multiple copies then just use
 @code{--copies=@var{number}}.
 
 @findex output
+@findex redirect
 If you want to save the postscript output then you can redirect
 it to a file using @code{--output=@var{filename}}.  If you use
 @code{-} for the filename then the postscript will be sent to stdout.
+If you use @code{--redirect-output} then the output will be sent
+to a file named after the first parameter with the suffix @code{.ps}.
+The @code{--redirect-output} option overrides the @code{--output=@var{filename}}
+option, and of course there is a @code{--no-redirect-output} option
+to turn it off.
 
 @node Print Selection, Miscellaneous Features, Output Options, Top
 @chapter Print Selection

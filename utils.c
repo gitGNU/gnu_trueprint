@@ -6,7 +6,6 @@
 #include "config.h"
 
 #include <ctype.h>
-#include <libintl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -114,3 +113,10 @@ xrealloc(void *v, size_t s)
   return r;
 }
 
+#if ! HAVE_GETTEXT
+char *
+gettext(const char *s)
+{
+  return s;
+}
+#endif

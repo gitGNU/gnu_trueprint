@@ -5,11 +5,15 @@
 
 #include "config.h"
 
-#include <libintl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifdef HAVE_GETOPT_H
 #include <getopt.h>
+#else
+#include "getopt.h"
+#endif
+
 extern int optind;  /* undocumented variable used to reset getopt() */
 
 #include "trueprint.h" /* needed for boolean type */

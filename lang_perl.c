@@ -3,6 +3,8 @@
  * lang_perl.c
  *
  * Contains get_perl_char() which parses perl code.
+ *
+ * Pod functionality added by Daniel Wagenaar
  */
 
 #include "config.h"
@@ -24,7 +26,7 @@
 /*
  * Public part
  */
-char		lang_perl_defaults[] = "--i --F --f --b";
+char		lang_perl_defaults[] = "--i --F --f";
 
 /*
  * Private part
@@ -43,7 +45,16 @@ typedef enum {
   IP_HDSTART,
   IP_HD,
   IP_HDSTARTLINE,
-  IP_HDCHECKSTRING
+  IP_HDCHECKSTRING,
+  IP_POD1,
+  IP_POD2,
+  IP_POD,
+  IP_EPOD1,
+  IP_EPOD2,
+  IP_EPOD3,
+  IP_EPOD4,
+  IP_EPOD5,
+  IP_EPOD6,
 } perl_ip_states;
 
 typedef enum {
@@ -78,6 +89,7 @@ get_perl_char(char *input_char, char_status *status)
   static long	f1_page_number;
   static char	sub[]="sub";
   static boolean	escaped;
+  static int prepodstate;
 
   *status = CHAR_NORMAL;
 
@@ -85,6 +97,7 @@ get_perl_char(char *input_char, char_status *status)
     {
       state		= IP_CODE;
       f1_state	= F1_CODE;
+      prepodstate = 0;
       f1_index	= 0;
       f1_start_char	= 0;
       f1_end_char	= 0;
@@ -124,6 +137,7 @@ get_perl_char(char *input_char, char_status *status)
       switch (state)
 	{
 	case IP_CODE:
+	  if (*input_char=='\n') prepodstate++; else prepodstate = 0;
 	  switch (*input_char)
 	    {
 	    case '$': state=IP_VAR1; break;
@@ -156,6 +170,8 @@ get_perl_char(char *input_char, char_status *status)
 		f1_state = F1_CODE;
 	      }
 	    break;
+	    case '=': if (prepodstate>1) { state = IP_POD; *status=CHAR_ITALIC; }
+	      break;
 	    default:
 	      ;
 	    }
@@ -176,7 +192,7 @@ get_perl_char(char *input_char, char_status *status)
 	  *status = CHAR_ITALIC;
 	  if (*input_char == '\n')
 	    {
-	      state=IP_CODE;
+	      state=IP_CODE; prepodstate = 1;
 	    }
 	  break;
 	case IP_VAR1:
@@ -191,6 +207,22 @@ get_perl_char(char *input_char, char_status *status)
 	  break;
 	case IP_VARBODY:
 	  if (*input_char == '}') state=IP_CODE;
+	  break;
+	case IP_POD:
+	  *status = CHAR_ITALIC;
+	  if (*input_char == '\n') state = IP_EPOD1;
+	  break;
+	case IP_EPOD1:
+	  *status = CHAR_ITALIC;
+	  if (*input_char == '\n') state = IP_EPOD2; else state = IP_POD;
+	  break;
+	case IP_EPOD2:
+	  *status = CHAR_ITALIC;
+	  if (*input_char == '\n') state = IP_EPOD3; else state = IP_POD;
+	  break;
+	case IP_EPOD3:
+	  *status = CHAR_ITALIC;
+	  if (*input_char == '\n') state = IP_EPOD4; else state = IP_POD;
 	  break;
 	case IP_HD1:
 	  if (escaped)

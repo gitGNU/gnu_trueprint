@@ -8,7 +8,6 @@
 #include "config.h"
 
 #include <ctype.h>
-#include <libintl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -23,6 +22,7 @@
 #include "print_prompt.h"
 #include "debug.h"
 #include "options.h"
+#include "utils.h"
 
 #include "output.h"
 
@@ -50,10 +50,11 @@ static boolean	blank_page(unsigned int file_number, boolean print_page);
 /*
  * Local variables
  */
-static boolean no_clever_wrap;
+static boolean	no_clever_wrap;
+static short	min_line_length;
 static short	tabsize;
-static boolean no_function_page_breaks;
-static boolean no_expand_page_break;
+static boolean	no_function_page_breaks;
+static boolean	no_expand_page_break;
 static long	line_number;
 static boolean	reached_end_of_sheet;
 
@@ -83,7 +84,7 @@ init_output(void)
 void
 setup_output(void)
 {
-  boolean_option("b", "no-page-break-after-function", "page-break-after-function", FALSE, &no_function_page_breaks, NULL, NULL,
+  boolean_option("b", "no-page-break-after-function", "page-break-after-function", TRUE, &no_function_page_breaks, NULL, NULL,
 		 OPT_TEXT_FORMAT,
 		 "don't print page breaks at the end of functions",
 		 "print page breaks at the end of functions");
@@ -94,6 +95,10 @@ setup_output(void)
 		 "Wrap lines intelligently at significant characters, such\n"
 		 "    as a space");
 
+  short_option("L", "minimum-line-length", 10, NULL, 0, 5, 4096, &min_line_length, NULL, NULL,
+	       OPT_TEXT_FORMAT, 
+	       "minimum line length permitted by intelligent line wrap (default 10)",
+	       NULL);
   short_option("T", "tabsize", 8, NULL, 0, 1, 20, &tabsize, NULL, NULL,
 	       OPT_TEXT_FORMAT,
 	       "set tabsize (default 8)", NULL);
@@ -254,7 +259,7 @@ line_end(char *input_line, int last_char_printed)
       for (break_index=0; break_index < BREAKSLENGTH; break_index++)
 	{
 	  for (output_line_end = last_char_printed + page_width;
-	       output_line_end > last_char_printed + MINLINELENGTH;
+	       output_line_end > last_char_printed + min_line_length;
 	       output_line_end--)
 	    if (input_line[output_line_end] == BREAKS[break_index])
 	      {

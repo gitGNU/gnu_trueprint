@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# To run the tests, run "make test" from the parent directory.
+# To run the tests, run "make check" from the parent directory.
 # To regenerate the outputs, run "./Run ../trueprint generate"
 
 passed=0

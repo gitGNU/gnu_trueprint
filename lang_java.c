@@ -13,6 +13,9 @@
  * Modified by Lezz to fit in with Trueprint 4.1.1 codebase (thanks Terry!)
  *
  * $Log: lang_java.c,v $
+ * Revision 1.1  1999/08/25 01:00:05  lgiles
+ * Initial revision
+ *
  * Revision 1.2  1998/08/28 19:30:41  tplatt
  * modified to handle "throws" clauses in method declarations,
  * added some (commented out) debug code

@@ -207,6 +207,11 @@ Wrap lines intelligently at significant characters, such
 as a space
 
 .TP 15
+.BI \-L " number" ", --minimum-line-length=" number
+Ensure lines created using intelligent line wrap are
+at least the indicated width.
+
+.TP 15
 .BI \-T " number" ", --tabsize=" number
 Set tabsize (default 8).
 
@@ -353,6 +358,14 @@ Use printer string.
 Send output to filename string; use - for stdout.
 
 .TP 15
+.B \-r, --redirect-output
+Send output to filename named after first filename arg with .ps suffix.
+
+.TP 15
+.B \--r, --no-redirect-output
+Turn off --redirect-output behaviour.
+
+.TP 15
 .BI \-c " number" ", --copies=" number
 Specify number of copies to be printed.
 
@@ -373,6 +386,10 @@ year e.g. 1993
 date mm/dd/yy
 .IP %L
 long date e.g. Fri Oct 8 11:49:51 1993
+.IP %c
+modification time of file in format mm/dd/yy
+.IP %C
+modification time of file in long format
 .IP %H
 hour
 .IP %M

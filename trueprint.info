@@ -342,6 +342,14 @@ footer and message strings:
      Print the date and time in long format, e.g. Fri Oct 8 11:49:51
      1999
 
+`%c'
+     Print the last modified date of the current file in the format
+     mm/dd/yy.
+
+`%C'
+     Print the last modified date and time of the current file in long
+     format, e.g. Fri Oct 8 11:49:51 1999
+
 `%H'
      Print the current hour.
 
@@ -432,7 +440,10 @@ line-wrap with `--no-line-wrap', or you can set the line-wrap column
 explicitly with `--line-wrap=COLUMN'.  You can also tell Trueprint to
 wrap lines at exactly a specific column, i.e. to stop trying to be
 clever, with `--no-intelligent-line-wrap'.  Of course you can force the
-feature on with `--intelligent-line-wrap'.
+feature on with `--intelligent-line-wrap'.  And if you want to use
+intelligent line-wrap but you want to ensure that you don't end up with
+incredibly short lines then you can set the minimum line length with
+`--minimum-line-length=NUMBER'.
 
 Page length and pointsize
 =========================
@@ -485,7 +496,11 @@ exactly the same way as the options to `lpr' and `lp').
 
    If you want to save the postscript output then you can redirect it
 to a file using `--output=FILENAME'.  If you use `-' for the filename
-then the postscript will be sent to stdout.
+then the postscript will be sent to stdout.  If you use
+`--redirect-output' then the output will be sent to a file named after
+the first parameter with the suffix `.ps'.  The `--redirect-output'
+option overrides the `--output=FILENAME' option, and of course there is
+a `--no-redirect-output' option to turn it off.
 
 
 File: trueprint.info,  Node: Print Selection,  Next: Miscellaneous Features,  Prev: Output Options,  Up: Top
@@ -1015,6 +1030,7 @@ Option Index
 * line-numbers:                          Page Furniture.
 * line-wrap:                             Text Formatting.
 * message:                               Page Furniture.
+* minimum-line-length:                   Text Formatting.
 * no-braces-depth:                       Page Furniture.
 * no-cover-sheet:                        Print Selection.
 * no-file-index:                         Print Selection.
@@ -1040,6 +1056,7 @@ Option Index
 * print-pages:                           Print Selection.
 * printer:                               Output Options.
 * prompt:                                Print Selection.
+* redirect:                              Output Options.
 * right-footer:                          Page Furniture.
 * right-header:                          Page Furniture.
 * single-sided:                          Page Formatting.
@@ -1160,12 +1177,12 @@ Node: Installing Trueprint2986
 Node: Languages6736
 Node: Page Formatting9721
 Node: Page Furniture11426
-Node: Text Formatting14983
-Node: Output Options17707
-Node: Print Selection18712
-Node: Miscellaneous Features20917
-Node: Options and Environment Variables List24041
-Node: Option Index30214
-Node: Concept Index33987
+Node: Text Formatting15191
+Node: Output Options18112
+Node: Print Selection19388
+Node: Miscellaneous Features21593
+Node: Options and Environment Variables List24717
+Node: Option Index30890
+Node: Concept Index34778
 
 End Tag Table

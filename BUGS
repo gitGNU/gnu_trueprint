@@ -1,3 +1,10 @@
+If you want to add an entry to this file, send mail to bug-trueprint@gnu.org
+
 Known bugs:
 perl - an associative array that starts with 'sub' gets confusing
+perl - trueprint cannot tell the difference between the shift-right
+	operator "<<" and the start of a "here" document "<<".  Perl
+	can tell the difference because it knows whether it is expecting
+	an operator or a value, but trueprint is a program of very little
+	brain and takes as many shortcuts when parsing as possible...
 

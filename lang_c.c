@@ -23,8 +23,8 @@
 /*
  * Public part
  */
-char		lang_c_defaults[] = "--f --F --i --b";
-char		lang_pc_defaults[] = "--f --F --i --b";
+char		lang_c_defaults[] = "--f --F --i";
+char		lang_pc_defaults[] = "--f --F --i";
 
 /*
  * Private part

@@ -236,7 +236,7 @@ PS_header(char *version, boolean print_body)
 {
   unsigned int	file_index;
 
-  printf("%%!PS-Adobe\n");
+  printf("%%!PS-Adobe-2.0\n");
 
   printf("statusdict /setduplexmode known {\n");
   if (no_of_sides == '2')
@@ -300,10 +300,11 @@ PS_header(char *version, boolean print_body)
     {
       printf("		0 0 moveto Rm 0 rlineto\n");
     }
-  printf("		gsave .98 setgray fill grestore stroke } def\n");
+  printf("		gsave .98 setgray fill grestore stroke\n");
+  printf("		0 Bf moveto 0 Tm Bh sub lineto stroke newpath\n");
+  printf("		} def\n");
   printf("/Cp	{ Ip .3 setlinewidth newpath\n");
   printf("		Li 0 Bf add moveto Li Tm Bh sub lineto stroke newpath\n");
-  printf("		0 Bf moveto 0 Tm Bh sub lineto stroke newpath\n");
   printf("		} def\n");
   printf("/So	{ gsave dup stringwidth pop Ps 3 div 0 exch rmoveto 0 rlineto fill grestore } def\n");
   printf("/Ul	{ gsave	dup stringwidth pop 0 -1 rmoveto 0 rlineto fill grestore } def\n");

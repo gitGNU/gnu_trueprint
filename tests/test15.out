@@ -1,4 +1,4 @@
-%!PS-Adobe
+%!PS-Adobe-2.0
 statusdict /setduplexmode known {
   false statusdict /setduplexmode get exec
 } if
@@ -25,10 +25,11 @@ statusdict /setduplexmode known {
 		0 Tm moveto 0 Bh neg rlineto Rm 0 rlineto 0 Bh rlineto closepath
 		gsave .98 setgray fill grestore stroke
 		0 0 moveto 0 Bf rlineto Rm 0 rlineto 0 Bf neg rlineto closepath
-		gsave .98 setgray fill grestore stroke } def
+		gsave .98 setgray fill grestore stroke
+		0 Bf moveto 0 Tm Bh sub lineto stroke newpath
+		} def
 /Cp	{ Ip .3 setlinewidth newpath
 		Li 0 Bf add moveto Li Tm Bh sub lineto stroke newpath
-		0 Bf moveto 0 Tm Bh sub lineto stroke newpath
 		} def
 /So	{ gsave dup stringwidth pop Ps 3 div 0 exch rmoveto 0 rlineto fill grestore } def
 /Ul	{ gsave	dup stringwidth pop 0 -1 rmoveto 0 rlineto fill grestore } def
@@ -41,9 +42,9 @@ statusdict /setduplexmode known {
 /Helvetica-Bold findfont 20 scalefont setfont
 (For: testuser) show
 70 700 moveto
-(Printed on: Thu Apr 15 22:00:00 1982) show
+(Printed on: Fri Apr 16 03:00:00 1982) show
 70 675 moveto
-(Last page number: 20) show
+(Last page number: 12) show
 70 650 moveto (File: test1.c) show
 70 625 moveto (File: test7) show
 70 600 moveto (File: test6.c) show
@@ -53,40 +54,40 @@ gsave
 15 405 translate .5 .5 scale
 Ip HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1) stringwidth pop sub dup Ypos moveto
 (Page 1) show
 exch sub 2 div add (Function Index) stringwidth pop 2 div sub Ypos moveto
 (Function Index) show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1) stringwidth pop sub dup Ypos moveto
 (Page 1) show
 exch sub 2 div add (Function Index) stringwidth pop 2 div sub Ypos moveto
 (Function Index) show
 CF setfont /Vpos Tm Bh sub Ps sub def
-Lpt(          closepipe                   4  (test1.c)
+Lpt(          closepipe                   2  (test1.c)
 ) show Nl
-Lpt(          closepipe..................16  (test6.c)) show Nl
-Lpt(          fclosepipe                  5  (test1.c)
+Lpt(          closepipe..................10  (test6.c)) show Nl
+Lpt(          fclosepipe                  2  (test1.c)
 ) show Nl
-Lpt(          fclosepipe.................17  (test6.c)) show Nl
-Lpt(          fopenpipe                   3  (test1.c)
+Lpt(          fclosepipe.................10  (test6.c)) show Nl
+Lpt(          fopenpipe                   2  (test1.c)
 ) show Nl
-Lpt(          fopenpipe..................15  (test6.c)) show Nl
+Lpt(          fopenpipe..................10  (test6.c)) show Nl
 Lpt(          openpipe                    1  (test1.c)
 ) show Nl
-Lpt(          openpipe...................13  (test6.c)) show Nl
+Lpt(          openpipe....................9  (test6.c)) show Nl
 grestore gsave
 15 30 translate .5 .5 scale
 Ip HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 2) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 2) stringwidth pop sub dup Ypos moveto
 (Page 2) show
 exch sub 2 div add (Function Index) stringwidth pop 2 div sub Ypos moveto
 (Function Index) show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 2) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 2) stringwidth pop sub dup Ypos moveto
 (Page 2) show
 exch sub 2 div add (Function Index) stringwidth pop 2 div sub Ypos moveto
 (Function Index) show
@@ -95,13 +96,13 @@ grestore gsave
 304 405 translate .5 .5 scale
 Ip HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 3) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 3) stringwidth pop sub dup Ypos moveto
 (Page 3) show
 exch sub 2 div add (Function Index) stringwidth pop 2 div sub Ypos moveto
 (Function Index) show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 3) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 3) stringwidth pop sub dup Ypos moveto
 (Page 3) show
 exch sub 2 div add (Function Index) stringwidth pop 2 div sub Ypos moveto
 (Function Index) show
@@ -110,13 +111,13 @@ grestore
 304 30 translate .5 .5 scale
 Ip HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 4) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 4) stringwidth pop sub dup Ypos moveto
 (Page 4) show
 exch sub 2 div add (Function Index) stringwidth pop 2 div sub Ypos moveto
 (Function Index) show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 4) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 4) stringwidth pop sub dup Ypos moveto
 (Page 4) show
 exch sub 2 div add (Function Index) stringwidth pop 2 div sub Ypos moveto
 (Function Index) show
@@ -127,39 +128,39 @@ gsave
 15 405 translate .5 .5 scale
 Ip HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1) stringwidth pop sub dup Ypos moveto
 (Page 1) show
 exch sub 2 div add (File Index) stringwidth pop 2 div sub Ypos moveto
 (File Index) show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1) stringwidth pop sub dup Ypos moveto
 (Page 1) show
 exch sub 2 div add (File Index) stringwidth pop 2 div sub Ypos moveto
 (File Index) show
 CF setfont /Vpos Tm Bh sub Ps sub def
           Lpt(    test1.c                      1) BF setfont show CF setfont Nl
-          Lpt(          closepipe...................4) show Nl
-          Lpt(          fclosepipe                  5) show Nl
-          Lpt(          fopenpipe...................3) show Nl
+          Lpt(          closepipe...................2) show Nl
+          Lpt(          fclosepipe                  2) show Nl
+          Lpt(          fopenpipe...................2) show Nl
           Lpt(          openpipe                    1) show Nl
-          Lpt(    test7                        9) BF setfont show CF setfont Nl
-          Lpt(    test6.c                     13) BF setfont show CF setfont Nl
-          Lpt(          closepipe..................16) show Nl
-          Lpt(          fclosepipe                 17) show Nl
-          Lpt(          fopenpipe..................15) show Nl
-          Lpt(          openpipe                   13) show Nl
+          Lpt(    test7                        5) BF setfont show CF setfont Nl
+          Lpt(    test6.c                      9) BF setfont show CF setfont Nl
+          Lpt(          closepipe..................10) show Nl
+          Lpt(          fclosepipe                 10) show Nl
+          Lpt(          fopenpipe..................10) show Nl
+          Lpt(          openpipe                    9) show Nl
           grestore gsave
 15 30 translate .5 .5 scale
 Ip HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 2) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 2) stringwidth pop sub dup Ypos moveto
 (Page 2) show
 exch sub 2 div add (File Index) stringwidth pop 2 div sub Ypos moveto
 (File Index) show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 2) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 2) stringwidth pop sub dup Ypos moveto
 (Page 2) show
 exch sub 2 div add (File Index) stringwidth pop 2 div sub Ypos moveto
 (File Index) show
@@ -168,13 +169,13 @@ grestore gsave
 304 405 translate .5 .5 scale
 Ip HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 3) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 3) stringwidth pop sub dup Ypos moveto
 (Page 3) show
 exch sub 2 div add (File Index) stringwidth pop 2 div sub Ypos moveto
 (File Index) show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 3) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 3) stringwidth pop sub dup Ypos moveto
 (Page 3) show
 exch sub 2 div add (File Index) stringwidth pop 2 div sub Ypos moveto
 (File Index) show
@@ -183,13 +184,13 @@ grestore
 304 30 translate .5 .5 scale
 Ip HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 4) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 4) stringwidth pop sub dup Ypos moveto
 (Page 4) show
 exch sub 2 div add (File Index) stringwidth pop 2 div sub Ypos moveto
 (File Index) show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 4) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 4) stringwidth pop sub dup Ypos moveto
 (Page 4) show
 exch sub 2 div add (File Index) stringwidth pop 2 div sub Ypos moveto
 (File Index) show
@@ -200,14 +201,14 @@ gsave
 15 405 translate .5 .5 scale
 Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1 of 20) stringwidth pop sub dup Ypos moveto
-(Page 1 of 20) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1 of 12) stringwidth pop sub dup Ypos moveto
+(Page 1 of 12) show
 exch sub 2 div add (openpipe) stringwidth pop 2 div sub Ypos moveto
 (openpipe) show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1 of 20) stringwidth pop sub dup Ypos moveto
-(Page 1 of 20) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1 of 12) stringwidth pop sub dup Ypos moveto
+(Page 1 of 12) show
 exch sub 2 div add (test1.c 1) stringwidth pop 2 div sub Ypos moveto
 (test1.c 1) show
 /Vpos Tm Bh sub Ps sub def
@@ -279,14 +280,14 @@ grestore gsave
 15 30 translate .5 .5 scale
 Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 2 of 20) stringwidth pop sub dup Ypos moveto
-(Page 2 of 20) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 2 of 12) stringwidth pop sub dup Ypos moveto
+(Page 2 of 12) show
 exch sub 2 div add (openpipe) stringwidth pop 2 div sub Ypos moveto
 (openpipe) show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 2 of 20) stringwidth pop sub dup Ypos moveto
-(Page 2 of 20) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 2 of 12) stringwidth pop sub dup Ypos moveto
+(Page 2 of 12) show
 exch sub 2 div add (test1.c 2) stringwidth pop 2 div sub Ypos moveto
 (test1.c 2) show
 /Vpos Tm Bh sub Ps sub def
@@ -320,21 +321,6 @@ Lpt CFs setfont (           ) show () CF setfont show  Nl
 Lpt CFs setfont (    87  2  ) show (    return fildes[parent_pipe_end];) CF setfont show  Nl
 Lpt CFs setfont (    88  1  ) show (  }) CF setfont show  Nl
 Lpt CFs setfont (    89     ) show (}) CF setfont show  Nl
-grestore gsave
-304 405 translate .5 .5 scale
-Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
-Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 3 of 20) stringwidth pop sub dup Ypos moveto
-(Page 3 of 20) show
-exch sub 2 div add (fopenpipe) stringwidth pop 2 div sub Ypos moveto
-(fopenpipe) show
-HF setfont /Ypos Ps 2 div def
-Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 3 of 20) stringwidth pop sub dup Ypos moveto
-(Page 3 of 20) show
-exch sub 2 div add (test1.c 3) stringwidth pop 2 div sub Ypos moveto
-(test1.c 3) show
-/Vpos Tm Bh sub Ps sub def
 Lpt CFs setfont (           ) show () CF setfont show  Nl
 Lpt CFs setfont (    91     ) show (FILE *) CF setfont show  Nl
 Lpt CFs setfont (    92     ) show (fopenpipe) BF setfont show (\(const char *command, char *mode\)) CF setfont show  Nl
@@ -346,21 +332,6 @@ Lpt CFs setfont (    97  1  ) show (  handle = openpipe\(command, mode\);) CF se
 Lpt CFs setfont (           ) show () CF setfont show  Nl
 Lpt CFs setfont (    99  1  ) show (  return fdopen\(handle, mode\);) CF setfont show  Nl
 Lpt CFs setfont (   100     ) show (}) CF setfont show  Nl
-grestore
-304 30 translate .5 .5 scale
-Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
-Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 4 of 20) stringwidth pop sub dup Ypos moveto
-(Page 4 of 20) show
-exch sub 2 div add (closepipe) stringwidth pop 2 div sub Ypos moveto
-(closepipe) show
-HF setfont /Ypos Ps 2 div def
-Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 4 of 20) stringwidth pop sub dup Ypos moveto
-(Page 4 of 20) show
-exch sub 2 div add (test1.c 4) stringwidth pop 2 div sub Ypos moveto
-(test1.c 4) show
-/Vpos Tm Bh sub Ps sub def
 Lpt CFs setfont (           ) show () CF setfont show  Nl
 Lpt CFs setfont (   102     ) show (void) CF setfont show  Nl
 Lpt CFs setfont (   103     ) show (closepipe) BF setfont show (\(int handle\)) CF setfont show  Nl
@@ -371,23 +342,6 @@ Lpt CFs setfont (           ) show () CF setfont show  Nl
 Lpt CFs setfont (   108  1  ) show (  \(void\)close\(handle\);) CF setfont show  Nl
 Lpt CFs setfont (   109  1  ) show (  \(void\)waitpid\(-1, &statloc, WNOHANG\);) CF setfont show  Nl
 Lpt CFs setfont (   110     ) show (}) CF setfont show  Nl
-showpage
-%%Page: 13 5
-gsave
-15 405 translate .5 .5 scale
-Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
-Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 5 of 20) stringwidth pop sub dup Ypos moveto
-(Page 5 of 20) show
-exch sub 2 div add (fclosepipe) stringwidth pop 2 div sub Ypos moveto
-(fclosepipe) show
-HF setfont /Ypos Ps 2 div def
-Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 5 of 20) stringwidth pop sub dup Ypos moveto
-(Page 5 of 20) show
-exch sub 2 div add (test1.c 5) stringwidth pop 2 div sub Ypos moveto
-(test1.c 5) show
-/Vpos Tm Bh sub Ps sub def
 Lpt CFs setfont (           ) show () CF setfont show  Nl
 Lpt CFs setfont (   112     ) show (void) CF setfont show  Nl
 Lpt CFs setfont (   113     ) show (fclosepipe) BF setfont show (\(FILE *fp\)) CF setfont show  Nl
@@ -396,64 +350,49 @@ Lpt CFs setfont (   115  1  ) show ({) CF setfont show  Nl
 Lpt CFs setfont (   116  1  ) show (  closepipe\(fileno\(fp\)\);) CF setfont show  Nl
 Lpt CFs setfont (   117     ) show (}) CF setfont show  Nl
 grestore gsave
-15 30 translate .5 .5 scale
-Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
-Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 6 of 20) stringwidth pop sub dup Ypos moveto
-(Page 6 of 20) show
-exch sub 2 div add () stringwidth pop 2 div sub Ypos moveto
-() show
-HF setfont /Ypos Ps 2 div def
-Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 6 of 20) stringwidth pop sub dup Ypos moveto
-(Page 6 of 20) show
-exch sub 2 div add (test1.c 6) stringwidth pop 2 div sub Ypos moveto
-(test1.c 6) show
-/Vpos Tm Bh sub Ps sub def
-grestore gsave
 304 405 translate .5 .5 scale
 Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 7 of 20) stringwidth pop sub dup Ypos moveto
-(Page 7 of 20) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 3 of 12) stringwidth pop sub dup Ypos moveto
+(Page 3 of 12) show
 exch sub 2 div add () stringwidth pop 2 div sub Ypos moveto
 () show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 7 of 20) stringwidth pop sub dup Ypos moveto
-(Page 7 of 20) show
-exch sub 2 div add (test1.c 7) stringwidth pop 2 div sub Ypos moveto
-(test1.c 7) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 3 of 12) stringwidth pop sub dup Ypos moveto
+(Page 3 of 12) show
+exch sub 2 div add (test1.c 3) stringwidth pop 2 div sub Ypos moveto
+(test1.c 3) show
 /Vpos Tm Bh sub Ps sub def
 grestore
 304 30 translate .5 .5 scale
 Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 8 of 20) stringwidth pop sub dup Ypos moveto
-(Page 8 of 20) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 4 of 12) stringwidth pop sub dup Ypos moveto
+(Page 4 of 12) show
 exch sub 2 div add () stringwidth pop 2 div sub Ypos moveto
 () show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 8 of 20) stringwidth pop sub dup Ypos moveto
-(Page 8 of 20) show
-exch sub 2 div add (test1.c 8) stringwidth pop 2 div sub Ypos moveto
-(test1.c 8) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 4 of 12) stringwidth pop sub dup Ypos moveto
+(Page 4 of 12) show
+exch sub 2 div add (test1.c 4) stringwidth pop 2 div sub Ypos moveto
+(test1.c 4) show
 /Vpos Tm Bh sub Ps sub def
 showpage
-%%Page: 17 6
+%%Page: 13 5
 gsave
 15 405 translate .5 .5 scale
 Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 9 of 20) stringwidth pop sub dup Ypos moveto
-(Page 9 of 20) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 5 of 12) stringwidth pop sub dup Ypos moveto
+(Page 5 of 12) show
 exch sub 2 div add () stringwidth pop 2 div sub Ypos moveto
 () show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 9 of 20) stringwidth pop sub dup Ypos moveto
-(Page 9 of 20) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 5 of 12) stringwidth pop sub dup Ypos moveto
+(Page 5 of 12) show
 exch sub 2 div add (test7 1) stringwidth pop 2 div sub Ypos moveto
 (test7 1) show
 /Vpos Tm Bh sub Ps sub def
@@ -467,14 +406,14 @@ grestore gsave
 15 30 translate .5 .5 scale
 Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 10 of 20) stringwidth pop sub dup Ypos moveto
-(Page 10 of 20) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 6 of 12) stringwidth pop sub dup Ypos moveto
+(Page 6 of 12) show
 exch sub 2 div add () stringwidth pop 2 div sub Ypos moveto
 () show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 10 of 20) stringwidth pop sub dup Ypos moveto
-(Page 10 of 20) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 6 of 12) stringwidth pop sub dup Ypos moveto
+(Page 6 of 12) show
 exch sub 2 div add (test7 2) stringwidth pop 2 div sub Ypos moveto
 (test7 2) show
 /Vpos Tm Bh sub Ps sub def
@@ -482,14 +421,14 @@ grestore gsave
 304 405 translate .5 .5 scale
 Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 11 of 20) stringwidth pop sub dup Ypos moveto
-(Page 11 of 20) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 7 of 12) stringwidth pop sub dup Ypos moveto
+(Page 7 of 12) show
 exch sub 2 div add () stringwidth pop 2 div sub Ypos moveto
 () show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 11 of 20) stringwidth pop sub dup Ypos moveto
-(Page 11 of 20) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 7 of 12) stringwidth pop sub dup Ypos moveto
+(Page 7 of 12) show
 exch sub 2 div add (test7 3) stringwidth pop 2 div sub Ypos moveto
 (test7 3) show
 /Vpos Tm Bh sub Ps sub def
@@ -497,31 +436,31 @@ grestore
 304 30 translate .5 .5 scale
 Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 12 of 20) stringwidth pop sub dup Ypos moveto
-(Page 12 of 20) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 8 of 12) stringwidth pop sub dup Ypos moveto
+(Page 8 of 12) show
 exch sub 2 div add () stringwidth pop 2 div sub Ypos moveto
 () show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 12 of 20) stringwidth pop sub dup Ypos moveto
-(Page 12 of 20) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 8 of 12) stringwidth pop sub dup Ypos moveto
+(Page 8 of 12) show
 exch sub 2 div add (test7 4) stringwidth pop 2 div sub Ypos moveto
 (test7 4) show
 /Vpos Tm Bh sub Ps sub def
 showpage
-%%Page: 21 7
+%%Page: 17 6
 gsave
 15 405 translate .5 .5 scale
 Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 13 of 20) stringwidth pop sub dup Ypos moveto
-(Page 13 of 20) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 9 of 12) stringwidth pop sub dup Ypos moveto
+(Page 9 of 12) show
 exch sub 2 div add (openpipe) stringwidth pop 2 div sub Ypos moveto
 (openpipe) show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 13 of 20) stringwidth pop sub dup Ypos moveto
-(Page 13 of 20) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 9 of 12) stringwidth pop sub dup Ypos moveto
+(Page 9 of 12) show
 exch sub 2 div add (test6.c 1) stringwidth pop 2 div sub Ypos moveto
 (test6.c 1) show
 /Vpos Tm Bh sub Ps sub def
@@ -593,14 +532,14 @@ grestore gsave
 15 30 translate .5 .5 scale
 Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 14 of 20) stringwidth pop sub dup Ypos moveto
-(Page 14 of 20) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 10 of 12) stringwidth pop sub dup Ypos moveto
+(Page 10 of 12) show
 exch sub 2 div add (openpipe) stringwidth pop 2 div sub Ypos moveto
 (openpipe) show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 14 of 20) stringwidth pop sub dup Ypos moveto
-(Page 14 of 20) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 10 of 12) stringwidth pop sub dup Ypos moveto
+(Page 10 of 12) show
 exch sub 2 div add (test6.c 2) stringwidth pop 2 div sub Ypos moveto
 (test6.c 2) show
 /Vpos Tm Bh sub Ps sub def
@@ -634,21 +573,6 @@ Lpt CFs setfont (           ) show () CF setfont show  Nl
 Lpt CFs setfont (    87  2  ) show (    return fildes[parent_pipe_end];) CF setfont show  Nl
 Lpt CFs setfont (    88  1  ) show (  }) CF setfont show  Nl
 Lpt CFs setfont (    89     ) show (}) CF setfont show  Nl
-grestore gsave
-304 405 translate .5 .5 scale
-Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
-Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 15 of 20) stringwidth pop sub dup Ypos moveto
-(Page 15 of 20) show
-exch sub 2 div add (fopenpipe) stringwidth pop 2 div sub Ypos moveto
-(fopenpipe) show
-HF setfont /Ypos Ps 2 div def
-Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 15 of 20) stringwidth pop sub dup Ypos moveto
-(Page 15 of 20) show
-exch sub 2 div add (test6.c 3) stringwidth pop 2 div sub Ypos moveto
-(test6.c 3) show
-/Vpos Tm Bh sub Ps sub def
 Lpt CFs setfont (           ) show () CF setfont show  Nl
 Lpt CFs setfont (    91     ) show (FILE *) CF setfont show  Nl
 Lpt CFs setfont (    92     ) show (fopenpipe) BF setfont show (\(const char *command, char *mode\)) CF setfont show  Nl
@@ -660,21 +584,6 @@ Lpt CFs setfont (    97  1  ) show (  handle = openpipe\(command, mode\);) CF se
 Lpt CFs setfont (           ) show () CF setfont show  Nl
 Lpt CFs setfont (    99  1  ) show (  return fdopen\(handle, mode\);) CF setfont show  Nl
 Lpt CFs setfont (   100     ) show (}) CF setfont show  Nl
-grestore
-304 30 translate .5 .5 scale
-Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
-Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 16 of 20) stringwidth pop sub dup Ypos moveto
-(Page 16 of 20) show
-exch sub 2 div add (closepipe) stringwidth pop 2 div sub Ypos moveto
-(closepipe) show
-HF setfont /Ypos Ps 2 div def
-Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 16 of 20) stringwidth pop sub dup Ypos moveto
-(Page 16 of 20) show
-exch sub 2 div add (test6.c 4) stringwidth pop 2 div sub Ypos moveto
-(test6.c 4) show
-/Vpos Tm Bh sub Ps sub def
 Lpt CFs setfont (           ) show () CF setfont show  Nl
 Lpt CFs setfont (   102     ) show (void) CF setfont show  Nl
 Lpt CFs setfont (   103     ) show (closepipe) BF setfont show (\(int handle\)) CF setfont show  Nl
@@ -685,23 +594,6 @@ Lpt CFs setfont (           ) show () CF setfont show  Nl
 Lpt CFs setfont (   108  1  ) show (  \(void\)close\(handle\);) CF setfont show  Nl
 Lpt CFs setfont (   109  1  ) show (  \(void\)waitpid\(-1, &statloc, WNOHANG\);) CF setfont show  Nl
 Lpt CFs setfont (   110     ) show (}) CF setfont show  Nl
-showpage
-%%Page: 25 8
-gsave
-15 405 translate .5 .5 scale
-Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
-Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 17 of 20) stringwidth pop sub dup Ypos moveto
-(Page 17 of 20) show
-exch sub 2 div add (fclosepipe) stringwidth pop 2 div sub Ypos moveto
-(fclosepipe) show
-HF setfont /Ypos Ps 2 div def
-Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 17 of 20) stringwidth pop sub dup Ypos moveto
-(Page 17 of 20) show
-exch sub 2 div add (test6.c 5) stringwidth pop 2 div sub Ypos moveto
-(test6.c 5) show
-/Vpos Tm Bh sub Ps sub def
 Lpt CFs setfont (           ) show () CF setfont show  Nl
 Lpt CFs setfont (   112     ) show (void) CF setfont show  Nl
 Lpt CFs setfont (   113     ) show (fclosepipe) BF setfont show (\(FILE *fp\)) CF setfont show  Nl
@@ -710,49 +602,34 @@ Lpt CFs setfont (   115  1  ) show ({) CF setfont show  Nl
 Lpt CFs setfont (   116  1  ) show (  closepipe\(fileno\(fp\)\);) CF setfont show  Nl
 Lpt CFs setfont (   117     ) show (}) CF setfont show  Nl
 grestore gsave
-15 30 translate .5 .5 scale
-Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
-Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 18 of 20) stringwidth pop sub dup Ypos moveto
-(Page 18 of 20) show
-exch sub 2 div add () stringwidth pop 2 div sub Ypos moveto
-() show
-HF setfont /Ypos Ps 2 div def
-Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 18 of 20) stringwidth pop sub dup Ypos moveto
-(Page 18 of 20) show
-exch sub 2 div add (test6.c 6) stringwidth pop 2 div sub Ypos moveto
-(test6.c 6) show
-/Vpos Tm Bh sub Ps sub def
-grestore gsave
 304 405 translate .5 .5 scale
 Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 19 of 20) stringwidth pop sub dup Ypos moveto
-(Page 19 of 20) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 11 of 12) stringwidth pop sub dup Ypos moveto
+(Page 11 of 12) show
 exch sub 2 div add () stringwidth pop 2 div sub Ypos moveto
 () show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 19 of 20) stringwidth pop sub dup Ypos moveto
-(Page 19 of 20) show
-exch sub 2 div add (test6.c 7) stringwidth pop 2 div sub Ypos moveto
-(test6.c 7) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 11 of 12) stringwidth pop sub dup Ypos moveto
+(Page 11 of 12) show
+exch sub 2 div add (test6.c 3) stringwidth pop 2 div sub Ypos moveto
+(test6.c 3) show
 /Vpos Tm Bh sub Ps sub def
 grestore
 304 30 translate .5 .5 scale
 Cp HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 20 of 20) stringwidth pop sub dup Ypos moveto
-(Page 20 of 20) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 12 of 12) stringwidth pop sub dup Ypos moveto
+(Page 12 of 12) show
 exch sub 2 div add () stringwidth pop 2 div sub Ypos moveto
 () show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 20 of 20) stringwidth pop sub dup Ypos moveto
-(Page 20 of 20) show
-exch sub 2 div add (test6.c 8) stringwidth pop 2 div sub Ypos moveto
-(test6.c 8) show
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 12 of 12) stringwidth pop sub dup Ypos moveto
+(Page 12 of 12) show
+exch sub 2 div add (test6.c 4) stringwidth pop 2 div sub Ypos moveto
+(test6.c 4) show
 /Vpos Tm Bh sub Ps sub def
 showpage
 %%Trailer

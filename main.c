@@ -21,7 +21,6 @@
 #include <ctype.h>
 #include <errno.h>
 #include <fcntl.h>
-#include <libintl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -83,6 +82,7 @@ static char	*printer_destination;
 static short	no_of_copies;
 static char	**file_names;
 static char     *output_filename;
+static boolean	redirect_output;
 
 /*
  * Functions
@@ -137,7 +137,16 @@ int main(int argc, char **argv)
 
   /*
    * Handle command line options.
-   * Note that the debug option will be set in this line - the dm
+   */
+  /*
+   * use_environment is itself used when setting options, so
+   * initialize it here.  The default is to use environment stuff,
+   * so set it to 1 (true).
+   */
+  use_environment = 1;
+
+  /*
+   * Note that the debug option will not be set before this line - the dm
    * function should not be called before this function call.
    */
   last_param_used = handle_options(argc, argv);
@@ -190,10 +199,13 @@ int main(int argc, char **argv)
    * DEFAULT_OPTS used to be the mechanism for setting defaults -
    * now (v3.7) it has been replaced by set_option_defaults(),
    * but DEFAULT_OPTS is kept in case somebody wants to override
-   * the default defaults in config.h
+   * the default defaults in trueprint.h.  Note that if --ignore-environment
+   * is set then the defaults from DEFAULT_OPTS are ignored; otherwise
+   * make check would fail if DEFAULT_OPTS is not empty.
    */
   dm('o',1,"Setting default options\n");
-  handle_string_options(DEFAULT_OPTS);
+  if (use_environment)
+    handle_string_options(DEFAULT_OPTS);
   set_option_defaults();
 
   /*
@@ -201,6 +213,46 @@ int main(int argc, char **argv)
    */
   PS_pagesize(destination, &page_width, &page_length);
   dm('O',1,"Page width is  %d, page length is %d\n", page_width, page_length);
+
+  /*
+   * If redirect_output is set then calculate the output filename.
+   * Do it now so we can catch the error condition that redirect-output
+   * is being used with stdin.
+   */
+   if (redirect_output)
+   {
+      if (strcmp(file_names[0],"-") == 0)
+	{
+	  fprintf(stderr, gettext(CMD_NAME ": cannot use redirect-output option with stdin\n"));
+	  exit(1);
+	}
+
+      /* Grab a buffer long enough for filename plus .ps plus NULL */
+      output_filename = xmalloc(strlen(file_names[0])+4);
+      strcpy(output_filename,file_names[0]);
+
+      /* Add .ps to the filename */
+      {
+	char *suffix;
+
+	/* point suffix to the dot, if any, in the filename */
+	suffix = strrchr(output_filename,'.');
+
+	/* If there is no . in filename then point suffix to the string end */
+	if (suffix == NULL)
+	  {
+	    suffix = output_filename+strlen(output_filename);
+	  }
+
+	/* Now write .ps to the end of the string */
+	*(suffix++) = '.';
+	*(suffix++) = 'p';
+	*(suffix++) = 's';
+	*(suffix++) = '\0';
+      }
+
+      dm('O',1,"main.c:main() Redirecting output to %s\n",output_filename);
+    }
 
   /*
    * Perform first pass to get function names and locations.
@@ -231,6 +283,7 @@ int main(int argc, char **argv)
    * Now set up output stream to print command.  Put the filehandle into
    * pipe_handle.
    */
+
   if (strcmp(output_filename,"-") == 0)
     {
       /*
@@ -240,7 +293,7 @@ int main(int argc, char **argv)
     }
   else if (strlen(output_filename) > 0)
     {
-      pipe_handle = creat(output_filename, 0777);
+      pipe_handle = creat(output_filename, 0666);
       if (pipe_handle == -1)
 	{
 	  fprintf(stderr, gettext(CMD_NAME ": cannot open %s for writing, %s\n"),
@@ -251,6 +304,8 @@ int main(int argc, char **argv)
       /* now dup the pipe_handle into stdout so all stdout goes to the pipe */
       if (!((close(1) == 0) && (dup(pipe_handle) == 1)))
 	abort();
+
+      dm('O',1,"Sending output to %s\n",output_filename);
     }
   else
     {
@@ -348,7 +403,6 @@ print_files(void)
 
       if (strcmp(current_filename, "-") == 0)
 	{
-	  current_filename = "stdin";
 	  if (pass == 0)
 	    {
 	      /*
@@ -470,6 +524,14 @@ setup_main(void)
 		OPT_OUTPUT,
 		"send output to filename <string>; use - for stdout");
 
+  boolean_option("r", "redirect-output", "no-redirect-output",
+		 FALSE,
+		 &redirect_output,
+		 NULL, NULL,
+		 OPT_OUTPUT,
+		 "redirect output to .ps file named after first filename",
+		 "don't redirect output");
+		 
   short_option("c", "copies", 1,
 	       NULL, 0,
 	       1, 200, &no_of_copies, NULL, NULL,
@@ -663,6 +725,8 @@ void print_help(const char *p, const char *o, char *value)
 			 "	%y year e.g. 1993\n"
 			 "	%D date mm/dd/yy\n"
 			 "	%L long date e.g. Fri Oct 8 11:49:51 1993\n"
+			 "	%c file modification date mm/dd/yy\n"
+			 "	%C file modification date in long format\n"
 			 "	%H hour\n"
 			 "	%M minute\n"
 			 "	%S second\n"
@@ -723,7 +787,7 @@ void print_help(const char *p, const char *o, char *value)
 		     "    --help=output-options - list options that affect where output goes\n"
 		     "    --help=language - list languages\n"
 		     "    --help=prompt - format for --print-pages string\n"
-		     "    --help=debug - format for --debug string"
+		     "    --help=debug - format for --debug string\n"
 		     "    --help=header - format for header & footer strings\n"
 		     "    --help=report - file format for --language=report input\n"
 		     "    --help=environment - list environment vars used\n"

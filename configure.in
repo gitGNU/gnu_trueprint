@@ -2,7 +2,9 @@ dnl Process this file with autoconf to produce a configure script.
 AC_INIT(debug.c)
 AC_CONFIG_HEADER(config.h)
 
-AC_DEFINE(VERSID,"5.0")
+VERSID="5.1"
+AC_DEFINE_UNQUOTED(VERSID,"$VERSID")
+AC_SUBST(VERSID)
 
 dnl Checks for programs.
 AC_PROG_CC
@@ -44,14 +46,8 @@ dnl Checks for libraries.
 
 dnl Checks for header files.
 AC_HEADER_STDC
-
-if test ! $ac_cv_header_stdc ; then
-	AC_MSG_WARN(You do not have standard ANSI headers.  If trueprint
-fails to compile properly then report the problem to bug-trueprint@gnu.org.)
-fi
-
 AC_HEADER_SYS_WAIT
-AC_CHECK_HEADERS(fcntl.h unistd.h)
+AC_CHECK_HEADERS(fcntl.h sys/time.h unistd.h libintl.h getopt.h)
 
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
@@ -61,6 +57,10 @@ AC_TYPE_SIZE_T
 AC_STRUCT_TM
 
 dnl Checks for library functions.
-AC_CHECK_FUNCS(strdup strerror strtol)
+AC_FUNC_VPRINTF
+AC_CHECK_FUNCS(strdup strerror strtol getopt_long gettext)
+
+AC_CHECK_FUNC(getopt_long,GOT_GETOPT_LONG=yes,GOT_GETOPT_LONG=no)
+AC_SUBST(GOT_GETOPT_LONG)
 
 AC_OUTPUT(Makefile)

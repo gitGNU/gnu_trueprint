@@ -1,4 +1,4 @@
-%!PS-Adobe
+%!PS-Adobe-2.0
 statusdict /setduplexmode known {
   false statusdict /setduplexmode get exec
 } if
@@ -25,10 +25,11 @@ statusdict /setduplexmode known {
 		0 Tm moveto 0 Bh neg rlineto Rm 0 rlineto 0 Bh rlineto closepath
 		gsave .98 setgray fill grestore stroke
 		0 0 moveto 0 Bf rlineto Rm 0 rlineto 0 Bf neg rlineto closepath
-		gsave .98 setgray fill grestore stroke } def
+		gsave .98 setgray fill grestore stroke
+		0 Bf moveto 0 Tm Bh sub lineto stroke newpath
+		} def
 /Cp	{ Ip .3 setlinewidth newpath
 		Li 0 Bf add moveto Li Tm Bh sub lineto stroke newpath
-		0 Bf moveto 0 Tm Bh sub lineto stroke newpath
 		} def
 /So	{ gsave dup stringwidth pop Ps 3 div 0 exch rmoveto 0 rlineto fill grestore } def
 /Ul	{ gsave	dup stringwidth pop 0 -1 rmoveto 0 rlineto fill grestore } def
@@ -41,9 +42,9 @@ statusdict /setduplexmode known {
 /Helvetica-Bold findfont 20 scalefont setfont
 (For: testuser) show
 70 700 moveto
-(Printed on: Thu Apr 15 22:00:00 1982) show
+(Printed on: Fri Apr 16 03:00:00 1982) show
 70 675 moveto
-(Last page number: 6) show
+(Last page number: 3) show
 70 650 moveto (File: test1.c) show
 70 625 moveto (File: test2.c) show
 showpage
@@ -56,23 +57,23 @@ Rm 2 div Tm 2 div translate 60 rotate
 grestore
 HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1) stringwidth pop sub dup Ypos moveto
 (Page 1) show
 exch sub 2 div add (Function Index) stringwidth pop 2 div sub Ypos moveto
 (Function Index) show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1) stringwidth pop sub dup Ypos moveto
 (Page 1) show
 exch sub 2 div add (Function Index) stringwidth pop 2 div sub Ypos moveto
 (Function Index) show
 CF setfont /Vpos Tm Bh sub Ps sub def
-Lpt(          closepipe                   4  (test1.c)
+Lpt(          closepipe                   2  (test1.c)
 ) show Nl
-Lpt(          fclosepipe..................5  (test1.c)) show Nl
-Lpt(          fopenpipe                   3  (test1.c)
+Lpt(          fclosepipe..................2  (test1.c)) show Nl
+Lpt(          fopenpipe                   2  (test1.c)
 ) show Nl
-Lpt(          getopt......................6  (test2.c)) show Nl
+Lpt(          getopt......................3  (test2.c)) show Nl
 Lpt(          openpipe                    1  (test1.c)
 ) show Nl
 showpage
@@ -85,24 +86,24 @@ Rm 2 div Tm 2 div translate 60 rotate
 grestore
 HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1) stringwidth pop sub dup Ypos moveto
 (Page 1) show
 exch sub 2 div add (File Index) stringwidth pop 2 div sub Ypos moveto
 (File Index) show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1) stringwidth pop sub dup Ypos moveto
 (Page 1) show
 exch sub 2 div add (File Index) stringwidth pop 2 div sub Ypos moveto
 (File Index) show
 CF setfont /Vpos Tm Bh sub Ps sub def
           Lpt(    test1.c                      1) BF setfont show CF setfont Nl
-          Lpt(          closepipe...................4) show Nl
-          Lpt(          fclosepipe                  5) show Nl
-          Lpt(          fopenpipe...................3) show Nl
+          Lpt(          closepipe...................2) show Nl
+          Lpt(          fclosepipe                  2) show Nl
+          Lpt(          fopenpipe...................2) show Nl
           Lpt(          openpipe                    1) show Nl
-          Lpt(    test2.c                      6) BF setfont show CF setfont Nl
-          Lpt(          getopt                      6) show Nl
+          Lpt(    test2.c                      3) BF setfont show CF setfont Nl
+          Lpt(          getopt                      3) show Nl
           showpage
 %%Page: 3 4
 15 30 translate
@@ -113,16 +114,16 @@ Rm 2 div Tm 2 div translate 60 rotate
 grestore
 HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu-Apr-10:00pm-1) show currentpoint pop dup Rm Ps sub (5-6-test1.c-openpipe) stringwidth pop sub dup Ypos moveto
-(5-6-test1.c-openpipe) show
-exch sub 2 div add (Apr-10:00pm-1-1) stringwidth pop 2 div sub Ypos moveto
-(Apr-10:00pm-1-1) show
+(Fri-Apr-03:00am-1) show currentpoint pop dup Rm Ps sub (2-3-test1.c-openpipe) stringwidth pop sub dup Ypos moveto
+(2-3-test1.c-openpipe) show
+exch sub 2 div add (Apr-03:00am-1-1) stringwidth pop 2 div sub Ypos moveto
+(Apr-03:00am-1-1) show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Test-%-04-15-1982) show currentpoint pop dup Rm Ps sub (00-22:00:00-104-4) stringwidth pop sub dup Ypos moveto
-(00-22:00:00-104-4) show
-exch sub 2 div add (04/15/82-Thu Apr 15 22:00:00 1982-22-00) stringwidth pop 2 div sub Ypos moveto
-(04/15/82-Thu Apr 15 22:00:00 1982-22-00) show
+(Test-%-04-16-1982) show currentpoint pop dup Rm Ps sub (00-03:00:00-105-5) stringwidth pop sub dup Ypos moveto
+(00-03:00:00-105-5) show
+exch sub 2 div add (04/16/82-Fri Apr 16 03:00:00 1982-03-00) stringwidth pop 2 div sub Ypos moveto
+(04/16/82-Fri Apr 16 03:00:00 1982-03-00) show
 /Vpos Tm Bh sub Ps sub def
 Lpt CFs setfont (     1     ) show (/*) IF setfont show  Nl
 Lpt CFs setfont (     2     ) show ( * Source file:) IF setfont show  Nl
@@ -199,16 +200,16 @@ Rm 2 div Tm 2 div translate 60 rotate
 grestore
 HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu-Apr-10:00pm-2) show currentpoint pop dup Rm Ps sub (5-6-test1.c-openpipe) stringwidth pop sub dup Ypos moveto
-(5-6-test1.c-openpipe) show
-exch sub 2 div add (Apr-10:00pm-2-2) stringwidth pop 2 div sub Ypos moveto
-(Apr-10:00pm-2-2) show
+(Fri-Apr-03:00am-2) show currentpoint pop dup Rm Ps sub (2-3-test1.c-openpipe) stringwidth pop sub dup Ypos moveto
+(2-3-test1.c-openpipe) show
+exch sub 2 div add (Apr-03:00am-2-2) stringwidth pop 2 div sub Ypos moveto
+(Apr-03:00am-2-2) show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Test-%-04-15-1982) show currentpoint pop dup Rm Ps sub (00-22:00:00-104-4) stringwidth pop sub dup Ypos moveto
-(00-22:00:00-104-4) show
-exch sub 2 div add (04/15/82-Thu Apr 15 22:00:00 1982-22-00) stringwidth pop 2 div sub Ypos moveto
-(04/15/82-Thu Apr 15 22:00:00 1982-22-00) show
+(Test-%-04-16-1982) show currentpoint pop dup Rm Ps sub (00-03:00:00-105-5) stringwidth pop sub dup Ypos moveto
+(00-03:00:00-105-5) show
+exch sub 2 div add (04/16/82-Fri Apr 16 03:00:00 1982-03-00) stringwidth pop 2 div sub Ypos moveto
+(04/16/82-Fri Apr 16 03:00:00 1982-03-00) show
 /Vpos Tm Bh sub Ps sub def
 Lpt CFs setfont (    65  2  ) show (    ) CF setfont show (/* Child process */) IF setfont show  Nl
 Lpt CFs setfont (    66  2  ) show (    if \(!\(\(close\(fildes[parent_pipe_end]\) == 0\) &&) CF setfont show  Nl
@@ -239,27 +240,6 @@ Lpt CFs setfont (           ) show () CF setfont show  Nl
 Lpt CFs setfont (    87  2  ) show (    return fildes[parent_pipe_end];) CF setfont show  Nl
 Lpt CFs setfont (    88  1  ) show (  }) CF setfont show  Nl
 Lpt CFs setfont (    89     ) show (}) CF setfont show  Nl
-showpage
-%%Page: 5 6
-15 30 translate
-Cp gsave
-.9 setgray
-Rm 2 div Tm 2 div translate 60 rotate
-/Courier-Bold findfont 41 scalefont setfont -216 0 moveto (Login-testuser) show
-grestore
-HF setfont /Ypos Tm Bh sub Ps 2 div add def
-Ps Ypos moveto
-(Thu-Apr-10:00pm-3) show currentpoint pop dup Rm Ps sub (5-6-test1.c-fopenpipe) stringwidth pop sub dup Ypos moveto
-(5-6-test1.c-fopenpipe) show
-exch sub 2 div add (Apr-10:00pm-3-3) stringwidth pop 2 div sub Ypos moveto
-(Apr-10:00pm-3-3) show
-HF setfont /Ypos Ps 2 div def
-Ps Ypos moveto
-(Test-%-04-15-1982) show currentpoint pop dup Rm Ps sub (00-22:00:00-104-4) stringwidth pop sub dup Ypos moveto
-(00-22:00:00-104-4) show
-exch sub 2 div add (04/15/82-Thu Apr 15 22:00:00 1982-22-00) stringwidth pop 2 div sub Ypos moveto
-(04/15/82-Thu Apr 15 22:00:00 1982-22-00) show
-/Vpos Tm Bh sub Ps sub def
 Lpt CFs setfont (           ) show () CF setfont show  Nl
 Lpt CFs setfont (    91     ) show (FILE *) CF setfont show  Nl
 Lpt CFs setfont (    92     ) show (fopenpipe) BF setfont show (\(const char *command, char *mode\)) CF setfont show  Nl
@@ -271,27 +251,6 @@ Lpt CFs setfont (    97  1  ) show (  handle = openpipe\(command, mode\);) CF se
 Lpt CFs setfont (           ) show () CF setfont show  Nl
 Lpt CFs setfont (    99  1  ) show (  return fdopen\(handle, mode\);) CF setfont show  Nl
 Lpt CFs setfont (   100     ) show (}) CF setfont show  Nl
-showpage
-%%Page: 6 7
-15 30 translate
-Cp gsave
-.9 setgray
-Rm 2 div Tm 2 div translate 60 rotate
-/Courier-Bold findfont 41 scalefont setfont -216 0 moveto (Login-testuser) show
-grestore
-HF setfont /Ypos Tm Bh sub Ps 2 div add def
-Ps Ypos moveto
-(Thu-Apr-10:00pm-4) show currentpoint pop dup Rm Ps sub (5-6-test1.c-closepipe) stringwidth pop sub dup Ypos moveto
-(5-6-test1.c-closepipe) show
-exch sub 2 div add (Apr-10:00pm-4-4) stringwidth pop 2 div sub Ypos moveto
-(Apr-10:00pm-4-4) show
-HF setfont /Ypos Ps 2 div def
-Ps Ypos moveto
-(Test-%-04-15-1982) show currentpoint pop dup Rm Ps sub (00-22:00:00-104-4) stringwidth pop sub dup Ypos moveto
-(00-22:00:00-104-4) show
-exch sub 2 div add (04/15/82-Thu Apr 15 22:00:00 1982-22-00) stringwidth pop 2 div sub Ypos moveto
-(04/15/82-Thu Apr 15 22:00:00 1982-22-00) show
-/Vpos Tm Bh sub Ps sub def
 Lpt CFs setfont (           ) show () CF setfont show  Nl
 Lpt CFs setfont (   102     ) show (void) CF setfont show  Nl
 Lpt CFs setfont (   103     ) show (closepipe) BF setfont show (\(int handle\)) CF setfont show  Nl
@@ -302,27 +261,6 @@ Lpt CFs setfont (           ) show () CF setfont show  Nl
 Lpt CFs setfont (   108  1  ) show (  \(void\)close\(handle\);) CF setfont show  Nl
 Lpt CFs setfont (   109  1  ) show (  \(void\)waitpid\(-1, &statloc, WNOHANG\);) CF setfont show  Nl
 Lpt CFs setfont (   110     ) show (}) CF setfont show  Nl
-showpage
-%%Page: 7 8
-15 30 translate
-Cp gsave
-.9 setgray
-Rm 2 div Tm 2 div translate 60 rotate
-/Courier-Bold findfont 41 scalefont setfont -216 0 moveto (Login-testuser) show
-grestore
-HF setfont /Ypos Tm Bh sub Ps 2 div add def
-Ps Ypos moveto
-(Thu-Apr-10:00pm-5) show currentpoint pop dup Rm Ps sub (5-6-test1.c-fclosepipe) stringwidth pop sub dup Ypos moveto
-(5-6-test1.c-fclosepipe) show
-exch sub 2 div add (Apr-10:00pm-5-5) stringwidth pop 2 div sub Ypos moveto
-(Apr-10:00pm-5-5) show
-HF setfont /Ypos Ps 2 div def
-Ps Ypos moveto
-(Test-%-04-15-1982) show currentpoint pop dup Rm Ps sub (00-22:00:00-104-4) stringwidth pop sub dup Ypos moveto
-(00-22:00:00-104-4) show
-exch sub 2 div add (04/15/82-Thu Apr 15 22:00:00 1982-22-00) stringwidth pop 2 div sub Ypos moveto
-(04/15/82-Thu Apr 15 22:00:00 1982-22-00) show
-/Vpos Tm Bh sub Ps sub def
 Lpt CFs setfont (           ) show () CF setfont show  Nl
 Lpt CFs setfont (   112     ) show (void) CF setfont show  Nl
 Lpt CFs setfont (   113     ) show (fclosepipe) BF setfont show (\(FILE *fp\)) CF setfont show  Nl
@@ -331,7 +269,7 @@ Lpt CFs setfont (   115  1  ) show ({) CF setfont show  Nl
 Lpt CFs setfont (   116  1  ) show (  closepipe\(fileno\(fp\)\);) CF setfont show  Nl
 Lpt CFs setfont (   117     ) show (}) CF setfont show  Nl
 showpage
-%%Page: 8 9
+%%Page: 5 6
 15 30 translate
 Cp gsave
 .9 setgray
@@ -340,16 +278,16 @@ Rm 2 div Tm 2 div translate 60 rotate
 grestore
 HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu-Apr-10:00pm-1) show currentpoint pop dup Rm Ps sub (1-6-test2.c-getopt) stringwidth pop sub dup Ypos moveto
-(1-6-test2.c-getopt) show
-exch sub 2 div add (Apr-10:00pm-1-6) stringwidth pop 2 div sub Ypos moveto
-(Apr-10:00pm-1-6) show
+(Fri-Apr-03:00am-1) show currentpoint pop dup Rm Ps sub (1-3-test2.c-getopt) stringwidth pop sub dup Ypos moveto
+(1-3-test2.c-getopt) show
+exch sub 2 div add (Apr-03:00am-1-3) stringwidth pop 2 div sub Ypos moveto
+(Apr-03:00am-1-3) show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Test-%-04-15-1982) show currentpoint pop dup Rm Ps sub (00-22:00:00-104-4) stringwidth pop sub dup Ypos moveto
-(00-22:00:00-104-4) show
-exch sub 2 div add (04/15/82-Thu Apr 15 22:00:00 1982-22-00) stringwidth pop 2 div sub Ypos moveto
-(04/15/82-Thu Apr 15 22:00:00 1982-22-00) show
+(Test-%-04-16-1982) show currentpoint pop dup Rm Ps sub (00-03:00:00-105-5) stringwidth pop sub dup Ypos moveto
+(00-03:00:00-105-5) show
+exch sub 2 div add (04/16/82-Fri Apr 16 03:00:00 1982-03-00) stringwidth pop 2 div sub Ypos moveto
+(04/16/82-Fri Apr 16 03:00:00 1982-03-00) show
 /Vpos Tm Bh sub Ps sub def
 Lpt CFs setfont (     1     ) show (/* @\(#\)getopt.c */) IF setfont show  Nl
 Lpt CFs setfont (           ) show () IF setfont show  Nl

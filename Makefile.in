@@ -1,12 +1,12 @@
 prefix = @prefix@
-bindir = @prefix@/bin
-mandir = @prefix@/man/man1
+bindir = $(prefix)/bin
+mandir = $(prefix)/man/man1
 man1dir = $(mandir)/man1
-libdir = @prefix@/lib
+libdir = $(prefix)/lib
 srcdir = @srcdir@
 infodir = @infodir@
 
-version = 5.0
+version = @VERSID@
 
 INSTALL = install
 INSTALL_DATA = $(INSTALL)
@@ -28,6 +28,10 @@ OBJECTS = \
 	openpipe.o output.o postscript.o print_prompt.o \
 	printers_fl.o utils.o
 
+ifeq (@GOT_GETOPT_LONG@,no)
+OBJECTS += getopt.o getopt1.o
+endif
+
 SOURCES = \
 	BUGS \
 	COPYING \
@@ -43,6 +47,9 @@ SOURCES = \
 	diffs.h \
 	expand_str.c \
 	expand_str.h \
+	getopt.c \
+	getopt1.c \
+	getopt.h \
 	headers.c \
 	headers.h \
 	index.c \
@@ -193,6 +200,10 @@ dist: $(SOURCES) $(TESTSOURCES)
 	cp $(SOURCES) trueprint-$(version)
 	mkdir trueprint-$(version)/tests
 	cp $(TESTSOURCES) trueprint-$(version)/tests
+	chmod 644 trueprint-$(version)/*
+	chmod 755 trueprint-$(version) trueprint-$(version)/tests
+	chmod 644 trueprint-$(version)/tests/*
+	chmod +x trueprint-$(version)/tests/Run trueprint-$(version)/configure
 	tar cf - trueprint-$(version) |gzip > trueprint-$(version).tar.gz
 
 clean:

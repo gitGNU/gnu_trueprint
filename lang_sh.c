@@ -24,7 +24,7 @@
 /*
  * Public part
  */
-char		lang_sh_defaults[] = "-i --F --f --b";
+char		lang_sh_defaults[] = "-i --F --f";
 
 /*
  * Private part
@@ -124,6 +124,7 @@ get_sh_char(char *input_char, char_status *status)
 
   retval = getnextchar(input_char);
 
+  dm('L',9,"lang_sh.c:state=%d,f1_state=%d,fn_state=%d,input=%c\n",state,f1_state,fn_state,*input_char);
   /* First a short switch to sort out escaped stuff... */
   switch (state)
     {
@@ -397,19 +398,11 @@ get_sh_char(char *input_char, char_status *status)
 	  break;
 	case FN_CLOSE_BRACKET:
 	  if (isspace(*input_char)) break;
-	  else if (isalpha(*input_char))
-	    {
-	      fn_index=0;
-	      fn_page_number = page_number;
-	      fn_name[fn_index++] = *input_char;
-	      fn_start_char = char_number;
-	      fn_state = FN_NAME;
-	    }
-	  else
-	    {
-	      fn_index = 0;
-	      fn_state = FN_FNTEXT;
-	    }
+	  fn_index=0;
+	  fn_page_number = page_number;
+	  fn_name[fn_index++] = *input_char;
+	  fn_start_char = char_number;
+	  fn_state = FN_NAME;
 	  break;
 	default:
 	  ;

@@ -100,6 +100,8 @@ expand_character(char character, boolean index_page)
   static char *monnames[] = { "Jan", "Feb", "Mar", "Apr", "May", "Jun",
                               "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
 
+  struct tm *ft;
+
   /*
    * Initialize time buffer
    */
@@ -107,10 +109,15 @@ expand_character(char character, boolean index_page)
     {
       time_t now;
       if (!use_environment)
-	now = 387774000;
+	{
+	  now = 387774000;
+	  t = gmtime(&now);
+	}
       else
-	now = time((time_t *)NULL);
-      t = localtime(&now);
+	{
+	  now = time((time_t *)NULL);
+	  t = localtime(&now);
+	}
     }
 
   /*
@@ -181,6 +188,19 @@ expand_character(char character, boolean index_page)
     case 'f':		/* total page numbers in current file */
       if (index_page) return "";
       sprintf(output_buffer, "%ld", get_file_last_page(file_number) - get_file_first_page(file_number) + 1);
+      return output_buffer;
+    case 'c':		/* short-form modified (changed) date of current file */
+      if (index_page) return "";
+      ft = get_file_modified_time(file_number);
+      if (ft == NULL) return "";
+      sprintf(output_buffer, "%02d/%02d/%02d", ft->tm_mon+1, ft->tm_mday, ft->tm_year);
+      return output_buffer;
+    case 'C':		/* long-form modified (changed) date of current file */
+      if (index_page) return "";
+      ft = get_file_modified_time(file_number);
+      if (ft == NULL) return "";
+      sprintf(output_buffer, "%s %s %02d %02d:%02d:%02d %4d",
+		    daynames[ft->tm_wday], monnames[ft->tm_mon], ft->tm_mday, ft->tm_hour, ft->tm_min, ft->tm_sec, ft->tm_year + 1900);
       return output_buffer;
     case 'F':		/* final page number overall */
       if (index_page) return "";

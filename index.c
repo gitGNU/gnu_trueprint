@@ -5,9 +5,17 @@
 
 #include "config.h"
 
+#if TM_IN_SYS_TIME
+# include <sys/time.h>
+#else
+# include <time.h>
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 #include "trueprint.h"
 #include "main.h"
@@ -43,6 +51,7 @@ typedef struct {
   long	starting_page;
   long	ending_page;
   char	*name;
+  time_t modified;
 } file_entry;
 
 typedef struct {
@@ -136,19 +145,32 @@ page_has_changed(long this_page_number)
  * Function:
  *	add_file
  *
- * Remembers the starting page for the named file.
+ * Remembers the starting page and other info for the named file.
  */
 void
 add_file(char *filename, unsigned int this_file_number, long this_file_page_number)
 
 {
   size_t length = strlen(filename);
+  struct stat stat_buffer;
 
   if (this_file_number >= file_list_size)
     grow_array(&files, &file_list_size, sizeof(file_entry));
 
   files[this_file_number].starting_page = this_file_page_number;
   files[this_file_number].name = strdup(filename);
+
+  if (strcmp(filename,"-") != 0) {
+    if (stat(filename,&stat_buffer) == -1) {
+      perror(CMD_NAME ": cannot stat file");
+      exit(1);
+    }
+
+    files[this_file_number].modified = stat_buffer.st_mtime;
+  } else {
+    files[this_file_number].modified = 0;
+  }
+
   if (length > max_file_name_length)
     max_file_name_length = length;
 }
@@ -197,6 +219,22 @@ get_file_first_page(unsigned int this_file_number)
 
 /*****************************************************************************
  * Function:
+ *	get_file_modified_time
+ *
+ * Return the struct time_t containing the last modified time of the file
+ */
+struct tm *
+get_file_modified_time(unsigned int this_file_number)
+
+{
+  if (files[this_file_number].modified == 0)
+    return NULL;
+
+  return localtime(&files[this_file_number].modified);
+}
+
+/*****************************************************************************
+ * Function:
  *	add_function.
  *
  * Remembers the start and end characters, the page number and the filename
@@ -208,6 +246,9 @@ add_function(char *name, long start, long end, long page, char *filename)
 {
   size_t length = strlen(name);
   if (pass == 1) return;
+
+  dm('i',2,"index.c:add_function() Adding %s, page %ld filename %s\n",
+     name,page,filename);
 
   if (no_of_functions == function_list_size)
     grow_array(&functions, &function_list_size, sizeof(function_entry));
@@ -234,6 +275,8 @@ end_function(long page)
 
 {
   if (pass == 1) return;
+
+  dm('i',2,"index.c:end_function() Ending function on page %ld\n",page);
 
   functions[no_of_functions].changed = current_function_changed;
   functions[no_of_functions++].end_page = page;

@@ -1,5 +1,52 @@
 Reverse history of Trueprint:
 
+Version 5.1:
+	Many thanks to everybody who gave me feedback and reported
+	problems in version 5.0!  I've found the best advantage of
+	making Trueprint a GNU program is the users!  The changes
+	in 5.1 are all relatively minor - there are no major rewrites.
+	+ make check now uses gmtime instead of localtime, so you
+	don't need to live in Boston to have the tests succeed.
+	+ make check now ignores any DEFAULT_OPTS that might be set
+	in trueprint.h.
+	+ If the output is sent to a postscript file then it is
+	no longer created with the execute bits set.
+	+ In version 5.0 the documentation stated that the default
+	behaviour was to NOT have page breaks after functions; however
+	the code disagreed with the documentation.  The code has been
+	changed to fit.  If you want to change this back, set
+	DEFAULT_OPTS in trueprint.h to "--page-break-after-function"
+	+ .pm is now recognized as a suffix for a perl file.
+	+ Minor tweaks were made to the Makefile to make it easier
+	to generate a RPM package.
+	+ Postscript comments generated correctly with page information.
+	+ With no line numbers or braces depth, a thin line is still
+	printed on the lhs of each page.
+	+ In headers, footers and other strings, %c and %C can be used
+	to get the modification time of the file in short or long format.
+	+ When using stdin, the "filename" in headers and footers appears
+	as "-" instead of "stdin" as it did in earlier versions.
+	+ -r/--redirect-output sends output to .ps file named after 1st arg
+	+ -L/--minimum-line-length sets the minimum line length for
+	lines produced using intelligent line wrap.
+	+ A dummy gettext() is now included in case gettext() doesn't exist
+	on the system.
+	+ The standard GNU files getopt.c, getopt1.c and getopt.h are included
+	in case the system doesn't have getopt_long.
+	+ A bug in shell language handling which caused a coredump is fixed.
+	+ Perl should print POD documentation as comments.
+	+ I had many people suggest that the printers file should
+	move; I'm not moving it yet though.  My plan is to change
+	the format of the printers file to include (among other things)
+	options to be used for each queue, the possibility of multiple
+	virtual printers for one queue, passing options through to
+	lp or lpr (so you can e.g. select paper from different trays),
+	and (most important) a version id so that all future versions
+	of trueprint will be able to read older printer files.  When
+	I make this change I'll move the printers file so that older
+	versions of trueprint will still be able to find a printers
+	file they understand in /etc.
+	+ Various other minor changes were also made.
 Version 5.0: Trueprint GNU
 	Changed code to adhere to GNU coding standards.
 	Added long options.  Short options that used to start

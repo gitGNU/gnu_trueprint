@@ -7,9 +7,9 @@
 
 /*
  * TP_ADMIN_USER contains the mail address of the administrator.
+ * You should change this address!
  */
-/* #define TP_ADMIN_USER "lezz@merlin.dev.cdx.mot.com" */
-#define TP_ADMIN_USER "lezz@tiac.net"
+#define TP_ADMIN_USER "root@localhost"
 
 /*
  * Default settings for options, only needed if the defaults that are
@@ -73,12 +73,6 @@
  * 36 points is 1/2"
  */
 #define HOLEPUNCH_HEIGHT 36
-
-/*
- * The shortest that an output line can be.  Lines will be broken to
- * make sure that they're longer than this.
- */
-#define MINLINELENGTH	10
 
 /*
  * Characters that we can break lines on.  BREAKSLENGTH is set to the

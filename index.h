@@ -13,6 +13,7 @@ extern char *get_function_name(long page);
 extern char *file_name(int file_number);
 extern long get_file_last_page(unsigned int this_file_number);
 extern long get_file_first_page(unsigned int this_file_number);
+extern struct tm *get_file_modified_time(unsigned int this_file_number);
 extern void sort_function_names(void);
 extern void print_index(void);
 extern void print_out_file_index(void);

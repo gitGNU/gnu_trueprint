@@ -11,3 +11,9 @@ extern long int strtol(const char *nptr, char **endptr, int base);
 extern void *xmalloc(size_t);
 
 extern void *xrealloc(void *, size_t);
+
+#ifdef HAVE_LIBINTL_H
+#include <libintl.h>
+#else
+char *gettext(const char *);
+#endif

@@ -8,8 +8,6 @@
 
 #include "config.h"
 
-#include <libintl.h>
-
 #ifndef DIFF_CMD
 
 #include "trueprint.h"

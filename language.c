@@ -139,6 +139,7 @@ filename_to_language(char *filename)
   else if (strcmp(suffix,".sh") == 0) retval = SHELL;
   else if (strcmp(suffix,".pas") == 0) retval = PASCAL;
   else if (strcmp(suffix,".pl") == 0) retval = PERL;
+  else if (strcmp(suffix,".pm") == 0) retval = PERL;
   else if (strcmp(suffix,".java") == 0) retval = JAVA;
   else if (strcmp(suffix,".lst") == 0) retval = LIST;
   else retval = TEXT;

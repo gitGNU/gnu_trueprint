@@ -1,4 +1,4 @@
-%!PS-Adobe
+%!PS-Adobe-2.0
 statusdict /setduplexmode known {
   false statusdict /setduplexmode get exec
 } if
@@ -25,10 +25,11 @@ statusdict /setduplexmode known {
 		0 Tm moveto 0 Bh neg rlineto Rm 0 rlineto 0 Bh rlineto closepath
 		gsave .98 setgray fill grestore stroke
 		0 0 moveto 0 Bf rlineto Rm 0 rlineto 0 Bf neg rlineto closepath
-		gsave .98 setgray fill grestore stroke } def
+		gsave .98 setgray fill grestore stroke
+		0 Bf moveto 0 Tm Bh sub lineto stroke newpath
+		} def
 /Cp	{ Ip .3 setlinewidth newpath
 		Li 0 Bf add moveto Li Tm Bh sub lineto stroke newpath
-		0 Bf moveto 0 Tm Bh sub lineto stroke newpath
 		} def
 /So	{ gsave dup stringwidth pop Ps 3 div 0 exch rmoveto 0 rlineto fill grestore } def
 /Ul	{ gsave	dup stringwidth pop 0 -1 rmoveto 0 rlineto fill grestore } def
@@ -41,7 +42,7 @@ statusdict /setduplexmode known {
 /Helvetica-Bold findfont 20 scalefont setfont
 (For: testuser) show
 70 700 moveto
-(Printed on: Thu Apr 15 22:00:00 1982) show
+(Printed on: Fri Apr 16 03:00:00 1982) show
 70 675 moveto
 (Last page number: 1) show
 70 650 moveto (File: test4.old) show
@@ -50,13 +51,13 @@ showpage
 15 30 translate
 Ip HF setfont /Ypos Tm Bh sub Ps 2 div add def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1 of 1) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1 of 1) stringwidth pop sub dup Ypos moveto
 (Page 1 of 1) show
 exch sub 2 div add () stringwidth pop 2 div sub Ypos moveto
 () show
 HF setfont /Ypos Ps 2 div def
 Ps Ypos moveto
-(Thu Apr 15 22:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1 of 1) stringwidth pop sub dup Ypos moveto
+(Fri Apr 16 03:00:00 1982) show currentpoint pop dup Rm Ps sub (Page 1 of 1) stringwidth pop sub dup Ypos moveto
 (Page 1 of 1) show
 exch sub 2 div add (test4.old 1) stringwidth pop 2 div sub Ypos moveto
 (test4.old 1) show
