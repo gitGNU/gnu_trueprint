@@ -61,6 +61,7 @@ typedef enum {
   TEXT,
   JAVA,
   VERILOG
+  PHP
 } languages;
 
 get_char_fn 	get_char;
@@ -104,6 +105,7 @@ set_language_default(char *value)
   else if (strcmp(value,"java") == 0)   language = JAVA;
   else if (strcmp(value,"text") == 0)   language = TEXT;
   else if (strcmp(value,"list") == 0)   language = LIST;
+  else if (strcmp(value,"php") == 0)    language = PHP;
   else if (strcmp(value,"pseudoc") == 0)language = PSEUDOC;
   else {
     fprintf(stderr, gettext(CMD_NAME ": unrecognized language type: %s\n"), value);
