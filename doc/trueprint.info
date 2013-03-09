@@ -1,4 +1,4 @@
-This is trueprint.info, produced by makeinfo version 4.0 from
+This is trueprint.info, produced by makeinfo version 4.13 from
 trueprint.texi.
 
 INFO-DIR-SECTION Miscellaneous
@@ -16,7 +16,7 @@ File: trueprint.info,  Node: Top,  Next: Overview,  Up: (dir)
 Trueprint
 *********
 
-   Trueprint is a program for printing source code and other text files.
+Trueprint is a program for printing source code and other text files.
 
 * Menu:
 
@@ -40,11 +40,10 @@ Trueprint
 
 File: trueprint.info,  Node: Overview,  Next: Installing Trueprint,  Prev: Top,  Up: Top
 
-Overview
-********
+1 Overview
+**********
 
-   What is Trueprint?  Trueprint is an ugly flower that smells
-beautiful.
+What is Trueprint?  Trueprint is an ugly flower that smells beautiful.
 
    Trueprint is intended to be the only printing program you will ever
 need to print your program source code and other text files.  It tries
@@ -83,18 +82,18 @@ Giles.  His email addresses at the time of writing are
 
 File: trueprint.info,  Node: Installing Trueprint,  Next: Languages,  Prev: Overview,  Up: Top
 
-Installing Trueprint
-********************
+2 Installing Trueprint
+**********************
 
-   Installing Trueprint is almost as simple as installing any
-well-behaved GNU program.  For details, read the README file that comes
-with the package.  This section provides an overview of the process,
-plus details of the `printers' file.
+Installing Trueprint is almost as simple as installing any well-behaved
+GNU program.  For details, read the README file that comes with the
+package.  This section provides an overview of the process, plus
+details of the `printers' file.
 
-Installation Overview
-=====================
+2.1 Installation Overview
+=========================
 
-   In the simplest case, assuming you want to install trueprint into
+In the simplest case, assuming you want to install trueprint into
 /usr/local/bin, installing trueprint is just a matter of five short
 steps:
    * `./configure'
@@ -116,10 +115,10 @@ to `./configure' using `--prefix', e.g. `./configure --prefix=/usr'.
 appropriate `.dif' file.  If you can't work out what's gone wrong then
 report the problem to <bug-trueprint@gnu.org>.
 
-The `printers' file
-===================
+2.2 The `printers' file
+=======================
 
-   The printers file is the most complicated part of Trueprint.  Put
+The printers file is the most complicated part of Trueprint.  Put
 simply, it contains two lists: a list of printer types, and a list of
 the printers at your site.  The list of printer types is long (well,
 actually it's fairly short) and it should contain the most common
@@ -170,14 +169,13 @@ different paper sizes.
 
 File: trueprint.info,  Node: Languages,  Next: Page Formatting,  Prev: Installing Trueprint,  Up: Top
 
-Languages
-*********
+3 Languages
+***********
 
-   Different programming languages have different features and look
-their best with different formats.  Since Trueprint tries to be all
-things to all people, it understands a number of different languages
-and tries to accomodate all of them.  In this version Trueprint
-understands:
+Different programming languages have different features and look their
+best with different formats.  Since Trueprint tries to be all things to
+all people, it understands a number of different languages and tries to
+accomodate all of them.  In this version Trueprint understands:
    * C
 
    * Verilog
@@ -247,10 +245,10 @@ between a pair of ^Cs is printed in italics.
 
 File: trueprint.info,  Node: Page Formatting,  Next: Page Furniture,  Prev: Languages,  Up: Top
 
-Page Formatting
-***************
+4 Page Formatting
+*****************
 
-   There are a few options that you can use to adjust the overall page
+There are a few options that you can use to adjust the overall page
 formatting.  Most of these options are pretty self-explanatory.
 
    For portrait printing use `--portrait', and for landscape printing
@@ -286,11 +284,11 @@ they've been set up as defaults.
 
 File: trueprint.info,  Node: Page Furniture,  Next: Text Formatting,  Prev: Page Formatting,  Up: Top
 
-Page Furniture
-**************
+5 Page Furniture
+****************
 
-   Page furniture refers to the bits and pieces scattered around the
-edge of each page.  It includes things like headers and footers, line
+Page furniture refers to the bits and pieces scattered around the edge
+of each page.  It includes things like headers and footers, line
 numbers, and so on.
 
    The left-hand side of each page can include two columns of
@@ -308,13 +306,13 @@ example `--gray-bands 3' would print light gray bands three lines deep
 all the way down the page.  Naturally you can force this off with
 `--no-gray-bands'.
 
-Headers and Footers
-===================
+5.1 Headers and Footers
+=======================
 
-   Headers and footers are printed in boxes at the top and bottom of
-each page.  There are three header strings and three footer strings,
-and each can be a mixture of constant strings or % escapes.  The
-strings are set with `--left-header=STRING', `--center-header=STRING',
+Headers and footers are printed in boxes at the top and bottom of each
+page.  There are three header strings and three footer strings, and
+each can be a mixture of constant strings or % escapes.  The strings
+are set with `--left-header=STRING', `--center-header=STRING',
 `--right-header=STRING', `--left-footer=STRING',
 `--center-footer=STRING', and `--right-footer=STRING'.  If you want to
 turn off either headers or footers you can use `--no-headers' or
@@ -426,13 +424,13 @@ footer and message strings:
 
 File: trueprint.info,  Node: Text Formatting,  Next: Output Options,  Prev: Page Furniture,  Up: Top
 
-Text Formatting
-***************
+6 Text Formatting
+*****************
 
-Page breaks
-===========
+6.1 Page breaks
+===============
 
-   There are three places that Trueprint can include page breaks: at the
+There are three places that Trueprint can include page breaks: at the
 end of a function (assuming the current language has functions), when
 it finds a form-feed character (control-L), and at the end of each file.
 
@@ -451,12 +449,12 @@ at the end of a file.  This option has no effect for one-up output.
 `--form-feeds' and, of course, you can turn it off with
 `--ignore-form-feeds'.
 
-Line wrap
-=========
+6.2 Line wrap
+=============
 
-   By default Trueprint will wrap lines that are too long for the page.
-It will try to break the lines at intelligent locations, for example
-at a space character, and it will print the remainder of the line
+By default Trueprint will wrap lines that are too long for the page.
+It will try to break the lines at intelligent locations, for example at
+a space character, and it will print the remainder of the line
 right-justified.  If you don't like this then you can turn off
 line-wrap with `--no-line-wrap', or you can set the line-wrap column
 explicitly with `--line-wrap=COLUMN'.  You can also tell Trueprint to
@@ -467,10 +465,10 @@ intelligent line-wrap but you want to ensure that you don't end up with
 incredibly short lines then you can set the minimum line length with
 `--minimum-line-length=NUMBER'.
 
-Page length and pointsize
-=========================
+6.3 Page length and pointsize
+=============================
 
-   The default pointsize used by Trueprint is 10.  Of course, this is
+The default pointsize used by Trueprint is 10.  Of course, this is
 reduced appropriately if you're printing two-up or four-up.  You can
 set the pointsize explicitly with `--pointsize=NUMBER', although bear
 in mind that the pointsize will still be scaled down for two-up or
@@ -492,27 +490,27 @@ file naturally breaks into pages of a specific length.  You may also
 want to turn off line-wrap so that long lines don't mess up your
 carefully formatted output.
 
-Tab size
-========
+6.4 Tab size
+============
 
-   The default tab size is eight characters.  If this eats up too many
+The default tab size is eight characters.  If this eats up too many
 columns for you, then you can set it with `--tabsize=NUMBER'.
 
 
 File: trueprint.info,  Node: Output Options,  Next: Print Selection,  Prev: Text Formatting,  Up: Top
 
-Output Options
-**************
+7 Output Options
+****************
 
-   By default Trueprint will simply send the postscript output to `lp'
-or `lpr' (depending on the ancestry of your version of Unix), and it
-will explicitly set the destination to the value of the environment
-variable `$PRINTER'.  You can use `--printer=PRINTER' to send the print
-job to another printer.  If you like `lp' options then you can also say
-`-P PRINTER', or if you are a fan of System V then you can say `-d
-PRINTER' (almost every Trueprint option has a single-character
-equivalent - I only mention these two explicitly because they are used
-exactly the same way as the options to `lpr' and `lp').
+By default Trueprint will simply send the postscript output to `lp' or
+`lpr' (depending on the ancestry of your version of Unix), and it will
+explicitly set the destination to the value of the environment variable
+`$PRINTER'.  You can use `--printer=PRINTER' to send the print job to
+another printer.  If you like `lp' options then you can also say `-P
+PRINTER', or if you are a fan of System V then you can say `-d PRINTER'
+(almost every Trueprint option has a single-character equivalent - I
+only mention these two explicitly because they are used exactly the
+same way as the options to `lpr' and `lp').
 
    If you want to print multiple copies then just use `--copies=NUMBER'.
 
@@ -527,10 +525,10 @@ a `--no-redirect-output' option to turn it off.
 
 File: trueprint.info,  Node: Print Selection,  Next: Miscellaneous Features,  Prev: Output Options,  Up: Top
 
-Print Selection
-***************
+8 Print Selection
+*****************
 
-   A Trueprint print job can contain a reasonably long list of pages:
+A Trueprint print job can contain a reasonably long list of pages:
    * A cover sheet,
 
    * a file index,
@@ -574,6 +572,7 @@ a comma-seperated list of page selections:
 `F'
      Print the file index.
 
+
    For example, `--print-pages=1-5,main,f' will print the function
 index, pages 1 to 5, and all the pages for the function `main'.
 
@@ -607,22 +606,22 @@ number, and so on.  The possible responses are:
 `?'
      Print a help message.
 
+
    Of course, you can force the prompting feature off with
 `--no-prompt'.
 
 
 File: trueprint.info,  Node: Miscellaneous Features,  Next: Options and Environment Variables List,  Prev: Print Selection,  Up: Top
 
-Miscellaneous Features
-**********************
+9 Miscellaneous Features
+************************
 
-Diff-marking
-============
+9.1 Diff-marking
+================
 
-   One of the more obscure but more useful features of Trueprint is the
+One of the more obscure but more useful features of Trueprint is the
 ability to highlight differences between two versions of sets of files.
-Added lines are shown in bold, while deleted lines are shown
-struck-out.
+Added lines are shown in bold, while deleted lines are shown struck-out.
 
    You specify the old version of the file or files with
 `--diff=PATHNAME'.  If PATHNAME suffixed with the current filename is a
@@ -646,19 +645,19 @@ the differences between PATHNAME and the current file are displayed.
 
    will print the differences between this.c and that.c.
 
-Help and Version Information
-============================
+9.2 Help and Version Information
+================================
 
-   Use `--help' for general on-line help information.  If you give the
+Use `--help' for general on-line help information.  If you give the
 `--help' option a parameter it will give you more detailed information
 about a specific area - use `--help' for a list of the areas.
 
    Use `--version' to see the current version of Trueprint.
 
-Setting personal defaults
-=========================
+9.3 Setting personal defaults
+=============================
 
-   When Trueprint starts it uses four sets of options:
+When Trueprint starts it uses four sets of options:
 
    * Hard-coded defaults.
 
@@ -674,10 +673,10 @@ options override all other sets.
    If you want to set some personal default options, then simply set
 the environment variable `$TP_OPTS'.
 
-Postscript level
-================
+9.4 Postscript level
+====================
 
-   It is possible to request that trueprint generate level 1 or level 2
+It is possible to request that trueprint generate level 1 or level 2
 postscript. Level 2 is the default.  If level 2 is set then trueprint
 will send the appropriate instructions to select the proper paper size.
 You shouldn't normally need to use this option.  To select postscript
@@ -685,19 +684,19 @@ level 1 use `--ps-level-one' and to select postscript level 2 use
 `--ps-level-two'.  In the future this option may be used to turn on
 more features.
 
-Environment Information
-=======================
+9.5 Environment Information
+===========================
 
-   By default Trueprint uses environment variables and the current
+By default Trueprint uses environment variables and the current
 username.  You can force it to ignore these by using
 `--ignore-environment'.  In practice this is only used when running the
 tests during installation.  For the sake of completeness there is an
 option `--use-environment'.
 
-Debugging
-=========
+9.6 Debugging
+=============
 
-   Trueprint has built-in debugging messages that can be useful for
+Trueprint has built-in debugging messages that can be useful for
 tracking down problems.  The debugging messages are turned on with
 `--debug=STRING', where STRING is a series of letter/digit pairs.  Each
 letter turns on a set of debugging messages, and the corresponding
@@ -713,11 +712,11 @@ string!
 
 File: trueprint.info,  Node: Options and Environment Variables List,  Next: Option Index,  Prev: Miscellaneous Features,  Up: Top
 
-Options and Environment Variables
-*********************************
+10 Options and Environment Variables
+************************************
 
-Miscellaneous options
-=====================
+10.1 Miscellaneous options
+==========================
 
 `-D'
 `--debug=STRING'
@@ -757,8 +756,9 @@ Miscellaneous options
      don't use values from environment, such as time, `$USER', etc.
      This is for test purposes, to make test results more reproducible.
 
-Page furniture options
-======================
+
+10.2 Page furniture options
+===========================
 
 `-X STRING'
 `--left-header=STRING'
@@ -826,8 +826,9 @@ Page furniture options
 `--line-numbers'
      Include the line number count.
 
-Text formatting options
-=======================
+
+10.3 Text formatting options
+============================
 
 `-b'
 `--no-page-break-after-function'
@@ -885,8 +886,9 @@ Text formatting options
      Specify number of lines on a page, point size is calculated
      appropriately.
 
-Print selection options
-=======================
+
+10.4 Print selection options
+============================
 
 `-C'
 `--no-cover-sheet'
@@ -932,8 +934,9 @@ Print selection options
 `--print-body'
      Print body of text.
 
-Page format options
-===================
+
+10.5 Page format options
+========================
 
 `-I'
 `--no-holepunch'
@@ -983,8 +986,9 @@ Page format options
 `--four-up'
      Print 4-on-1.
 
-Output options
-==============
+
+10.6 Output options
+===================
 
 `-d STRING'
 `--printer=STRING'
@@ -1002,38 +1006,39 @@ Output options
 `--copies=NUMBER'
      Specify number of copies to be printed.
 
-Environment Variables
-=====================
 
-TP_OPTS
--------
+10.7 Environment Variables
+==========================
 
-   Specify options.  These options override any default options
-including language defaults, but are overridden by command line options.
+10.7.1 TP_OPTS
+--------------
 
-TP_DIFF_CMD
------------
+Specify options.  These options override any default options including
+language defaults, but are overridden by command line options.
 
-   Specify the diff command to be used.  The command must produce output
+10.7.2 TP_DIFF_CMD
+------------------
+
+Specify the diff command to be used.  The command must produce output
 in the same format as the classic Unix diff.  This variable can be used
 to add flags to the diff command used, for example to make diff ignore
 whitespace.
 
-TP_PRINT_CMD
-------------
+10.7.3 TP_PRINT_CMD
+-------------------
 
-   Specify the print command.  The default is lpr.  If this is set then
-it should be set to a command that takes standard input.  If this is set
+Specify the print command.  The default is lpr.  If this is set then it
+should be set to a command that takes standard input.  If this is set
 then the destination and number of copies have no effect, i.e. there is
 no mechanism to pass these values to your print command.  If you set
 this to /bin/cat then the postscript output will appear on stdout.
 
-TP_PRINTERS_FILE
-----------------
+10.7.4 TP_PRINTERS_FILE
+-----------------------
 
-   Specify the printers file.  The default is the printers file that
-was initially configured when trueprint was installed.  This can be
-used to test out a new printers file.
+Specify the printers file.  The default is the printers file that was
+initially configured when trueprint was installed.  This can be used to
+test out a new printers file.
 
 
 File: trueprint.info,  Node: Option Index,  Next: Concept Index,  Prev: Options and Environment Variables List,  Up: Top
@@ -1041,77 +1046,84 @@ File: trueprint.info,  Node: Option Index,  Next: Concept Index,  Prev: Options 
 Option Index
 ************
 
+ [index ]
 * Menu:
 
-* braces-depth:                          Page Furniture.
-* center-footer:                         Page Furniture.
-* center-header:                         Page Furniture.
-* copies:                                Output Options.
-* cover-sheet:                           Print Selection.
+* braces-depth:                          Page Furniture.       (line 10)
+* center-footer:                         Page Furniture.       (line 28)
+* center-header:                         Page Furniture.       (line 28)
+* copies:                                Output Options.       (line 16)
+* cover-sheet:                           Print Selection.      (line 17)
 * debug:                                 Miscellaneous Features.
+                                                               (line 86)
 * diff:                                  Miscellaneous Features.
-* double-sided:                          Page Formatting.
-* file-index:                            Print Selection.
-* footers:                               Page Furniture.
-* form-feeds:                            Text Formatting.
-* four-up:                               Page Formatting.
-* function-index:                        Print Selection.
-* gray-bands:                            Page Furniture.
-* headers:                               Page Furniture.
+                                                               (line 13)
+* double-sided:                          Page Formatting.      (line 12)
+* file-index:                            Print Selection.      (line 17)
+* footers:                               Page Furniture.       (line 28)
+* form-feeds:                            Text Formatting.      (line 24)
+* four-up:                               Page Formatting.      (line 19)
+* function-index:                        Print Selection.      (line 17)
+* gray-bands:                            Page Furniture.       (line 18)
+* headers:                               Page Furniture.       (line 28)
 * help:                                  Miscellaneous Features.
-* holepunch:                             Page Formatting.
+                                                               (line 38)
+* holepunch:                             Page Formatting.      (line 32)
 * ignore-environment:                    Miscellaneous Features.
-* ignore-form-feeds:                     Text Formatting.
-* intelligent-line-wrap:                 Text Formatting.
-* landscape:                             Page Formatting.
-* language:                              Languages.
-* leading:                               Text Formatting.
-* left-footer:                           Page Furniture.
-* left-header:                           Page Furniture.
-* line-numbers:                          Page Furniture.
-* line-wrap:                             Text Formatting.
-* message:                               Page Furniture.
-* minimum-line-length:                   Text Formatting.
-* new-sheet-after-file:                  Text Formatting.
-* no-braces-depth:                       Page Furniture.
-* no-cover-sheet:                        Print Selection.
-* no-file-index:                         Print Selection.
-* no-footers:                            Page Furniture.
-* no-function-index:                     Print Selection.
-* no-gray-bands:                         Page Furniture.
-* no-headers:                            Page Furniture.
-* no-holepunch:                          Page Formatting.
-* no-intelligent-line-wrap:              Text Formatting.
-* no-line-numbers:                       Page Furniture.
-* no-line-wrap:                          Text Formatting.
-* no-page-break-after-function:          Text Formatting.
-* no-page-furniture-lines:               Page Furniture.
-* no-print-body:                         Print Selection.
-* no-prompt:                             Print Selection.
-* no-rotate-alternate-sheets:            Page Formatting.
-* no-top-holepunch:                      Page Formatting.
-* one-up:                                Page Formatting.
-* output:                                Output Options.
-* page-break-after-function:             Text Formatting.
-* page-furniture-lines:                  Page Furniture.
-* page-length:                           Text Formatting.
-* pointsize:                             Text Formatting.
-* portrait:                              Page Formatting.
-* print-body:                            Print Selection.
-* print-pages:                           Print Selection.
-* printer:                               Output Options.
-* prompt:                                Print Selection.
-* redirect:                              Output Options.
-* right-footer:                          Page Furniture.
-* right-header:                          Page Furniture.
-* rotate-alternate-sheets:               Page Formatting.
-* single-sided:                          Page Formatting.
-* tabsize:                               Text Formatting.
-* top-holepunch:                         Page Formatting.
-* two-tall-up:                           Page Formatting.
-* two-up:                                Page Formatting.
+                                                               (line 77)
+* ignore-form-feeds:                     Text Formatting.      (line 24)
+* intelligent-line-wrap:                 Text Formatting.      (line 31)
+* landscape:                             Page Formatting.      (line  9)
+* language:                              Languages.            (line 39)
+* leading:                               Text Formatting.      (line 53)
+* left-footer:                           Page Furniture.       (line 28)
+* left-header:                           Page Furniture.       (line 28)
+* line-numbers:                          Page Furniture.       (line 10)
+* line-wrap:                             Text Formatting.      (line 31)
+* message:                               Page Furniture.       (line 48)
+* minimum-line-length:                   Text Formatting.      (line 31)
+* new-sheet-after-file:                  Text Formatting.      (line 18)
+* no-braces-depth:                       Page Furniture.       (line 10)
+* no-cover-sheet:                        Print Selection.      (line 17)
+* no-file-index:                         Print Selection.      (line 17)
+* no-footers:                            Page Furniture.       (line 28)
+* no-function-index:                     Print Selection.      (line 17)
+* no-gray-bands:                         Page Furniture.       (line 18)
+* no-headers:                            Page Furniture.       (line 28)
+* no-holepunch:                          Page Formatting.      (line 32)
+* no-intelligent-line-wrap:              Text Formatting.      (line 31)
+* no-line-numbers:                       Page Furniture.       (line 10)
+* no-line-wrap:                          Text Formatting.      (line 31)
+* no-page-break-after-function:          Text Formatting.      (line 13)
+* no-page-furniture-lines:               Page Furniture.       (line 41)
+* no-print-body:                         Print Selection.      (line 17)
+* no-prompt:                             Print Selection.      (line 85)
+* no-rotate-alternate-sheets:            Page Formatting.      (line 28)
+* no-top-holepunch:                      Page Formatting.      (line 32)
+* one-up:                                Page Formatting.      (line 19)
+* output:                                Output Options.       (line 18)
+* page-break-after-function:             Text Formatting.      (line 13)
+* page-furniture-lines:                  Page Furniture.       (line 41)
+* page-length:                           Text Formatting.      (line 60)
+* pointsize:                             Text Formatting.      (line 47)
+* portrait:                              Page Formatting.      (line  9)
+* print-body:                            Print Selection.      (line 17)
+* print-pages:                           Print Selection.      (line 22)
+* printer:                               Output Options.       (line  6)
+* prompt:                                Print Selection.      (line 54)
+* redirect:                              Output Options.       (line 18)
+* right-footer:                          Page Furniture.       (line 28)
+* right-header:                          Page Furniture.       (line 28)
+* rotate-alternate-sheets:               Page Formatting.      (line 28)
+* single-sided:                          Page Formatting.      (line 12)
+* tabsize:                               Text Formatting.      (line 72)
+* top-holepunch:                         Page Formatting.      (line 32)
+* two-tall-up:                           Page Formatting.      (line 19)
+* two-up:                                Page Formatting.      (line 19)
 * use-environment:                       Miscellaneous Features.
+                                                               (line 77)
 * version:                               Miscellaneous Features.
+                                                               (line 42)
 
 
 File: trueprint.info,  Node: Concept Index,  Prev: Option Index,  Up: Top
@@ -1119,117 +1131,129 @@ File: trueprint.info,  Node: Concept Index,  Prev: Option Index,  Up: Top
 Concept Index
 *************
 
+ [index ]
 * Menu:
 
-* $PRINTER:                              Output Options.
-* body:                                  Print Selection.
-* braces depth:                          Page Furniture.
-* c language:                            Languages.
-* c++:                                   Languages.
+* $PRINTER:                              Output Options.       (line  6)
+* body:                                  Print Selection.      (line  6)
+* braces depth:                          Page Furniture.       (line  6)
+* c language:                            Languages.            (line  6)
+* c++:                                   Languages.            (line  6)
 * comparing with old version:            Miscellaneous Features.
-* control-L:                             Text Formatting.
-* copies:                                Output Options.
-* cover sheet:                           Print Selection.
+                                                               (line  9)
+* control-L:                             Text Formatting.      (line  9)
+* copies:                                Output Options.       (line  6)
+* cover sheet:                           Print Selection.      (line  6)
 * debugging:                             Miscellaneous Features.
+                                                               (line 86)
 * default options:                       Miscellaneous Features.
+                                                               (line 47)
 * diff:                                  Miscellaneous Features.
-* double-sided:                          Page Formatting.
+                                                               (line  9)
+* double-sided:                          Page Formatting.      (line  6)
 * environment variables:                 Miscellaneous Features.
-* file index:                            Print Selection.
-* file output:                           Output Options.
-* filename extensions:                   Languages.
-* flower:                                Overview.
-* footer string format:                  Page Furniture.
-* footers:                               Page Furniture.
-* format:                                Text Formatting.
-* formfeed character:                    Text Formatting.
-* four-up:                               Page Formatting.
-* function index:                        Print Selection.
-* function page breaks:                  Text Formatting.
-* gray bands:                            Page Furniture.
-* header string format:                  Page Furniture.
-* headers:                               Page Furniture.
+                                                               (line 77)
+* file index:                            Print Selection.      (line  6)
+* file output:                           Output Options.       (line  6)
+* filename extensions:                   Languages.            (line  6)
+* flower:                                Overview.             (line  6)
+* footer string format:                  Page Furniture.       (line 28)
+* footers:                               Page Furniture.       (line 28)
+* format:                                Text Formatting.      (line  6)
+* formfeed character:                    Text Formatting.      (line  9)
+* four-up:                               Page Formatting.      (line  6)
+* function index:                        Print Selection.      (line  6)
+* function page breaks:                  Text Formatting.      (line  9)
+* gray bands:                            Page Furniture.       (line  6)
+* header string format:                  Page Furniture.       (line 28)
+* headers:                               Page Furniture.       (line 28)
 * help messages:                         Miscellaneous Features.
-* holepunch:                             Page Formatting.
-* holepunch at top of page:              Page Formatting.
-* indentation:                           Page Furniture.
-* installing:                            Installing Trueprint.
-* intelligent line wrap:                 Text Formatting.
-* invoking make:                         Installing Trueprint.
-* java:                                  Languages.
-* landscape:                             Page Formatting.
-* language defaults:                     Languages.
-* languages:                             Languages.
-* leading:                               Text Formatting.
-* line breaks:                           Text Formatting.
-* line gap:                              Text Formatting.
-* line numbers:                          Page Furniture.
-* line wrap:                             Text Formatting.
-* listing files:                         Languages.
-* lp:                                    Output Options.
-* lpr:                                   Output Options.
-* make install:                          Installing Trueprint.
-* make test:                             Installing Trueprint.
+                                                               (line 38)
+* holepunch:                             Page Formatting.      (line  6)
+* holepunch at top of page:              Page Formatting.      (line  6)
+* indentation:                           Page Furniture.       (line  6)
+* installing:                            Installing Trueprint. (line 14)
+* intelligent line wrap:                 Text Formatting.      (line 31)
+* invoking make:                         Installing Trueprint. (line 14)
+* java:                                  Languages.            (line  6)
+* landscape:                             Page Formatting.      (line  6)
+* language defaults:                     Languages.            (line  6)
+* languages:                             Languages.            (line  6)
+* leading:                               Text Formatting.      (line 47)
+* line breaks:                           Text Formatting.      (line 31)
+* line gap:                              Text Formatting.      (line 47)
+* line numbers:                          Page Furniture.       (line  6)
+* line wrap:                             Text Formatting.      (line 31)
+* listing files:                         Languages.            (line  6)
+* lp:                                    Output Options.       (line  6)
+* lpr:                                   Output Options.       (line  6)
+* make install:                          Installing Trueprint. (line 14)
+* make test:                             Installing Trueprint. (line 14)
 * marking differences:                   Miscellaneous Features.
-* message string:                        Page Furniture.
-* message string format:                 Page Furniture.
-* nostalgia:                             Page Furniture.
-* one-up:                                Page Formatting.
-* output:                                Output Options.
-* output file:                           Output Options.
-* overview:                              Overview.
-* page breaks:                           Text Formatting.
-* page breaks after functions:           Text Formatting.
-* page formatting:                       Page Formatting.
-* page furniture:                        Page Furniture.
-* page length:                           Text Formatting.
-* pascal:                                Languages.
-* perl:                                  Languages.
+                                                               (line  9)
+* message string:                        Page Furniture.       (line 28)
+* message string format:                 Page Furniture.       (line 28)
+* nostalgia:                             Page Furniture.       (line  6)
+* one-up:                                Page Formatting.      (line  6)
+* output:                                Output Options.       (line  6)
+* output file:                           Output Options.       (line  6)
+* overview:                              Overview.             (line  6)
+* page breaks:                           Text Formatting.      (line  9)
+* page breaks after functions:           Text Formatting.      (line  9)
+* page formatting:                       Page Formatting.      (line  6)
+* page furniture:                        Page Furniture.       (line  6)
+* page length:                           Text Formatting.      (line 47)
+* pascal:                                Languages.            (line  6)
+* perl:                                  Languages.            (line  6)
 * personal defaults:                     Miscellaneous Features.
-* plain text:                            Languages.
-* pointsize:                             Text Formatting.
-* portrait:                              Page Formatting.
-* postscript:                            Output Options.
+                                                               (line 47)
+* plain text:                            Languages.            (line  6)
+* pointsize:                             Text Formatting.      (line 47)
+* portrait:                              Page Formatting.      (line  6)
+* postscript:                            Output Options.       (line  6)
 * postscript level:                      Miscellaneous Features.
-* printer destination:                   Output Options.
-* printer queues:                        Installing Trueprint.
-* printer specification:                 Installing Trueprint.
-* printers file:                         Installing Trueprint.
-* printing multiple copies:              Output Options.
-* pseudo C:                              Languages.
-* report format:                         Languages.
-* saving postscript:                     Output Options.
-* selecting pages to print:              Print Selection.
+                                                               (line 66)
+* printer destination:                   Output Options.       (line  6)
+* printer queues:                        Installing Trueprint. (line 39)
+* printer specification:                 Installing Trueprint. (line 39)
+* printers file:                         Installing Trueprint. (line 39)
+* printing multiple copies:              Output Options.       (line  6)
+* pseudo C:                              Languages.            (line  6)
+* report format:                         Languages.            (line  6)
+* saving postscript:                     Output Options.       (line  6)
+* selecting pages to print:              Print Selection.      (line  6)
 * setting defaults:                      Miscellaneous Features.
-* shell:                                 Languages.
-* single-sided:                          Page Formatting.
-* smell:                                 Overview.
-* string format characters:              Page Furniture.
-* tab size:                              Text Formatting.
-* testing the installation:              Installing Trueprint.
-* text formatting:                       Text Formatting.
-* text size:                             Text Formatting.
-* top holepunch:                         Page Formatting.
-* two-up:                                Page Formatting.
-* two-up with small font:                Page Formatting.
-* verilog:                               Languages.
+                                                               (line 47)
+* shell:                                 Languages.            (line  6)
+* single-sided:                          Page Formatting.      (line  6)
+* smell:                                 Overview.             (line  6)
+* string format characters:              Page Furniture.       (line 28)
+* tab size:                              Text Formatting.      (line 72)
+* testing the installation:              Installing Trueprint. (line 14)
+* text formatting:                       Text Formatting.      (line  6)
+* text size:                             Text Formatting.      (line 47)
+* top holepunch:                         Page Formatting.      (line  6)
+* two-up:                                Page Formatting.      (line  6)
+* two-up with small font:                Page Formatting.      (line  6)
+* verilog:                               Languages.            (line  6)
 * version information:                   Miscellaneous Features.
+                                                               (line 38)
 
 
 
 Tag Table:
-Node: Top318
-Node: Overview1263
-Node: Installing Trueprint3182
-Node: Languages6932
-Node: Page Formatting9516
-Node: Page Furniture11413
-Node: Text Formatting15487
-Node: Output Options18738
-Node: Print Selection20014
-Node: Miscellaneous Features22130
-Node: Options and Environment Variables List25723
-Node: Option Index32185
-Node: Concept Index36361
+Node: Top319
+Node: Overview1261
+Node: Installing Trueprint3181
+Node: Languages6942
+Node: Page Formatting9527
+Node: Page Furniture11425
+Node: Text Formatting15505
+Node: Output Options18780
+Node: Print Selection20057
+Node: Miscellaneous Features22176
+Node: Options and Environment Variables List25803
+Node: Option Index32391
+Node: Concept Index37991
 
 End Tag Table
