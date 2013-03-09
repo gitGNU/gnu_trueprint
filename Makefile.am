@@ -13,3 +13,5 @@ EXTRA_DIST = config/install-sh \
 	data/testprint \
 	BUGS \
 	bootstrap
+
+ACLOCAL_AMFLAGS = -I m4

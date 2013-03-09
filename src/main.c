@@ -64,6 +64,8 @@ int dup(int fildes);
 
 #include "main.h"
 
+#define VERSION "5.4"
+
 /******************************************************************************
  * Public part
  */
