@@ -868,7 +868,7 @@ void print_version(const char *p, const char *o)
 {
   printf("GNU Trueprint %s\n", VERSION);
   printf(gettext(
-		 "Copyright (C) 1999 Free Software Foundation, Inc.\n"
+		 "Copyright (C) 2013 Free Software Foundation, Inc.\n"
 		 "GNU Trueprint comes with NO WARRANTY,\n"
 		 "to the extent permitted by law.\n"
 		 "You may redistribute copies of GNU Trueprint\n"
