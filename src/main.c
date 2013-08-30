@@ -876,6 +876,7 @@ void print_version(const char *p, const char *o)
 		 "For more information about these matters,\n"
 		 "see the file named COPYING.\n"
 		 ));
+  printf("%s\n","http://www.gnu.org/licenses/gpl.html");
 
   exit(0);
 }
