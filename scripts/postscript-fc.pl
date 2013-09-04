@@ -7,3 +7,4 @@ use strict;
 use warnings;
     
 unlink glob "*.ps";
+unlink glob "*.PS";
